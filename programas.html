@@ -1,0 +1,1813 @@
+<!-- ============================================ --><!-- PÁGINA DE PROGRAMACIÓN - RADIO CENTRO       --><!-- CANAL DE TV + EMISORA ONLINE CON TABS       --><!-- ============================================ --><style>
+/* ============================================ */
+/* ESTILOS EXCLUSIVOS PARA PROGRAMAS           */
+/* ============================================ */
+/* Contenedor principal */
+.rc-programas-full-container {
+    background-color: #0a0a0a;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0;
+}
+.rc-programas-full-container .rc-programas-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+/* Hero Section */
+.rc-programas-full-container .programas-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 24px;
+    margin-bottom: 50px;
+    border: 1px solid #2a2a2a;
+}
+.rc-programas-full-container .programas-hero h1 {
+    font-size: 3.5rem;
+    color: #f9b001;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 20px;
+}
+.rc-programas-full-container .programas-hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto;
+}
+/* Tabs de navegación */
+.rc-programas-full-container .programas-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+.rc-programas-full-container .tab-btn {
+    background: #111;
+    border: 2px solid #2a2a2a;
+    color: #ccc;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    letter-spacing: 1px;
+}
+.rc-programas-full-container .tab-btn.active {
+    background: #e91826;
+    color: white;
+    border-color: #e91826;
+}
+.rc-programas-full-container .tab-btn:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+    border-color: #f9b001;
+}
+/* Contenedor de contenido por pestaña */
+.rc-programas-full-container .tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.rc-programas-full-container .tab-content.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ============================================ */
+/* SECCIÓN DE PROGRAMAS DESTACADOS             */
+/* ============================================ */
+.rc-programas-full-container .programas-destacados {
+    margin-bottom: 50px;
+}
+.rc-programas-full-container .section-title {
+    font-size: 2rem;
+    color: #f9b001;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 30px;
+    border-left: 5px solid #e91826;
+    padding-left: 20px;
+}
+.rc-programas-full-container .destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.rc-programas-full-container .programa-destacado-card {
+    background: #111;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.2s, border-color 0.2s;
+}
+.rc-programas-full-container .programa-destacado-card:hover {
+    transform: translateY(-5px);
+    border-color: #e91826;
+}
+.rc-programas-full-container .programa-destacado-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+.rc-programas-full-container .programa-destacado-card h3 {
+    color: #f9b001;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+.rc-programas-full-container .programa-destacado-card p {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+.rc-programas-full-container .programa-horario {
+    display: inline-block;
+    background: #e91826;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+}
+/* ============================================ */
+/* CALENDARIO / PARRILLA DE PROGRAMACIÓN       */
+/* ============================================ */
+.rc-programas-full-container .calendario-header {
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+    background: #e91826;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+}
+.rc-programas-full-container .calendario-hora {
+    background: #b01520;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.rc-programas-full-container .calendario-dia {
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.rc-programas-full-container .programa-fila {
+    display: grid;
+    grid-template-columns: 100px repeat(7, 1fr);
+    border-bottom: 1px solid #2a2a2a;
+}
+.rc-programas-full-container .programa-fila:hover {
+    background: #0d0d0d;
+}
+.rc-programas-full-container .programa-hora {
+    background: #1a1a1a;
+    padding: 15px;
+    font-weight: bold;
+    color: #f9b001;
+    border-right: 1px solid #2a2a2a;
+    font-size: 0.9rem;
+}
+.rc-programas-full-container .programa-item {
+    padding: 12px;
+    background: #111;
+    min-height: 80px;
+    transition: background 0.2s;
+}
+.rc-programas-full-container .programa-item:hover {
+    background: #1a1a1a;
+}
+.rc-programas-full-container .programa-titulo {
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+.rc-programas-full-container .programa-desc {
+    color: #aaa;
+    font-size: 0.7rem;
+    margin-top: 5px;
+}
+.rc-programas-full-container .programa-categoria {
+    display: inline-block;
+    background: #e91826;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+/* ============================================ */
+/* PARRILLA SIMPLIFICADA PARA MÓVILES          */
+/* ============================================ */
+.rc-programas-full-container .parrilla-movil {
+    display: none;
+}
+.rc-programas-full-container .dia-card {
+    background: #111;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+}
+.rc-programas-full-container .dia-header {
+    background: #e91826;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.rc-programas-full-container .programa-movil-item {
+    display: flex;
+    padding: 12px 15px;
+    border-bottom: 1px solid #2a2a2a;
+}
+.rc-programas-full-container .programa-movil-item:last-child {
+    border-bottom: none;
+}
+.rc-programas-full-container .programa-movil-hora {
+    width: 80px;
+    font-weight: bold;
+    color: #f9b001;
+    font-size: 0.8rem;
+}
+.rc-programas-full-container .programa-movil-info {
+    flex: 1;
+}
+.rc-programas-full-container .programa-movil-titulo {
+    color: white;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+/* ============================================ */
+/* FRANJA HORARIA Y ESTILOS ADICIONALES        */
+/* ============================================ */
+.rc-programas-full-container .franja-morada {
+    background: linear-gradient(135deg, #2a0a2a, #1a0a1a);
+}
+.rc-programas-full-container .franja-azul {
+    background: linear-gradient(135deg, #0a1a2a, #0a0a1a);
+}
+.rc-programas-full-container .badge-estreno {
+    background: #f9b001;
+    color: #0a0a0a;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+}
+/* Responsive */
+@media (max-width: 1000px) {
+    .rc-programas-full-container .destacados-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .rc-programas-full-container .programas-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .rc-programas-full-container .calendario-header,
+    .rc-programas-full-container .programa-fila {
+        display: none;
+    }
+    
+    .rc-programas-full-container .parrilla-movil {
+        display: block;
+    }
+    
+    .rc-programas-full-container .tab-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    .rc-programas-full-container .destacados-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rc-programas-full-container .section-title {
+        font-size: 1.5rem;
+    }
+}
+</style><!-- ============================================ --><!-- CONTENIDO PRINCIPAL                         --><!-- ============================================ -->
+<div class="rc-programas-full-container">
+    <div class="rc-programas-container">
+        <!-- Hero Section -->
+        <div class="programas-hero">
+            <h1>
+                📺 Programación Radio Centro
+            </h1>
+            <p>
+                Descubre la parrilla completa de nuestro Canal de TV y Emisora Online. ¡Música, entretenimiento y noticias 24/7!
+            </p>
+        </div>
+        <!-- Tabs de navegación -->
+        <div class="programas-tabs">
+            <button class="tab-btn active" data-tab="tv">📺 CANAL DE TV</button> <button class="tab-btn" data-tab="radio">🎙️ EMISORA ONLINE</button>
+        </div>
+        <!-- ============================================ --><!-- CONTENIDO CANAL DE TV                       --><!-- ============================================ -->
+        <div class="tab-content active" id="tv-content">
+            <!-- Programas Destacados TV -->
+            <div class="programas-destacados">
+                <h2 class="section-title">
+                    🔥 Programas Destacados - Canal TV
+                </h2>
+                <div class="destacados-grid">
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            🎤
+                        </div>
+                        <h3>
+                            El Show de la Mañana
+                        </h3>
+                        <p>
+                            El mejor despertador con música, noticias y entretenimiento.
+                        </p>
+                        <p>
+                            <span class="programa-horario">LUN-VIE 7:00 AM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            🎸
+                        </div>
+                        <h3>
+                            Rock sin Fronteras
+                        </h3>
+                        <p>
+                            Lo mejor del rock nacional e internacional.
+                        </p>
+                        <p>
+                            <span class="programa-horario">LUN-VIE 9:00 PM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            💃
+                        </div>
+                        <h3>
+                            Salsa Brava
+                        </h3>
+                        <p>
+                            La salsa que no puede faltar en tu día.
+                        </p>
+                        <p>
+                            <span class="programa-horario">SÁB 8:00 PM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            📰
+                        </div>
+                        <h3>
+                            RC Noticias
+                        </h3>
+                        <p>
+                            Lo último del mundo musical y del entretenimiento.
+                        </p>
+                        <p>
+                            <span class="programa-horario">LUN-VIE 1:00 PM</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Parrilla TV - Escritorio -->
+            <div class="calendario-header">
+                <div class="calendario-hora">
+                    HORA
+                </div>
+                <div class="calendario-dia">
+                    LUNES
+                </div>
+                <div class="calendario-dia">
+                    MARTES
+                </div>
+                <div class="calendario-dia">
+                    MIÉRCOLES
+                </div>
+                <div class="calendario-dia">
+                    JUEVES
+                </div>
+                <div class="calendario-dia">
+                    VIERNES
+                </div>
+                <div class="calendario-dia">
+                    SÁBADO
+                </div>
+                <div class="calendario-dia">
+                    DOMINGO
+                </div>
+            </div>
+            <!-- Fila 6:00 AM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    6:00 AM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Buenos Días RC
+                    </div>
+                    <div class="programa-desc">
+                        Despertamos con la mejor música
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Buenos Días RC
+                    </div>
+                    <div class="programa-desc">
+                        Despertamos con la mejor música
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Buenos Días RC
+                    </div>
+                    <div class="programa-desc">
+                        Despertamos con la mejor música
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Buenos Días RC
+                    </div>
+                    <div class="programa-desc">
+                        Despertamos con la mejor música
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Buenos Días RC
+                    </div>
+                    <div class="programa-desc">
+                        Despertamos con la mejor música
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Sábado Musical
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor de la semana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Domingo Familiar
+                    </div>
+                    <div class="programa-desc">
+                        Música para toda la familia
+                    </div>
+                    <p>
+                        <span class="programa-categoria">FAMILIAR</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 8:00 AM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    8:00 AM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 El Show de la Mañana <span class="badge-estreno">EN VIVO</span>
+                    </div>
+                    <div class="programa-desc">
+                        Entretenimiento y noticias
+                    </div>
+                    <p>
+                        <span class="programa-categoria">VARIEDADES</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 El Show de la Mañana
+                    </div>
+                    <div class="programa-desc">
+                        Entretenimiento y noticias
+                    </div>
+                    <p>
+                        <span class="programa-categoria">VARIEDADES</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 El Show de la Mañana
+                    </div>
+                    <div class="programa-desc">
+                        Entretenimiento y noticias
+                    </div>
+                    <p>
+                        <span class="programa-categoria">VARIEDADES</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 El Show de la Mañana
+                    </div>
+                    <div class="programa-desc">
+                        Entretenimiento y noticias
+                    </div>
+                    <p>
+                        <span class="programa-categoria">VARIEDADES</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 El Show de la Mañana
+                    </div>
+                    <div class="programa-desc">
+                        Entretenimiento y noticias
+                    </div>
+                    <p>
+                        <span class="programa-categoria">VARIEDADES</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎬 Cine en Casa
+                    </div>
+                    <div class="programa-desc">
+                        Películas para toda la familia
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CINE</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🙏 Música para el Alma
+                    </div>
+                    <div class="programa-desc">
+                        Espacio de reflexión
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ESPIRITUAL</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 12:00 PM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    12:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🍽️ Música al Mediodía
+                    </div>
+                    <div class="programa-desc">
+                        El soundtrack de tu almuerzo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🍽️ Música al Mediodía
+                    </div>
+                    <div class="programa-desc">
+                        El soundtrack de tu almuerzo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🍽️ Música al Mediodía
+                    </div>
+                    <div class="programa-desc">
+                        El soundtrack de tu almuerzo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🍽️ Música al Mediodía
+                    </div>
+                    <div class="programa-desc">
+                        El soundtrack de tu almuerzo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🍽️ Música al Mediodía
+                    </div>
+                    <div class="programa-desc">
+                        El soundtrack de tu almuerzo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Top 10 Semanal
+                    </div>
+                    <div class="programa-desc">
+                        Los más escuchados
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Entrevista Exclusiva
+                    </div>
+                    <div class="programa-desc">
+                        Conversamos con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ENTREVISTA</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 2:00 PM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    2:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        📰 RC Noticias
+                    </div>
+                    <div class="programa-desc">
+                        Lo último del mundo musical
+                    </div>
+                    <p>
+                        <span class="programa-categoria">NOTICIAS</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        📰 RC Noticias
+                    </div>
+                    <div class="programa-desc">
+                        Lo último del mundo musical
+                    </div>
+                    <p>
+                        <span class="programa-categoria">NOTICIAS</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        📰 RC Noticias
+                    </div>
+                    <div class="programa-desc">
+                        Lo último del mundo musical
+                    </div>
+                    <p>
+                        <span class="programa-categoria">NOTICIAS</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        📰 RC Noticias
+                    </div>
+                    <div class="programa-desc">
+                        Lo último del mundo musical
+                    </div>
+                    <p>
+                        <span class="programa-categoria">NOTICIAS</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        📰 RC Noticias
+                    </div>
+                    <div class="programa-desc">
+                        Lo último del mundo musical
+                    </div>
+                    <p>
+                        <span class="programa-categoria">NOTICIAS</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎬 Cine en Casa
+                    </div>
+                    <div class="programa-desc">
+                        Películas para toda la familia
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CINE</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Grandes Éxitos
+                    </div>
+                    <div class="programa-desc">
+                        Los clásicos que no pasan de moda
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 7:00 PM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    7:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎸 Rock sin Fronteras
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del rock
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ROCK</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎸 Rock sin Fronteras
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del rock
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ROCK</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💃 Salsa Brava
+                    </div>
+                    <div class="programa-desc">
+                        La salsa que mueve
+                    </div>
+                    <p>
+                        <span class="programa-categoria">SALSA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💃 Salsa Brava
+                    </div>
+                    <div class="programa-desc">
+                        La salsa que mueve
+                    </div>
+                    <p>
+                        <span class="programa-categoria">SALSA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎸 Rock sin Fronteras
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del rock
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ROCK</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Fiesta Latina
+                    </div>
+                    <div class="programa-desc">
+                        La mejor música latina
+                    </div>
+                    <p>
+                        <span class="programa-categoria">LATINA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Grandes Conciertos
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores shows
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONCIERTO</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 9:00 PM -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    9:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Lo Nuevo <span class="badge-estreno">ESTRENO</span>
+                    </div>
+                    <div class="programa-desc">
+                        Estrenos musicales
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Entrevistas
+                    </div>
+                    <div class="programa-desc">
+                        Conversaciones exclusivas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ENTREVISTA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Especial de la Semana
+                    </div>
+                    <div class="programa-desc">
+                        Artista destacado
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ESPECIAL</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Lo Nuevo
+                    </div>
+                    <div class="programa-desc">
+                        Estrenos musicales
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Mix de Éxitos
+                    </div>
+                    <div class="programa-desc">
+                        Los más sonados
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Sábado de Parranda
+                    </div>
+                    <div class="programa-desc">
+                        Para bailar sin parar
+                    </div>
+                    <p>
+                        <span class="programa-categoria">FIESTA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Clásicos del Domingo
+                    </div>
+                    <div class="programa-desc">
+                        Música para recordar
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CLÁSICOS</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Parrilla Móvil TV -->
+            <div class="parrilla-movil">
+                <div class="dia-card">
+                    <div class="dia-header">
+                        📅 LUNES - CANAL TV
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            6:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎵 Buenos Días RC
+                            </div>
+                            <div class="programa-desc">
+                                Despertamos con la mejor música
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            8:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎤 El Show de la Mañana
+                            </div>
+                            <div class="programa-desc">
+                                Entretenimiento y noticias
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            12:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🍽️ Música al Mediodía
+                            </div>
+                            <div class="programa-desc">
+                                El soundtrack de tu almuerzo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            2:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                📰 RC Noticias
+                            </div>
+                            <div class="programa-desc">
+                                Lo último del mundo musical
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            7:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎸 Rock sin Fronteras
+                            </div>
+                            <div class="programa-desc">
+                                Lo mejor del rock
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            9:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎤 Lo Nuevo
+                            </div>
+                            <div class="programa-desc">
+                                Estrenos musicales
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dia-card">
+                    <div class="dia-header">
+                        📅 SÁBADO - CANAL TV
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            6:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎶 Sábado Musical
+                            </div>
+                            <div class="programa-desc">
+                                Lo mejor de la semana
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            8:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎬 Cine en Casa
+                            </div>
+                            <div class="programa-desc">
+                                Películas para toda la familia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            12:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎤 Top 10 Semanal
+                            </div>
+                            <div class="programa-desc">
+                                Los más escuchados
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            7:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                💃 Salsa Brava
+                            </div>
+                            <div class="programa-desc">
+                                La salsa que mueve
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            9:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎤 Sábado de Parranda
+                            </div>
+                            <div class="programa-desc">
+                                Para bailar sin parar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dia-card">
+                    <div class="dia-header">
+                        📅 DOMINGO - CANAL TV
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            6:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎶 Domingo Familiar
+                            </div>
+                            <div class="programa-desc">
+                                Música para toda la familia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            8:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🙏 Música para el Alma
+                            </div>
+                            <div class="programa-desc">
+                                Espacio de reflexión
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            12:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎤 Entrevista Exclusiva
+                            </div>
+                            <div class="programa-desc">
+                                Conversamos con artistas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            7:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎶 Grandes Conciertos
+                            </div>
+                            <div class="programa-desc">
+                                Los mejores shows
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================ --><!-- CONTENIDO EMISORA ONLINE                    --><!-- ============================================ -->
+        <div class="tab-content" id="radio-content">
+            <!-- Programas Destacados Radio -->
+            <div class="programas-destacados">
+                <h2 class="section-title">
+                    🎙️ Programas Destacados - Emisora Online
+                </h2>
+                <div class="destacados-grid">
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            🌅
+                        </div>
+                        <h3>
+                            Amanecer Musical
+                        </h3>
+                        <p>
+                            El mejor despertador con los éxitos del momento.
+                        </p>
+                        <p>
+                            <span class="programa-horario">LUN-VIE 5:00 AM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            💬
+                        </div>
+                        <h3>
+                            La Hora del Café
+                        </h3>
+                        <p>
+                            Conversaciones amenas con los mejores temas.
+                        </p>
+                        <p>
+                            <span class="programa-horario">LUN-VIE 10:00 AM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            🎧
+                        </div>
+                        <h3>
+                            Podcast Exclusivo
+                        </h3>
+                        <p>
+                            Entrevistas en profundidad con artistas.
+                        </p>
+                        <p>
+                            <span class="programa-horario">MIÉ 6:00 PM</span>
+                        </p>
+                    </div>
+                    <div class="programa-destacado-card">
+                        <div class="programa-destacado-icon">
+                            🌙
+                        </div>
+                        <h3>
+                            Noches de Salsa
+                        </h3>
+                        <p>
+                            Para los amantes de la salsa romántica.
+                        </p>
+                        <p>
+                            <span class="programa-horario">VIE 8:00 PM</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Parrilla Radio - Escritorio -->
+            <div class="calendario-header">
+                <div class="calendario-hora">
+                    HORA
+                </div>
+                <div class="calendario-dia">
+                    LUNES
+                </div>
+                <div class="calendario-dia">
+                    MARTES
+                </div>
+                <div class="calendario-dia">
+                    MIÉRCOLES
+                </div>
+                <div class="calendario-dia">
+                    JUEVES
+                </div>
+                <div class="calendario-dia">
+                    VIERNES
+                </div>
+                <div class="calendario-dia">
+                    SÁBADO
+                </div>
+                <div class="calendario-dia">
+                    DOMINGO
+                </div>
+            </div>
+            <!-- Fila 5:00 AM Radio -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    5:00 AM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌅 Amanecer Musical
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores éxitos para empezar el día
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌅 Amanecer Musical
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores éxitos para empezar el día
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌅 Amanecer Musical
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores éxitos para empezar el día
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌅 Amanecer Musical
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores éxitos para empezar el día
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌅 Amanecer Musical
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores éxitos para empezar el día
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Sábado Retro
+                    </div>
+                    <div class="programa-desc">
+                        Los clásicos de los 80s y 90s
+                    </div>
+                    <p>
+                        <span class="programa-categoria">RETRO</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🙏 Reflexiones
+                    </div>
+                    <div class="programa-desc">
+                        Música para el alma y meditación
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ESPIRITUAL</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 10:00 AM Radio -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    10:00 AM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💬 La Hora del Café <span class="badge-estreno">EN VIVO</span>
+                    </div>
+                    <div class="programa-desc">
+                        Conversación y música para tu mañana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONVERSACIÓN</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💬 La Hora del Café
+                    </div>
+                    <div class="programa-desc">
+                        Conversación y música para tu mañana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONVERSACIÓN</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💬 La Hora del Café
+                    </div>
+                    <div class="programa-desc">
+                        Conversación y música para tu mañana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONVERSACIÓN</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💬 La Hora del Café
+                    </div>
+                    <div class="programa-desc">
+                        Conversación y música para tu mañana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONVERSACIÓN</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        💬 La Hora del Café
+                    </div>
+                    <div class="programa-desc">
+                        Conversación y música para tu mañana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONVERSACIÓN</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Top 10 Semanal
+                    </div>
+                    <div class="programa-desc">
+                        Los más pedidos por la audiencia
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Clásicos Dominicales
+                    </div>
+                    <div class="programa-desc">
+                        Música para recordar
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CLÁSICOS</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 2:00 PM Radio -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    2:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Éxitos del Momento
+                    </div>
+                    <div class="programa-desc">
+                        Lo que suena ahora en todas las radios
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Éxitos del Momento
+                    </div>
+                    <div class="programa-desc">
+                        Lo que suena ahora en todas las radios
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Éxitos del Momento
+                    </div>
+                    <div class="programa-desc">
+                        Lo que suena ahora en todas las radios
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Éxitos del Momento
+                    </div>
+                    <div class="programa-desc">
+                        Lo que suena ahora en todas las radios
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Éxitos del Momento
+                    </div>
+                    <div class="programa-desc">
+                        Lo que suena ahora en todas las radios
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Fiesta Latina
+                    </div>
+                    <div class="programa-desc">
+                        El mejor ritmo latino
+                    </div>
+                    <p>
+                        <span class="programa-categoria">LATINA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎤 Grandes Conciertos
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores shows en vivo
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CONCIERTO</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 6:00 PM Radio -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    6:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎧 Podcast Exclusivo
+                    </div>
+                    <div class="programa-desc">
+                        Entrevistas con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">PODCAST</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎧 Podcast Exclusivo
+                    </div>
+                    <div class="programa-desc">
+                        Entrevistas con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">PODCAST</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎧 Podcast Exclusivo <span class="badge-estreno">ESTRENO</span>
+                    </div>
+                    <div class="programa-desc">
+                        Entrevistas con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">PODCAST</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎧 Podcast Exclusivo
+                    </div>
+                    <div class="programa-desc">
+                        Entrevistas con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">PODCAST</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎧 Podcast Exclusivo
+                    </div>
+                    <div class="programa-desc">
+                        Entrevistas con artistas
+                    </div>
+                    <p>
+                        <span class="programa-categoria">PODCAST</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Especial de Fin de Semana
+                    </div>
+                    <div class="programa-desc">
+                        La mejor música para relajarte
+                    </div>
+                    <p>
+                        <span class="programa-categoria">MÚSICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Tarde de Clásicos
+                    </div>
+                    <div class="programa-desc">
+                        Los temas que nunca pasan de moda
+                    </div>
+                    <p>
+                        <span class="programa-categoria">CLÁSICOS</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Fila 8:00 PM Radio -->
+            <div class="programa-fila">
+                <div class="programa-hora">
+                    8:00 PM
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Noches de Pop
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del pop latino e internacional
+                    </div>
+                    <p>
+                        <span class="programa-categoria">POP</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Noches de Pop
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del pop latino e internacional
+                    </div>
+                    <p>
+                        <span class="programa-categoria">POP</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Noches de Pop
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del pop latino e internacional
+                    </div>
+                    <p>
+                        <span class="programa-categoria">POP</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎵 Noches de Pop
+                    </div>
+                    <div class="programa-desc">
+                        Lo mejor del pop latino e internacional
+                    </div>
+                    <p>
+                        <span class="programa-categoria">POP</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🌙 Noches de Salsa
+                    </div>
+                    <div class="programa-desc">
+                        Para los amantes de la salsa romántica
+                    </div>
+                    <p>
+                        <span class="programa-categoria">SALSA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Fiesta Electrónica
+                    </div>
+                    <div class="programa-desc">
+                        Los mejores mixes
+                    </div>
+                    <p>
+                        <span class="programa-categoria">ELECTRÓNICA</span>
+                    </p>
+                </div>
+                <div class="programa-item">
+                    <div class="programa-titulo">
+                        🎶 Baladas Románticas
+                    </div>
+                    <div class="programa-desc">
+                        Para cerrar el fin de semana
+                    </div>
+                    <p>
+                        <span class="programa-categoria">BALADAS</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Parrilla Móvil Radio -->
+            <div class="parrilla-movil">
+                <div class="dia-card">
+                    <div class="dia-header">
+                        📅 LUNES - EMISORA ONLINE
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            5:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🌅 Amanecer Musical
+                            </div>
+                            <div class="programa-desc">
+                                Los mejores éxitos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            10:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                💬 La Hora del Café
+                            </div>
+                            <div class="programa-desc">
+                                Conversación y música
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            2:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎵 Éxitos del Momento
+                            </div>
+                            <div class="programa-desc">
+                                Lo que suena ahora
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            6:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎧 Podcast Exclusivo
+                            </div>
+                            <div class="programa-desc">
+                                Entrevistas con artistas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            8:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎵 Noches de Pop
+                            </div>
+                            <div class="programa-desc">
+                                Lo mejor del pop
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dia-card">
+                    <div class="dia-header">
+                        📅 VIERNES - EMISORA ONLINE
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            5:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🌅 Amanecer Musical
+                            </div>
+                            <div class="programa-desc">
+                                Los mejores éxitos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            10:00 AM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                💬 La Hora del Café
+                            </div>
+                            <div class="programa-desc">
+                                Conversación y música
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            2:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎵 Éxitos del Momento
+                            </div>
+                            <div class="programa-desc">
+                                Lo que suena ahora
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            6:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🎧 Podcast Exclusivo
+                            </div>
+                            <div class="programa-desc">
+                                Entrevistas con artistas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="programa-movil-item">
+                        <div class="programa-movil-hora">
+                            8:00 PM
+                        </div>
+                        <div class="programa-movil-info">
+                            <div class="programa-movil-titulo">
+                                🌙 Noches de Salsa
+                            </div>
+                            <div class="programa-desc">
+                                Para los amantes de la salsa
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// ============================================
+// FUNCIONALIDAD DE TABS (TV / RADIO)
+// ============================================
+(function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    function switchTab(tabId) {
+        // Ocultar todos los contenidos
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Desactivar todos los botones
+        tabBtns.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Mostrar el contenido seleccionado
+        const selectedContent = document.getElementById(`${tabId}-content`);
+        if (selectedContent) {
+            selectedContent.classList.add('active');
+        }
+        
+        // Activar el botón seleccionado
+        const selectedBtn = Array.from(tabBtns).find(btn => btn.dataset.tab === tabId);
+        if (selectedBtn) {
+            selectedBtn.classList.add('active');
+        }
+    }
+    
+    // Agregar event listeners a los botones
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            if (tabId === 'tv' || tabId === 'radio') {
+                switchTab(tabId);
+            }
+        });
+    });
+})();
+</script>
