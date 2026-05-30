@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <!-- Estilos del blog -->
+  <link rel="stylesheet" href="/assets/css/blog.css">
+  <!-- Opcional: si tienes otros CSS globales -->
+</head>
+<body>
+  {% include menu.html %}
+  <main class="contenido-principal">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <!-- Scripts del blog -->
+  <script src="/assets/js/blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!-- ============================================ --><!-- HEADER ESTILO WWE CON BUSCADOR Y STICKY      --><!-- BUSCADOR FUNCIONAL - MEGA ACTUALIZADO       --><!-- ============================================ --><style>
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* ============================================ */
+/* HEADER ESTILO WWE - CON BUSCADOR             */
+/* ============================================ */
+.wwe-header {
+    margin: 0 0 30px 0 !important;
+    padding: 15px !important;
+    background: #0a0a0a !important;
+    border-radius: 16px !important;
+    border: 1px solid #2a2a2a !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+/* Espacio para que el contenido no quede debajo del header fijo */
+body {
+    padding-top: 100px !important;
+}
+.header-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+/* LOGO */
+.header-logo a {
+    font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+    font-size: 2rem !important;
+    color: #f9b001 !important;
+    text-decoration: none !important;
+    letter-spacing: 2px !important;
+    font-weight: bold !important;
+}
+.header-logo a:hover {
+    color: #e91826 !important;
+}
+.header-logo span {
+    color: #e91826 !important;
+}
+/* MENÚ ESCRITORIO */
+.main-menu ul {
+    display: flex !important;
+    gap: 15px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.main-menu li a {
+    background: #1a1a1a !important;
+    padding: 10px 22px !important;
+    border-radius: 40px !important;
+    color: #f9b001 !important;
+    text-decoration: none !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+    letter-spacing: 1px !important;
+}
+.main-menu li a:hover {
+    background: #f9b001 !important;
+    color: #0a0a0a !important;
+    transform: scale(1.05) !important;
+}
+/* ============================================ */
+/* BUSCADOR ESTILO WWE                         */
+/* ============================================ */
+.search-container {
+    display: flex !important;
+    gap: 8px !important;
+}
+.search-input {
+    background: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 40px !important;
+    padding: 10px 18px !important;
+    color: #fff !important;
+    font-size: 0.9rem !important;
+    width: 250px !important;
+    transition: 0.2s !important;
+}
+.search-input:focus {
+    outline: none !important;
+    border-color: #f9b001 !important;
+}
+.search-btn {
+    background: #e91826 !important;
+    border: none !important;
+    border-radius: 40px !important;
+    padding: 10px 20px !important;
+    color: white !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: 0.2s !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+    font-size: 0.9rem !important;
+}
+.search-btn:hover {
+    background: #f9b001 !important;
+    color: #0a0a0a !important;
+    transform: scale(1.02) !important;
+}
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+    display: none !important;
+    background: #1a1a1a !important;
+    border: none !important;
+    color: #f9b001 !important;
+    padding: 10px 22px !important;
+    border-radius: 40px !important;
+    cursor: pointer !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    transition: 0.2s !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+}
+.menu-toggle:hover {
+    background: #f9b001 !important;
+    color: #0a0a0a !important;
+}
+/* MENÚ MÓVIL */
+.mobile-menu {
+    display: none !important;
+    width: 100% !important;
+    background: #0a0a0a !important;
+    border-top: 1px solid #2a2a2a !important;
+    margin-top: 15px !important;
+    padding-top: 15px !important;
+}
+.mobile-menu.active {
+    display: block !important;
+}
+.mobile-menu ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+.mobile-menu li a {
+    display: block !important;
+    background: #1a1a1a !important;
+    padding: 12px 20px !important;
+    border-radius: 40px !important;
+    color: #f9b001 !important;
+    text-decoration: none !important;
+    font-size: 1rem !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    transition: 0.2s !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+    letter-spacing: 1px !important;
+}
+.mobile-menu li a:hover {
+    background: #f9b001 !important;
+    color: #0a0a0a !important;
+}
+/* ============================================ */
+/* MODAL DE RESULTADOS DE BÚSQUEDA             */
+/* ============================================ */
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 2000;
+    overflow-y: auto;
+}
+.search-modal-content {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 30px;
+    background: #0a0a0a;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+}
+.search-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2a2a2a;
+}
+.search-modal-header h3 {
+    color: #f9b001;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.close-modal {
+    background: #e91826;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.close-modal:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+}
+.search-results {
+    color: #ccc;
+    max-height: 500px;
+    overflow-y: auto;
+}
+.search-result-item {
+    padding: 15px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.search-result-item:hover {
+    background: #1a1a1a;
+    padding-left: 25px;
+}
+.search-result-item h4 {
+    color: #f9b001;
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+}
+.search-result-item p {
+    color: #aaa;
+    font-size: 0.8rem;
+    margin: 0;
+}
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #e91826;
+}
+/* SUGERENCIAS DE BÚSQUEDA */
+.search-suggestions {
+    background: #1a1a1a;
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 1px solid #2a2a2a;
+}
+.suggestions-title {
+    color: #f9b001;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.suggestions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.suggestion-tag {
+    background: #2a2a2a;
+    color: #f9b001;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.suggestion-tag:hover {
+    background: #e91826;
+    color: white;
+    transform: scale(1.02);
+}
+/* Responsive */
+@media (max-width: 1024px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+    
+    .search-container {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .main-menu {
+        display: none !important;
+    }
+    
+    .menu-toggle {
+        display: block !important;
+    }
+    
+    .header-logo a {
+        font-size: 1.3rem !important;
+    }
+    
+    .wwe-header {
+        padding: 12px !important;
+    }
+    
+    body {
+        padding-top: 120px !important;
+    }
+    
+    .search-modal-content {
+        margin: 50px 20px;
+        padding: 20px;
+    }
+}
+</style><!-- HTML DEL HEADER CON BUSCADOR -->
+<header class="wwe-header">
+    <div class="header-container">
+        <div class="header-logo">
+            <a href="/">RADIO <span>CENTRO</span></a>
+        </div>
+        <p>
+            <button class="menu-toggle" id="menuToggle">☰ MENÚ</button>
+        </p>
+        <nav class="main-menu">
+            <ul>
+                <li data-list-item-id="e221954dff17ba8c007c79bebc8bc654a">
+                    <a href="/">INICIO</a>
+                </li>
+                <li data-list-item-id="e73276b473a41ec90cea5c2a96d9aaa14">
+                    <a href="https://www.radiocentro.net/Emisora-en-vivo">EMISORA</a>
+                </li>
+                <li data-list-item-id="e1b1274f142e330fd12fc84f183ca8f17">
+                    <a href="https://www.radiocentro.net/artistas">ARTISTAS</a>
+                </li>
+                <li data-list-item-id="ef3d8ac4c532b69781510f4f539216c5d">
+                    <a href="https://www.radiocentro.net/se%C3%B1al-vivo">TV EN VIVO</a>
+                </li>
+                <li data-list-item-id="ec0f7dd4a2d9fbb2cdff4b03f5a342a25">
+                    <a href="/videos">VIDEOS</a>
+                </li>
+                <li data-list-item-id="edf23679c81ea1e758c1cd8815250e3b9">
+                    <a href="https://www.radiocentro.net/news">NOTICIAS</a>
+                </li>
+                <li data-list-item-id="e981bbc6a610f8015d31d968c871fd7d9">
+                    <a href="/eventos">EVENTOS</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input class="search-input" type="text" id="searchInput" placeholder="🔍 Buscar en Radio Centro..."> <button class="search-btn" id="searchBtn">BUSCAR</button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li data-list-item-id="e54d1dbe2ce2a78445d1d85ac1b93f648">
+                    <a href="/">INICIO</a>
+                </li>
+                <li data-list-item-id="e453d2f301711843acc10ba9520d2ba04">
+                    <a href="https://www.radiocentro.net/Emisora-en-vivo">EMISORA</a>
+                </li>
+                <li data-list-item-id="e28fb31e5b34e8994be52b6771052b25e">
+                    <a href="https://www.radiocentro.net/artistas">ARTISTAS</a>
+                </li>
+                <li data-list-item-id="e98530d11d8d73a0d20fe665fc9f647ca">
+                    <a href="https://www.radiocentro.net/se%C3%B1al-vivo">TV EN VIVO</a>
+                </li>
+                <li data-list-item-id="e4a24b8b22fc79dc12b344af998d890bf">
+                    <a href="/videos">VIDEOS</a>
+                </li>
+                <li data-list-item-id="eea07510ae7c96912125b7eec7f2eff5b">
+                    <a href="https://www.radiocentro.net/news">NOTICIAS</a>
+                </li>
+                <li data-list-item-id="efa70eda14300b96d4bfb0f86c60f5fc6">
+                    <a href="/eventos">EVENTOS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- MODAL DE RESULTADOS -->
+<div class="search-modal" id="searchModal">
+    <div class="search-modal-content">
+        <div class="search-modal-header">
+            <h3>
+                🔍 RESULTADOS DE BÚSQUEDA
+            </h3>
+            <p>
+                <button class="close-modal" id="closeModal">✕</button>
+            </p>
+        </div>
+        <div class="search-results" id="searchResults">
+            &nbsp;
+        </div>
+        <div class="search-suggestions" id="searchSuggestions">
+            &nbsp;
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // ============================================
+    // MENÚ HAMBURGUESA
+    // ============================================
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+    }
+    
+    // ============================================
+    // BUSCADOR COMPLETO - MEGA ACTUALIZADO
+    // INCLUYE TODOS LOS TÉRMINOS SOLICITADOS
+    // ============================================
+    const searchBtn = document.getElementById('searchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchModal = document.getElementById('searchModal');
+    const closeModal = document.getElementById('closeModal');
+    const searchResults = document.getElementById('searchResults');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    
+    // ============================================
+    // BASE DE DATOS DE CONTENIDO (MEGA AMPLIADA)
+    // ============================================
+    const siteContent = [
+        // ========== MENÚ PRINCIPAL ==========
+        { title: "INICIO", url: "/", type: "Página", tags: ["home", "principal", "inicio", "bienvenida"] },
+        { title: "EMISORA EN VIVO", url: "https://www.radiocentro.net/Emisora-en-vivo", type: "Radio en Vivo", tags: ["radio", "emisora", "en vivo", "streaming", "señal en vivo", "lives"] },
+        { title: "TV EN VIVO", url: "https://www.radiocentro.net/se%C3%B1al-vivo", type: "Señal en Vivo", tags: ["tv", "televisión", "señal", "video", "lives", "transmisión"] },
+        { title: "VIDEOS", url: "/videos", type: "Videos", tags: ["videos", "videoclips", "youtube", "conciertos", "entrevistas", "videos musicales", "estrenos"] },
+        { title: "VIDEOS MUSICALES", url: "/videos/musicales", type: "Videos", tags: ["videos musicales", "videoclips", "estrenos", "nuevos videos"] },
+        { title: "NOTICIAS", url: "https://www.radiocentro.net/news", type: "Noticias", tags: ["noticias", "actualidad", "información", "música", "artistas", "noticias nuevas", "lo mas nuevo", "noticias musicales"] },
+        { title: "NOTICIAS MUSICALES", url: "https://www.radiocentro.net/news/musicales", type: "Noticias", tags: ["noticias musicales", "música", "actualidad musical", "lo nuevo"] },
+        { title: "EVENTOS", url: "/eventos", type: "Eventos", tags: ["eventos", "conciertos", "festivales", "presentaciones", "lives", "shows"] },
+        
+        // ========== ARTISTAS Y CANTANTES ==========
+        { title: "Shakira", url: "/artistas/shakira", type: "Artista", tags: ["shakira", "barranquilla", "pop", "mundial", "cantante", "musica"] },
+        { title: "Karol G", url: "/artistas/karol-g", type: "Artista", tags: ["karol g", "reggaeton", "medellin", "bichota", "cantante", "musica"] },
+        { title: "Feid", url: "/artistas/feid", type: "Artista", tags: ["feid", "ferxxo", "medellin", "reggaeton", "cantante", "musico"] },
+        { title: "Maluma", url: "/artistas/maluma", type: "Artista", tags: ["maluma", "medellin", "pop", "reggaeton", "cantante"] },
+        { title: "J Balvin", url: "/artistas/j-balvin", type: "Artista", tags: ["j balvin", "medellin", "reggaeton", "colombia", "cantante"] },
+        { title: "Sebastián Yatra", url: "/artistas/yatra", type: "Artista", tags: ["yatra", "pop", "balada", "medellin", "cantante"] },
+        { title: "Camilo", url: "/artistas/camilo", type: "Artista", tags: ["camilo", "pop", "colombia", "medellin", "cantante"] },
+        { title: "Arelys Henao", url: "/blog/arelys-henao", type: "Artista", tags: ["arelys henao", "música popular", "colombia", "cantante"] },
+        { title: "Rafael Santos", url: "/blog/Rafael-Santos-lanza-el-video-oficial", type: "Artista", tags: ["rafael santos", "música popular", "vallenato", "cantante"] },
+        { title: "Betuel Devia", url: "/artistas/betuel-devia", type: "Artista", tags: ["betuel devia", "cantante", "musica", "artista", "betuel"] },
+        { title: "Javy Kartucho", url: "/artistas/javy-kartucho", type: "Artista", tags: ["javy", "javy kartucho", "kartucho", "cantante", "urbano", "amor bonito"] },
+        { title: "Ryan Castro", url: "/artistas/ryan-castro", type: "Artista", tags: ["ryan castro", "urbano", "reggaeton", "cantante", "medellin"] },
+        { title: "Melissa Mora", url: "/artistas/melissa-mora", type: "Artista", tags: ["melissa mora", "cantante", "musica", "artista", "melissa"] },
+        { title: "Club de Fans - Melissa Mora", url: "/clubs/melissa-mora", type: "Club de Fans", tags: ["club de fans", "melissa mora", "fans", "comunidad"] },
+        
+        // ========== GÉNEROS MUSICALES ==========
+        { title: "Música Popular", url: "/musica-popular", type: "Género", tags: ["popular", "popular colombiana", "música popular", "despecho", "cantantes populares"] },
+        { title: "Reggaetón", url: "/reggaeton", type: "Género", tags: ["reggaeton", "urbano", "perreo", "latino", "reggae"] },
+        { title: "Reggae", url: "/reggae", type: "Género", tags: ["reggae", "jamaica", "rasta", "raggamuffin"] },
+        { title: "Urbano", url: "/urbano", type: "Género", tags: ["urbano", "música urbana", "trap", "reggaeton", "latino"] },
+        { title: "Pop Latino", url: "/pop-latino", type: "Género", tags: ["pop", "pop latino", "balada", "romántica", "latino"] },
+        { title: "Mariachis", url: "/mariachis", type: "Género", tags: ["mariachis", "mexicano", "ranchera", "música regional", "música mexicana"] },
+        { title: "Latino", url: "/latino", type: "Género", tags: ["latino", "música latina", "ritmo latino", "salsa", "bachata", "merengue"] },
+        
+        // ========== CIUDADES Y LUGARES ==========
+        { title: "Medellín", url: "/medellin", type: "Ciudad", tags: ["medellin", "medallo", "antioquia", "ciudad", "conciertos", "artistas medellin"] },
+        { title: "Bogotá", url: "/bogota", type: "Ciudad", tags: ["bogotá", "capital", "conciertos", "eventos"] },
+        { title: "Cali", url: "/cali", type: "Ciudad", tags: ["cali", "valle", "salsa", "conciertos"] },
+        { title: "Barranquilla", url: "/barranquilla", type: "Ciudad", tags: ["barranquilla", "carnaval", "shakira", "conciertos"] },
+        
+        // ========== NOTICIAS Y ARTÍCULOS ==========
+        { title: "Mundial 2026", url: "/news/shakira-vuelve-a-dominar-el-mundial", type: "Noticia", tags: ["mundial", "fútbol", "shakira", "dai dai", "cop mundial"] },
+        { title: "Dai Dai - Shakira", url: "/news/shakira-dai-dai", type: "Noticia", tags: ["shakira", "dai dai", "mundial", "canción", "estreno"] },
+        { title: "Disqueras - Qué función hace", url: "/blog/que-funcion-hace-una-disquera-para-un-artista", type: "Artículo", tags: ["disquera", "música", "artista", "industria", "disqueras"] },
+        { title: "DistroKid vs TuneCore", url: "/blog/DistroKidvsTuneCore", type: "Artículo", tags: ["distribución", "música", "digital", "plataformas", "distrokid", "tunecore"] },
+        { title: "Posicionamiento SEO para Músicos", url: "/blog/posicionamiento-seo-musica", type: "Artículo", tags: ["seo", "posicionamiento seo", "marketing musical", "artistas", "posicionamiento"] },
+        { title: "SEO para Músicos", url: "/blog/seo-para-musicos", type: "Artículo", tags: ["seo", "posicionamiento", "optimización", "buscadores", "marketing"] },
+        { title: "Cómo distribuir tu música", url: "/blog/distribuir-tu-musica", type: "Artículo", tags: ["distribución", "plataformas", "spotify", "apple music"] },
+        { title: "Nuevos Artistas 2026", url: "/artistas/nuevos-2026", type: "Noticia", tags: ["nuevos artistas", "talentos", "emergentes", "lo mas nuevo"] },
+        { title: "Estrenos Musicales 2026", url: "/estrenos/2026", type: "Estrenos", tags: ["estrenos", "nuevas canciones", "lanzamientos", "música nueva", "lo mas nuevo"] },
+        { title: "Zizk Music", url: "/sello/zizk-music", type: "Sello Discográfico", tags: ["zizk music", "sello", "discográfica", "independiente"] },
+        
+        // ========== SERVICIOS ==========
+        { title: "Distribución Musical", url: "/distribucion", type: "Servicio", tags: ["distribución", "música", "plataformas", "digital", "distribuir"] },
+        { title: "Contratar Artistas", url: "/contratar-artistas", type: "Servicio", tags: ["contratar", "artistas", "eventos", "conciertos", "contratación"] },
+        { title: "Marketing para Artistas", url: "/marketing-artistas", type: "Servicio", tags: ["marketing", "artistas", "promoción", "redes", "campañas"] },
+        { title: "Posicionamiento SEO", url: "/posicionamiento-seo", type: "Servicio", tags: ["posicionamiento seo", "seo", "buscadores", "google", "posicionamiento"] },
+        { title: "Estudio de Grabación", url: "/estudio", type: "Servicio", tags: ["estudio", "grabación", "producción", "musical", "productores"] },
+        
+        // ========== FUNDACIÓN ==========
+        { title: "Fundación Radio Centro", url: "/fundacion", type: "Fundación", tags: ["fundación", "social", "educación", "música", "impacto"] },
+        { title: "Cursos de Música", url: "/cursos", type: "Educación", tags: ["cursos", "educación", "música", "producción", "aprender"] },
+        { title: "Becas Musicales", url: "/becas", type: "Educación", tags: ["becas", "estudios", "música", "jóvenes", "estudiar"] },
+        
+        // ========== MÚSICOS Y PROFESIONALES ==========
+        { title: "Músicos", url: "/musicos", type: "Directorio", tags: ["músicos", "instrumentistas", "profesionales", "artistas musicales"] },
+        { title: "Músicos Colombianos", url: "/musicos-colombianos", type: "Directorio", tags: ["músicos colombianos", "talentos", "colombia"] },
+        { title: "Cantantes", url: "/cantantes", type: "Directorio", tags: ["cantantes", "vocalistas", "intérpretes", "artistas"] },
+        
+        // ========== VIDEOS ==========
+        { title: "Videos Musicales Nuevos", url: "/videos/nuevos", type: "Videos", tags: ["videos nuevos", "estrenos", "lanzamientos", "videoclips"] },
+        { title: "Conciertos en Vivo", url: "/videos/conciertos", type: "Videos", tags: ["conciertos", "lives", "presentaciones", "en vivo"] },
+        { title: "Entrevistas", url: "/videos/entrevistas", type: "Videos", tags: ["entrevistas", "artistas", "conversaciones", "detrás de cámaras"] },
+        
+        // ========== CLUB DE FANS ==========
+        { title: "Club de Fans Oficial", url: "/club-fans", type: "Comunidad", tags: ["club de fans", "fans club", "comunidad", "seguidores"] }
+    ];
+    
+    // ============================================
+    // TÉRMINOS POPULARES PARA SUGERENCIAS
+    // ============================================
+    const popularTerms = [
+        "medellín", "shakira", "karol g", "feid", "maluma", "j balvin",
+        "betuel devia", "javy", "ryan castro", "melissa mora",
+        "noticias musicales", "noticias nuevas", "lo mas nuevo",
+        "estrenos", "videos musicales", "videos", "lives",
+        "eventos", "conciertos", "cantantes", "músicos",
+        "música popular", "urbano", "reggae", "reggaetón",
+        "mariachis", "latino", "pop latino",
+        "posicionamiento seo", "seo", "distribución",
+        "clubes de fans", "zizk music", "radio", "emisora"
+    ];
+    
+    // Función para mostrar sugerencias
+    function showSuggestions() {
+        const suggestionsHtml = popularTerms.map(term => 
+            `<span class="suggestion-tag" onclick="setSearchTerm('${term.replace(/'/g, "\\'")}')">🔍 ${term}</span>`
+        ).join('');
+        searchSuggestions.innerHTML = `
+            
+<div class="suggestions-title">
+    ✦ BÚSQUEDAS POPULARES ✦
+</div>
+            
+<div class="suggestions-grid">
+    ${suggestionsHtml}
+</div>
+        `;
+    }
+    
+    // Función para buscar
+    function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        
+        if (query === "") {
+            searchResults.innerHTML = '
+<div class="no-results">
+    ⚠️ Ingresa un término de búsqueda
+</div>
+';
+            showSuggestions();
+            searchModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            return;
+        }
+        
+        // Mostrar loading
+        searchResults.innerHTML = '
+<div class="no-results" style="color: #f9b001;">
+    🔍 Buscando en Radio Centro...
+</div>
+';
+        searchModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Buscar en título, tipo y tags
+        const results = siteContent.filter(item => 
+            item.title.toLowerCase().includes(query) ||
+            item.type.toLowerCase().includes(query) ||
+            (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)))
+        );
+        
+        // Ordenar resultados por relevancia
+        results.sort((a, b) => {
+            const aTitle = a.title.toLowerCase();
+            const bTitle = b.title.toLowerCase();
+            const aTags = a.tags || [];
+            const bTags = b.tags || [];
+            
+            // Prioridad exacta
+            if (aTitle === query) return -1;
+            if (bTitle === query) return 1;
+            
+            // Prioridad por tags
+            if (aTags.some(t => t === query) && !bTags.some(t => t === query)) return -1;
+            if (bTags.some(t => t === query) && !aTags.some(t => t === query)) return 1;
+            
+            return 0;
+        });
+        
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                
+<div class="no-results">
+                        
+    <p>
+        ⚠️ No se encontraron resultados para "${query}"
+    </p>
+                        
+    <p style="font-size: 0.8rem; margin-top: 10px;">
+                                • Intenta con otras palabras<br>
+                                • Revisa la ortografía<br>
+                                • Prueba: ${popularTerms.slice(0, 6).join(", ")}
+                            
+    </p>
+                    
+</div>
+            `;
+            showSuggestions();
+        } else {
+            searchResults.innerHTML = results.map(item => `
+                
+<div class="search-result-item" onclick="window.location.href='${item.url}'">
+                        
+    <h4>
+        ${item.title}
+    </h4>
+                        
+    <p>
+        📄 ${item.type} → ${item.url}
+    </p>
+                    
+</div>
+            `).join('');
+            searchSuggestions.innerHTML = '';
+        }
+    }
+    
+    // Función global para buscar desde sugerencias
+    window.setSearchTerm = function(term) {
+        searchInput.value = term;
+        performSearch();
+    };
+    
+    // Eventos
+    if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    }
+    
+    if (closeModal) {
+        closeModal.addEventListener('click', function() {
+            searchModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+    
+    if (searchModal) {
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) {
+                searchModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    
+    // Mostrar sugerencias iniciales
+    showSuggestions();
+});
+</script>

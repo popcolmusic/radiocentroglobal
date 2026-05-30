@@ -1,0 +1,444 @@
+/* ============================================ */
+/* BLOG RADIO CENTRO - VERSIÓN DIOS            */
+/* CARRUSEL + TIPOGRAFÍA ÉPICA                 */
+/* ============================================ */
+
+/* ========== IMPORTAR FUENTES PREMIUM ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap');
+
+/* ========== TIPOGRAFÍA MÁS GRANDE ========== */
+
+/* Contenedor principal del artículo */
+.node__content,
+.field--name-body,
+.content,
+article .content,
+main .content,
+.node-full .content {
+    max-width: 950px !important;
+    margin: 0 auto !important;
+    padding: 50px 25px !important;
+    background: #ffffff !important;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+    color: #1a1a1a !important;
+    line-height: 1.8 !important;
+}
+
+/* Título H1 - ÉPICO */
+.node__content h1,
+article h1,
+h1.page-title,
+h1.node-title {
+    font-size: 4rem !important;
+    font-weight: 800 !important;
+    color: #e91826 !important;
+    margin: 60px 0 30px !important;
+    padding-bottom: 25px !important;
+    border-bottom: 4px solid #f9b001 !important;
+    font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+    letter-spacing: -1.5px !important;
+    text-transform: uppercase !important;
+}
+
+/* Título H2 */
+.node__content h2,
+article h2 {
+    font-size: 2.8rem !important;
+    font-weight: 700 !important;
+    color: #e91826 !important;
+    margin: 50px 0 25px !important;
+    padding-left: 25px !important;
+    border-left: 6px solid #f9b001 !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+}
+
+/* Título H3 */
+.node__content h3,
+article h3 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #f9b001 !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%) !important;
+    padding: 18px 28px !important;
+    border-radius: 20px !important;
+    margin: 50px 0 30px !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+    letter-spacing: 1px !important;
+}
+
+/* Título H4 */
+.node__content h4,
+article h4 {
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    color: #e91826 !important;
+    margin: 35px 0 18px !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+}
+
+/* Párrafos - TEXTO GRANDE Y LEGIBLE */
+.node__content p,
+article p {
+    font-size: 1.25rem !important;
+    line-height: 1.85 !important;
+    color: #2a2a2a !important;
+    margin-bottom: 30px !important;
+}
+
+/* Primer párrafo destacado */
+.node__content p:first-of-type,
+article p:first-of-type {
+    font-size: 1.4rem !important;
+    font-weight: 500 !important;
+    color: #111 !important;
+}
+
+/* ========== LISTAS PREMIUM ========== */
+.node__content ul, .node__content ol,
+article ul, article ol {
+    margin: 35px 0 !important;
+    padding-left: 40px !important;
+}
+
+.node__content li,
+article li {
+    font-size: 1.15rem !important;
+    line-height: 1.75 !important;
+    margin-bottom: 16px !important;
+    color: #444 !important;
+}
+
+.node__content ul li,
+article ul li {
+    list-style-type: none !important;
+    position: relative !important;
+    padding-left: 35px !important;
+}
+
+.node__content ul li::before,
+article ul li::before {
+    content: "🔥" !important;
+    color: #e91826 !important;
+    position: absolute !important;
+    left: 0 !important;
+    font-size: 1rem !important;
+}
+
+/* ========== IMÁGENES ========== */
+.node__content img,
+article img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 24px !important;
+    margin: 40px 0 !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+.node__content img:hover,
+article img:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ========== CITAS ÉPICAS ========== */
+.node__content blockquote,
+article blockquote {
+    background: linear-gradient(135deg, #fef7e0 0%, #fff5eb 100%) !important;
+    border-left: 6px solid #e91826 !important;
+    padding: 35px 40px !important;
+    margin: 45px 0 !important;
+    border-radius: 24px !important;
+    font-style: italic !important;
+    font-size: 1.25rem !important;
+    color: #222 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+.node__content blockquote p,
+article blockquote p {
+    margin-bottom: 0 !important;
+    font-size: 1.25rem !important;
+}
+
+/* ========== ENLACES ========== */
+.node__content a,
+article a {
+    color: #e91826 !important;
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
+    border-bottom: 1px dotted transparent !important;
+}
+
+.node__content a:hover,
+article a:hover {
+    color: #f9b001 !important;
+    border-bottom-color: #f9b001 !important;
+}
+
+/* ========== TABLAS ========== */
+.node__content table,
+article table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 35px 0 !important;
+    background: white !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.node__content th,
+article th {
+    background: #e91826 !important;
+    color: white !important;
+    padding: 15px 20px !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+}
+
+.node__content td,
+article td {
+    padding: 12px 20px !important;
+    border-bottom: 1px solid #eee !important;
+    font-size: 1rem !important;
+}
+
+/* ========== SEPARADOR ========== */
+.node__content hr,
+article hr {
+    border: none !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #e91826, #f9b001, #e91826) !important;
+    margin: 60px 0 !important;
+    border-radius: 3px !important;
+}
+
+/* ============================================ */
+/* CARRUSEL - CONTENIDO RECIENTE               */
+/* ============================================ */
+
+/* Contenedor principal */
+.views-element-container {
+    background: linear-gradient(135deg, #0a0a0a 0%, #121212 100%) !important;
+    border-radius: 28px !important;
+    padding: 25px 15px !important;
+    margin-bottom: 35px !important;
+    border: 1px solid #2a2a2a !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Efecto de brillo superior */
+.views-element-container::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #e91826, #f9b001, #e91826) !important;
+}
+
+/* Título */
+.views-element-container > h2 {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #f9b001 !important;
+    font-family: 'Bebas Neue', 'Impact', sans-serif !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 12px !important;
+    border-bottom: 3px solid #e91826 !important;
+    letter-spacing: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+.views-element-container > h2::before {
+    content: "🎬" !important;
+    font-size: 1.8rem !important;
+}
+
+/* Contenedor de la lista - CARRUSEL */
+.views-element-container .item-list ul {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    gap: 20px !important;
+    padding: 15px 10px 25px 10px !important;
+    margin: 0 !important;
+    list-style: none !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #e91826 #1a1a1a !important;
+}
+
+/* Scrollbar personalizada */
+.views-element-container .item-list ul::-webkit-scrollbar {
+    height: 8px !important;
+}
+
+.views-element-container .item-list ul::-webkit-scrollbar-track {
+    background: #1a1a1a !important;
+    border-radius: 10px !important;
+}
+
+.views-element-container .item-list ul::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #e91826, #f9b001) !important;
+    border-radius: 10px !important;
+}
+
+/* Cada artículo como tarjeta */
+.views-element-container .item-list li {
+    min-width: 280px !important;
+    max-width: 300px !important;
+    flex-shrink: 0 !important;
+    background: #141414 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid #2a2a2a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.views-element-container .item-list li:hover {
+    transform: translateY(-8px) !important;
+    border-color: #f9b001 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Enlace del título */
+.views-element-container .views-field-title a {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    padding: 18px 15px 8px !important;
+    transition: color 0.2s ease !important;
+}
+
+.views-element-container .views-field-title a:hover {
+    color: #f9b001 !important;
+}
+
+/* Fecha */
+.views-element-container .views-field-changed {
+    font-size: 0.75rem !important;
+    color: #e91826 !important;
+    font-weight: 500 !important;
+    display: block !important;
+    padding: 0 15px 18px !important;
+}
+
+.views-element-container .views-field-changed::before {
+    content: "📅 " !important;
+}
+
+/* Botones de navegación */
+.carrusel-nav {
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+}
+
+.carrusel-prev, .carrusel-next {
+    background: rgba(30, 30, 30, 0.9) !important;
+    backdrop-filter: blur(5px) !important;
+    border: 1px solid #e91826 !important;
+    color: #f9b001 !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    font-size: 1.2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.carrusel-prev:hover, .carrusel-next:hover {
+    background: #e91826 !important;
+    color: white !important;
+    border-color: #f9b001 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(233, 24, 38, 0.5) !important;
+}
+
+/* ============================================ */
+/* RESPONSIVE                                   */
+/* ============================================ */
+@media (max-width: 768px) {
+    .node__content, article .content {
+        padding: 25px 18px !important;
+    }
+    
+    .node__content h1, article h1 {
+        font-size: 2.5rem !important;
+    }
+    
+    .node__content h2, article h2 {
+        font-size: 2rem !important;
+    }
+    
+    .node__content h3, article h3 {
+        font-size: 1.6rem !important;
+    }
+    
+    .node__content p, article p {
+        font-size: 1.05rem !important;
+    }
+    
+    .views-element-container .item-list li {
+        min-width: 240px !important;
+    }
+    
+    .views-element-container .views-field-title a {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .node__content h1, article h1 {
+        font-size: 2rem !important;
+    }
+    
+    .node__content h2, article h2 {
+        font-size: 1.6rem !important;
+    }
+    
+    .node__content h3, article h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .node__content p, article p {
+        font-size: 0.95rem !important;
+    }
+    
+    .views-element-container .item-list li {
+        min-width: 220px !important;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.views-element-container {
+    animation: fadeInUp 0.6s ease-out !important;
+}
