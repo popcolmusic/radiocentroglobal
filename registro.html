@@ -1,0 +1,976 @@
+<!-- ============================================ --><!-- SISTEMA DE LOGIN/REGISTRO RADIO CENTRO      --><!-- COMPLETAMENTE FUNCIONAL - GUARDA EN BD      --><!-- ============================================ --><style>
+/* ============================================ */
+/* ESTILOS EXCLUSIVOS PARA EL LOGIN/REGISTRO   */
+/* NO AFECTAN AL RESTO DEL SITIO               */
+/* ============================================ */
+/* Contenedor principal - SOLO ESTA SECCIÓN */
+.rc-auth-full-container {
+    background-color: #0a0a0a;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0;
+}
+/* Resto de estilos - todos dentro de .rc-auth-full-container */
+.rc-auth-full-container .rc-auth-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.rc-auth-full-container .rc-auth-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 30px;
+    background: #0a0a0a;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    margin-bottom: 50px;
+}
+.rc-auth-full-container .rc-auth-forms {
+    padding: 40px;
+    background: #0a0a0a;
+}
+.rc-auth-full-container .rc-auth-tabs {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #2a2a2a;
+    padding-bottom: 15px;
+}
+.rc-auth-full-container .rc-tab-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    padding: 10px 0;
+    transition: 0.2s;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    letter-spacing: 1px;
+}
+.rc-auth-full-container .rc-tab-btn:hover {
+    color: #f9b001;
+}
+.rc-auth-full-container .rc-tab-btn.active {
+    color: #e91826;
+    border-bottom: 3px solid #e91826;
+    margin-bottom: -17px;
+}
+.rc-auth-full-container .rc-auth-form {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+.rc-auth-full-container .rc-auth-form.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.rc-auth-full-container .rc-auth-form h2 {
+    font-size: 1.8rem;
+    color: #f9b001;
+    margin-bottom: 10px;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
+.rc-auth-full-container .rc-auth-subtitle {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+.rc-auth-full-container .rc-google-btn {
+    width: 100%;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.rc-auth-full-container .rc-google-btn:hover {
+    background: #1a1a1a;
+    border-color: #e91826;
+}
+.rc-auth-full-container .google-icon {
+    background: #e91826;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.rc-auth-full-container .rc-divider {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+}
+.rc-auth-full-container .rc-divider span {
+    background: #0a0a0a;
+    padding: 0 15px;
+    color: #666;
+    font-size: 0.7rem;
+}
+.rc-auth-full-container .rc-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #2a2a2a;
+    z-index: -1;
+}
+.rc-auth-full-container .rc-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.rc-auth-full-container .rc-form-group {
+    margin-bottom: 20px;
+}
+.rc-auth-full-container .rc-form-group label {
+    display: block;
+    color: #f9b001;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.rc-auth-full-container .rc-form-group input,
+.rc-auth-full-container .rc-form-group select {
+    width: 100%;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+.rc-auth-full-container .rc-form-group input:focus,
+.rc-auth-full-container .rc-form-group select:focus {
+    outline: none;
+    border-color: #e91826;
+}
+.rc-auth-full-container .rc-form-group input::placeholder {
+    color: #444;
+}
+.rc-auth-full-container .rc-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.rc-auth-full-container .rc-checkbox input {
+    width: auto;
+}
+.rc-auth-full-container .rc-forgot-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #e91826;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+.rc-auth-full-container .rc-forgot-link:hover {
+    color: #f9b001;
+}
+.rc-auth-full-container .rc-submit-btn {
+    width: 100%;
+    background: #e91826;
+    border: none;
+    border-radius: 50px;
+    padding: 14px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+.rc-auth-full-container .rc-submit-btn:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+    transform: translateY(-2px);
+}
+.rc-auth-full-container .rc-auth-benefits {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    padding: 40px;
+    border-left: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-benefits-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+.rc-auth-full-container .rc-logo-mark {
+    background: #e91826;
+    color: white;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.rc-auth-full-container .rc-logo-text {
+    color: #f9b001;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+.rc-auth-full-container .rc-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.rc-auth-full-container .rc-stat-card {
+    background: #111;
+    border-radius: 16px;
+    padding: 20px 15px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-stat-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+.rc-auth-full-container .rc-stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e91826;
+}
+.rc-auth-full-container .rc-stat-label {
+    font-size: 0.7rem;
+    color: #aaa;
+}
+.rc-auth-full-container .rc-auth-benefits h3 {
+    color: #f9b001;
+    font-size: 1.3rem;
+    margin: 20px 0 15px 0;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
+.rc-auth-full-container .rc-benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.rc-auth-full-container .rc-benefits-list li {
+    color: #ccc;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.85rem;
+}
+.rc-auth-full-container .rc-benefits-list li:last-child {
+    border-bottom: none;
+}
+.rc-auth-full-container .rc-membership-section {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #0a0a0a;
+    border-radius: 24px;
+    border: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-section-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.rc-auth-full-container .rc-section-header h2 {
+    font-size: 1.8rem;
+    color: #f9b001;
+    margin-bottom: 10px;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
+.rc-auth-full-container .rc-section-header p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+.rc-auth-full-container .rc-plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+.rc-auth-full-container .rc-plan-card {
+    background: #111;
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+    position: relative;
+    transition: transform 0.2s;
+}
+.rc-auth-full-container .rc-plan-card:hover {
+    transform: translateY(-5px);
+    border-color: #e91826;
+}
+.rc-auth-full-container .rc-plan-card.popular {
+    border-color: #e91826;
+    transform: scale(1.02);
+}
+.rc-auth-full-container .rc-plan-popular {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e91826;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+.rc-auth-full-container .rc-plan-badge {
+    background: #1a1a1a;
+    color: #f9b001;
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.rc-auth-full-container .rc-plan-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #f9b001;
+    margin-bottom: 15px;
+}
+.rc-auth-full-container .rc-plan-price span {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+.rc-auth-full-container .rc-plan-card h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+.rc-auth-full-container .rc-plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+}
+.rc-auth-full-container .rc-plan-features li {
+    color: #ccc;
+    font-size: 0.8rem;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-plan-features li:last-child {
+    border-bottom: none;
+}
+.rc-auth-full-container .rc-plan-btn {
+    width: 100%;
+    background: transparent;
+    border: 2px solid #e91826;
+    color: #e91826;
+    padding: 12px;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.rc-auth-full-container .rc-plan-btn:hover {
+    background: #e91826;
+    color: white;
+}
+.rc-auth-full-container .rc-plan-btn.premium {
+    background: #e91826;
+    color: white;
+}
+.rc-auth-full-container .rc-plan-btn.premium:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+    border-color: #f9b001;
+}
+.rc-auth-full-container .rc-testimonials-section {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #0a0a0a;
+    border-radius: 24px;
+    border: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+.rc-auth-full-container .rc-testimonial-card {
+    background: #111;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.2s;
+}
+.rc-auth-full-container .rc-testimonial-card:hover {
+    transform: translateY(-3px);
+    border-color: #f9b001;
+}
+.rc-auth-full-container .rc-testimonial-stars {
+    color: #f9b001;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+.rc-auth-full-container .rc-testimonial-card p {
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.rc-auth-full-container .rc-testimonial-author strong {
+    color: #f9b001;
+    display: block;
+    font-size: 0.9rem;
+}
+.rc-auth-full-container .rc-testimonial-author span {
+    color: #aaa;
+    font-size: 0.7rem;
+}
+.rc-auth-full-container .rc-activity-section {
+    padding: 30px;
+    background: #0a0a0a;
+    border-radius: 24px;
+    border: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.rc-auth-full-container .rc-activity-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #111;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+}
+.rc-auth-full-container .rc-activity-icon {
+    font-size: 1.5rem;
+}
+.rc-auth-full-container .rc-activity-content {
+    flex: 1;
+    color: #ccc;
+    font-size: 0.85rem;
+}
+.rc-auth-full-container .rc-activity-content strong {
+    color: #f9b001;
+}
+.rc-auth-full-container .rc-activity-time {
+    display: block;
+    font-size: 0.65rem;
+    color: #666;
+    margin-top: 4px;
+}
+/* Responsive */
+@media (max-width: 1000px) {
+    .rc-auth-full-container .rc-plans-grid,
+    .rc-auth-full-container .rc-testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .rc-auth-full-container .rc-plan-card.popular {
+        transform: scale(1);
+    }
+}
+@media (max-width: 900px) {
+    .rc-auth-full-container .rc-auth-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rc-auth-full-container .rc-auth-benefits {
+        border-left: none;
+        border-top: 1px solid #2a2a2a;
+    }
+    
+    .rc-auth-full-container .rc-auth-forms {
+        padding: 30px;
+    }
+    
+    .rc-auth-full-container .rc-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .rc-auth-full-container .rc-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .rc-auth-full-container .rc-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .rc-auth-full-container .rc-auth-forms {
+        padding: 20px;
+    }
+    
+    .rc-auth-full-container .rc-auth-tabs {
+        gap: 10px;
+    }
+    
+    .rc-auth-full-container .rc-tab-btn {
+        font-size: 0.9rem;
+    }
+    
+    .rc-auth-full-container .rc-auth-form h2 {
+        font-size: 1.3rem;
+    }
+}
+</style><!-- ============================================ --><!-- CONTENIDO DEL LOGIN/REGISTRO                --><!-- ============================================ -->
+<div class="rc-auth-full-container">
+    <div class="rc-auth-container">
+        <div class="rc-auth-grid">
+            <!-- COLUMNA IZQUIERDA: FORMULARIOS -->
+            <div class="rc-auth-forms">
+                <div class="rc-auth-tabs">
+                    <button class="rc-tab-btn active" data-tab="login">🔐 INICIAR SESIÓN</button> <button class="rc-tab-btn" data-tab="register">📝 REGISTRARSE</button>
+                </div>
+                <!-- FORMULARIO DE LOGIN -->
+                <div class="rc-auth-form active" id="rc-login-form">
+                    <h2>
+                        Bienvenido de vuelta
+                    </h2>
+                    <p class="rc-auth-subtitle">
+                        Ingresa tus datos para acceder a tu cuenta
+                    </p>
+                    <p>
+                        <button class="rc-google-btn" onclick="alert(&apos;Conectando con Google...&apos;)">
+                                                <span class="google-icon">G</span> Continuar con Google
+                                            </button>
+                    </p>
+                    <div class="rc-divider">
+                        <span>o continúa con tu email</span>
+                    </div>
+                    <form id="login-form" method="post" action="/user/login">
+                        <div class="rc-form-group">
+                            <label>📧 Correo electrónico</label> <input type="text" name="name" placeholder="usuario o email" required="">
+                        </div>
+                        <div class="rc-form-group">
+                            <label>🔒 Contraseña</label> <input type="password" name="pass" placeholder="••••••••" required=""> <a class="rc-forgot-link" href="/user/password">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="rc-form-group checkbox">
+                            <label class="rc-checkbox"><input type="checkbox" name="remember"> Recordarme en este dispositivo&nbsp;</label>
+                        </div>
+                        <p>
+                            <button class="rc-submit-btn" type="submit">Ingresar →</button>
+                        </p>
+                    </form>
+                </div>
+                <!-- FORMULARIO DE REGISTRO (CORREGIDO Y FUNCIONAL) -->
+                <div class="rc-auth-form" id="rc-register-form">
+                    <h2>
+                        Crear una cuenta
+                    </h2>
+                    <p class="rc-auth-subtitle">
+                        Únete a la comunidad más grande de música
+                    </p>
+                    <p>
+                        <button class="rc-google-btn" onclick="alert(&apos;Registro con Google...&apos;)">
+                                                <span class="google-icon">G</span> Registrarse con Google
+                                            </button>
+                    </p>
+                    <div class="rc-divider">
+                        <span>o regístrate con email</span>
+                    </div>
+                    <form id="register-form" method="post" action="/user/register">
+                        <div class="rc-form-row">
+                            <div class="rc-form-group half">
+                                <label>👤 Nombre</label> <input type="text" name="field_nombre" placeholder="Juan" required="">
+                            </div>
+                            <div class="rc-form-group half">
+                                <label>👤 Apellido</label> <input type="text" name="field_apellido" placeholder="Pérez" required="">
+                            </div>
+                        </div>
+                        <div class="rc-form-group">
+                            <label>📧 Correo electrónico</label> <input type="email" name="mail" placeholder="tu@email.com" required="">
+                        </div>
+                        <div class="rc-form-row">
+                            <div class="rc-form-group half">
+                                <label>🔒 Contraseña</label> <input type="password" name="pass" placeholder="Mínimo 8 caracteres" required="">
+                            </div>
+                            <div class="rc-form-group half">
+                                <label>🔒 Confirmar</label> <input type="password" name="confirm_pass" placeholder="Repite tu contraseña" required="">
+                            </div>
+                        </div>
+                        <div class="rc-form-group">
+                            <label>📱 Teléfono (opcional)</label> <input type="tel" name="field_telefono" placeholder="300 123 4567">
+                        </div>
+                        <div class="rc-form-group">
+                            <label>🎵 Género musical favorito (opcional)</label> <select name="field_genero_musical_favorito">
+                                                            <option value="">Selecciona...</option>
+                                                            <option value="Reggaetón">Reggaetón</option>
+                                                            <option value="Salsa">Salsa</option>
+                                                            <option value="Pop Latino">Pop Latino</option>
+                                                            <option value="Popular">Popular</option>
+                                                            <option value="Urbano">Urbano</option>
+                                                            <option value="Otros">Otros</option>
+                                                        </select>
+                        </div>
+                        <div class="rc-form-group checkbox">
+                            <label class="rc-checkbox"><input type="checkbox" required=""> Acepto los </label><a href="/terminos" target="_blank"><label class="rc-checkbox">Términos y Condiciones</label></a><label class="rc-checkbox">&nbsp;</label>
+                        </div>
+                        <p>
+                            <button class="rc-submit-btn" type="submit">Registrarse →</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <!-- COLUMNA DERECHA: ESTADÍSTICAS Y COMUNIDAD -->
+            <div class="rc-auth-benefits">
+                <div class="rc-benefits-content">
+                    <div class="rc-benefits-logo">
+                        <span class="rc-logo-mark">RC</span> <span class="rc-logo-text">RADIO CENTRO</span>
+                    </div>
+                    <div class="rc-stats-grid">
+                        <div class="rc-stat-card">
+                            <div class="rc-stat-icon">
+                                👥
+                            </div>
+                            <div class="rc-stat-number" data-target="15428">
+                                0
+                            </div>
+                            <div class="rc-stat-label">
+                                Usuarios activos
+                            </div>
+                        </div>
+                        <div class="rc-stat-card">
+                            <div class="rc-stat-icon">
+                                🎵
+                            </div>
+                            <div class="rc-stat-number" data-target="1250">
+                                0
+                            </div>
+                            <div class="rc-stat-label">
+                                Videos exclusivos
+                            </div>
+                        </div>
+                        <div class="rc-stat-card">
+                            <div class="rc-stat-icon">
+                                ⭐
+                            </div>
+                            <div class="rc-stat-number" data-target="4892">
+                                0
+                            </div>
+                            <div class="rc-stat-label">
+                                Valoraciones 5★
+                            </div>
+                        </div>
+                    </div>
+                    <h3>
+                        🎯 ¿Por qué unirte a Radio Centro?
+                    </h3>
+                    <ul class="rc-benefits-list">
+                        <li data-list-item-id="ea30a1e33a39513d39d8283743c9c290f">
+                            🎵 Acceso a contenido premium sin publicidad
+                        </li>
+                        <li data-list-item-id="ede3bfe4b8f73d9bf639799d9cb98dbad">
+                            🎧 Escucha nuestros podcasts antes que nadie
+                        </li>
+                        <li data-list-item-id="e7b9bc69206ec0907c948242d9963b5bf">
+                            📺 Videoteca completa con artistas exclusivos
+                        </li>
+                        <li data-list-item-id="e9cbe618a02f3efa8a291c9a7ffafc7d8">
+                            🎫 Descuentos en eventos y conciertos
+                        </li>
+                        <li data-list-item-id="e9c1cac10df10507488e8fb19d457ed48">
+                            ⭐ Participa en sorteos y promociones
+                        </li>
+                        <li data-list-item-id="e5159c00d2439b661d80237f85edcdaa9">
+                            📬 Newsletter personalizada con novedades
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- SECCIÓN DE MEMBRESÍAS -->
+        <div class="rc-membership-section">
+            <div class="rc-section-header">
+                <h2>
+                    🎖️ PLANES DE MEMBRESÍA
+                </h2>
+                <p>
+                    Elige el plan que mejor se adapte a ti
+                </p>
+            </div>
+            <div class="rc-plans-grid">
+                <div class="rc-plan-card">
+                    <div class="rc-plan-badge">
+                        GRATIS
+                    </div>
+                    <div class="rc-plan-price">
+                        $0<span>/mes</span>
+                    </div>
+                    <h3>
+                        Básico
+                    </h3>
+                    <ul class="rc-plan-features">
+                        <li data-list-item-id="ec49f3da6d69f5edd184644d7811e1112">
+                            ✅ Acceso a contenido gratuito
+                        </li>
+                        <li data-list-item-id="ee650af189e23e7b7477fd68e428dfc02">
+                            ✅ 5 videos por semana
+                        </li>
+                        <li data-list-item-id="e55664a33b00cb990e6bdc30035fc6c69">
+                            ✅ Publicidad incluida
+                        </li>
+                        <li data-list-item-id="e78af0ca849864cfe39c63a40bd5305c9">
+                            ❌ Contenido exclusivo
+                        </li>
+                        <li data-list-item-id="ed1b2014fc569b038580bf5de3d78e014">
+                            ❌ Sin descargas
+                        </li>
+                    </ul>
+                    <p>
+                        <button class="rc-plan-btn" onclick="document.querySelector(&apos;[data-tab=\&apos;register\&apos;]&apos;).click()">Registrarse</button>
+                    </p>
+                </div>
+                <div class="rc-plan-card popular">
+                    <div class="rc-plan-popular">
+                        🔥 MÁS POPULAR
+                    </div>
+                    <div class="rc-plan-price">
+                        $9.99<span>/mes</span>
+                    </div>
+                    <h3>
+                        Premium
+                    </h3>
+                    <ul class="rc-plan-features">
+                        <li data-list-item-id="ed31143a445a2bb7ba737211f7c4629d8">
+                            ✅ Todo el contenido sin publicidad
+                        </li>
+                        <li data-list-item-id="e810856de6fa5658d961845c1c428de78">
+                            ✅ Videos y podcasts ilimitados
+                        </li>
+                        <li data-list-item-id="eb1441f3eba42f1bb956083bccb001ab6">
+                            ✅ Contenido exclusivo semanal
+                        </li>
+                        <li data-list-item-id="ebf379e9c78e1b6722d45dcace65a5a0d">
+                            ✅ Descuentos en eventos
+                        </li>
+                        <li data-list-item-id="e73201157e02c3df2beed6fdc777399f4">
+                            ❌ Acceso anticipado
+                        </li>
+                    </ul>
+                    <p>
+                        <button class="rc-plan-btn premium" onclick="alert(&apos;Redirigiendo a pago...&apos;)">Suscribirse</button>
+                    </p>
+                </div>
+                <div class="rc-plan-card">
+                    <div class="rc-plan-badge">
+                        VIP
+                    </div>
+                    <div class="rc-plan-price">
+                        $19.99<span>/mes</span>
+                    </div>
+                    <h3>
+                        VIP
+                    </h3>
+                    <ul class="rc-plan-features">
+                        <li data-list-item-id="e275a737d6a6cf0dbeae633b660f5e07b">
+                            ✅ Todo lo de Premium
+                        </li>
+                        <li data-list-item-id="e7ac8f742e61a39531586dcc0494c1785">
+                            ✅ Acceso anticipado a estrenos
+                        </li>
+                        <li data-list-item-id="e5bd3409d59187bfff47231d19f2064bc">
+                            ✅ Contenido descargable
+                        </li>
+                        <li data-list-item-id="e9835405ba68f4a78925b06adb210b94f">
+                            ✅ Invitaciones a eventos privados
+                        </li>
+                        <li data-list-item-id="e2106ce74b921c5c142a76af6ec59c8d0">
+                            ✅ Soporte prioritario
+                        </li>
+                    </ul>
+                    <p>
+                        <button class="rc-plan-btn" onclick="alert(&apos;Redirigiendo a pago...&apos;)">Suscribirse</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- SECCIÓN DE TESTIMONIOS -->
+        <div class="rc-testimonials-section">
+            <div class="rc-section-header">
+                <h2>
+                    💬 LO QUE DICEN NUESTROS CLIENTES
+                </h2>
+                <p>
+                    +15,000 usuarios confían en Radio Centro
+                </p>
+            </div>
+            <div class="rc-testimonials-grid">
+                <div class="rc-testimonial-card">
+                    <div class="rc-testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "El mejor contenido musical que he encontrado. Los podcasts exclusivos valen cada peso."
+                    </p>
+                    <div class="rc-testimonial-author">
+                        <strong>Carlos M.</strong> <span>Cliente Premium · 6 meses</span>
+                    </div>
+                </div>
+                <div class="rc-testimonial-card">
+                    <div class="rc-testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "La videoteca es increíble, puedo ver todos los videos de mis artistas favoritos sin publicidad."
+                    </p>
+                    <div class="rc-testimonial-author">
+                        <strong>María F.</strong> <span>Cliente VIP · 1 año</span>
+                    </div>
+                </div>
+                <div class="rc-testimonial-card">
+                    <div class="rc-testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "Me encanta la comunidad y los sorteos exclusivos. Radio Centro es lo mejor."
+                    </p>
+                    <div class="rc-testimonial-author">
+                        <strong>Luis R.</strong> <span>Cliente Premium · 3 meses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SECCIÓN DE ACTIVIDAD RECIENTE -->
+        <div class="rc-activity-section">
+            <div class="rc-section-header">
+                <h2>
+                    📊 ACTIVIDAD RECIENTE
+                </h2>
+                <p>
+                    Lo que está pasando en la comunidad
+                </p>
+            </div>
+            <div class="rc-activity-list">
+                <div class="rc-activity-item">
+                    <p>
+                        <span class="rc-activity-icon">🎤</span>
+                    </p>
+                    <div class="rc-activity-content">
+                        <strong>Juan Pérez</strong> se unió a la comunidad <span class="rc-activity-time">Hace 5 minutos</span>
+                    </div>
+                </div>
+                <div class="rc-activity-item">
+                    <p>
+                        <span class="rc-activity-icon">⭐</span>
+                    </p>
+                    <div class="rc-activity-content">
+                        <strong>María García</strong> calificó con 5★ "Maluma - Hawái" <span class="rc-activity-time">Hace 23 minutos</span>
+                    </div>
+                </div>
+                <div class="rc-activity-item">
+                    <p>
+                        <span class="rc-activity-icon">🎧</span>
+                    </p>
+                    <div class="rc-activity-content">
+                        <strong>Carlos López</strong> escuchó "La Historia de la Salsa Brava" <span class="rc-activity-time">Hace 1 hora</span>
+                    </div>
+                </div>
+                <div class="rc-activity-item">
+                    <p>
+                        <span class="rc-activity-icon">📺</span>
+                    </p>
+                    <div class="rc-activity-content">
+                        <strong>Ana Rodríguez</strong> vio "Blessd - OE BEBÉ" <span class="rc-activity-time">Hace 2 horas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// ============================================
+// CAMBIO DE TABS (LOGIN / REGISTRO)
+// ============================================
+(function() {
+    const tabBtns = document.querySelectorAll('.rc-tab-btn');
+    const forms = document.querySelectorAll('.rc-auth-form');
+    
+    function switchTab(tabId) {
+        forms.forEach(form => form.classList.remove('active'));
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        
+        const selectedForm = document.getElementById(`rc-${tabId}-form`);
+        if (selectedForm) selectedForm.classList.add('active');
+        
+        const selectedBtn = Array.from(tabBtns).find(btn => btn.dataset.tab === tabId);
+        if (selectedBtn) selectedBtn.classList.add('active');
+    }
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            if (tabId === 'login' || tabId === 'register') {
+                switchTab(tabId);
+            }
+        });
+    });
+    
+    // Validación de registro
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            const password = this.querySelector('input[name="pass"]').value;
+            const confirm = this.querySelector('input[name="confirm_pass"]').value;
+            
+            if (password !== confirm) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+            } else if (password.length < 8) {
+                e.preventDefault();
+                alert('La contraseña debe tener al menos 8 caracteres');
+            }
+        });
+    }
+    
+    // CONTADORES ANIMADOS
+    const counters = document.querySelectorAll('.rc-stat-number');
+    const speed = 100;
+    
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / speed;
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                counter.innerText = Math.ceil(current);
+                setTimeout(updateCounter, 20);
+            } else {
+                counter.innerText = target.toLocaleString();
+            }
+        };
+        updateCounter();
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
+})();
+</script>
