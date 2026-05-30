@@ -1,0 +1,922 @@
+<!-- ============================================ --><!-- PÁGINA DE SERVICIOS - RADIO CENTRO          --><!-- VERSIÓN CORREGIDA - ESTILO LOGIN/REGISTRO   --><!-- ============================================ --><style>
+/* ============================================ */
+/* ESTILOS EXCLUSIVOS PARA SERVICIOS           */
+/* MISMO ESTILO QUE LOGIN/REGISTRO              */
+/* ============================================ */
+/* Contenedor principal - SOLO ESTA SECCIÓN */
+.rc-servicios-full-container {
+    background-color: #0a0a0a;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0;
+}
+/* Contenedor interno */
+.rc-servicios-full-container .rc-servicios-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+/* Hero Section */
+.rc-servicios-full-container .servicios-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 24px;
+    margin-bottom: 50px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .servicios-hero h1 {
+    font-size: 3rem;
+    color: #f9b001;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 20px;
+}
+.rc-servicios-full-container .servicios-hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+/* KPIs */
+.rc-servicios-full-container .kpi-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+.rc-servicios-full-container .kpi-item {
+    text-align: center;
+}
+.rc-servicios-full-container .kpi-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e91826;
+    display: block;
+}
+.rc-servicios-full-container .kpi-label {
+    font-size: 0.8rem;
+    color: #f9b001;
+    text-transform: uppercase;
+}
+/* Grid de Servicios */
+.rc-servicios-full-container .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.rc-servicios-full-container .servicio-card {
+    background: #111;
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.rc-servicios-full-container .servicio-card:hover {
+    transform: translateY(-5px);
+    border-color: #e91826;
+}
+.rc-servicios-full-container .servicio-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.rc-servicios-full-container .servicio-card h3 {
+    color: #f9b001;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
+.rc-servicios-full-container .servicio-card p {
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.rc-servicios-full-container .servicio-features {
+    list-style: none;
+    padding: 0;
+}
+.rc-servicios-full-container .servicio-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+.rc-servicios-full-container .servicio-features li:last-child {
+    border-bottom: none;
+}
+/* Panel de Métricas */
+.rc-servicios-full-container .metrics-dashboard {
+    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.rc-servicios-full-container .dashboard-header h2 {
+    color: #f9b001;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .dashboard-header p {
+    color: #aaa;
+}
+.rc-servicios-full-container .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.rc-servicios-full-container .stat-card {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .stat-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e91826;
+}
+.rc-servicios-full-container .stat-label {
+    color: #f9b001;
+    font-size: 0.8rem;
+}
+/* Gráfico */
+.rc-servicios-full-container .chart-placeholder {
+    background: #111;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+.rc-servicios-full-container .chart-placeholder p {
+    color: #f9b001;
+    margin-bottom: 20px;
+}
+.rc-servicios-full-container .chart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    margin: 20px 0;
+}
+.rc-servicios-full-container .chart-bar {
+    width: 60px;
+    background: #e91826;
+    border-radius: 8px 8px 0 0;
+}
+.rc-servicios-full-container .chart-bar:nth-child(1) { height: 120px; background: #f9b001; }
+.rc-servicios-full-container .chart-bar:nth-child(2) { height: 80px; }
+.rc-servicios-full-container .chart-bar:nth-child(3) { height: 140px; background: #f9b001; }
+.rc-servicios-full-container .chart-bar:nth-child(4) { height: 60px; }
+.rc-servicios-full-container .chart-bar:nth-child(5) { height: 100px; background: #f9b001; }
+.rc-servicios-full-container .chart-labels {
+    display: flex;
+    justify-content: space-around;
+    color: #aaa;
+    font-size: 0.8rem;
+}
+/* Proceso de Trabajo */
+.rc-servicios-full-container .workflow-section {
+    background: #111;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .workflow-section h2 {
+    text-align: center;
+    color: #f9b001;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .workflow-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.rc-servicios-full-container .workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.rc-servicios-full-container .workflow-step {
+    text-align: center;
+}
+.rc-servicios-full-container .step-number {
+    width: 50px;
+    height: 50px;
+    background: #e91826;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+.rc-servicios-full-container .workflow-step h4 {
+    color: #f9b001;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .workflow-step p {
+    color: #ccc;
+    font-size: 0.85rem;
+}
+/* Testimonios */
+.rc-servicios-full-container .testimonials-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .testimonials-section h2 {
+    text-align: center;
+    color: #f9b001;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .testimonials-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.rc-servicios-full-container .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.rc-servicios-full-container .testimonial-card {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .testimonial-stars {
+    color: #f9b001;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+.rc-servicios-full-container .testimonial-card p {
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.rc-servicios-full-container .testimonial-author strong {
+    color: #f9b001;
+    display: block;
+    font-size: 0.9rem;
+}
+.rc-servicios-full-container .testimonial-author span {
+    color: #aaa;
+    font-size: 0.7rem;
+}
+/* FAQ */
+.rc-servicios-full-container .faq-section {
+    background: #111;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .faq-section h2 {
+    text-align: center;
+    color: #f9b001;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 40px;
+}
+.rc-servicios-full-container .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.rc-servicios-full-container .faq-item {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .faq-item h4 {
+    color: #f9b001;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .faq-item p {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+/* Beneficios */
+.rc-servicios-full-container .benefits-section {
+    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .benefits-section h2 {
+    text-align: center;
+    color: #f9b001;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .benefits-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.rc-servicios-full-container .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.rc-servicios-full-container .benefit-item {
+    text-align: center;
+    padding: 25px;
+    background: #0a0a0a;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+}
+.rc-servicios-full-container .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.rc-servicios-full-container .benefit-item h4 {
+    color: #f9b001;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.rc-servicios-full-container .benefit-item p {
+    color: #ccc;
+    font-size: 0.85rem;
+}
+/* CTA */
+.rc-servicios-full-container .cta-section {
+    background: linear-gradient(135deg, #e91826 0%, #b01520 100%);
+    border-radius: 24px;
+    padding: 50px;
+    text-align: center;
+}
+.rc-servicios-full-container .cta-section h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.rc-servicios-full-container .cta-section p {
+    color: #ffe0e0;
+    margin-bottom: 30px;
+}
+.rc-servicios-full-container .cta-button {
+    background: #f9b001;
+    color: #0a0a0a;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+.rc-servicios-full-container .cta-button:hover {
+    transform: scale(1.05);
+    background: #ffcc33;
+}
+/* Responsive */
+@media (max-width: 1000px) {
+    .rc-servicios-full-container .workflow-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .rc-servicios-full-container .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .rc-servicios-full-container .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    .rc-servicios-full-container .faq-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 900px) {
+    .rc-servicios-full-container .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .rc-servicios-full-container .servicios-hero h1 {
+        font-size: 2rem;
+    }
+    .rc-servicios-full-container .kpi-grid {
+        gap: 30px;
+    }
+}
+@media (max-width: 700px) {
+    .rc-servicios-full-container .workflow-steps {
+        grid-template-columns: 1fr;
+    }
+    .rc-servicios-full-container .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .rc-servicios-full-container .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    .rc-servicios-full-container .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+    .rc-servicios-full-container .chart-bar {
+        width: 40px;
+    }
+}
+</style><!-- ============================================ --><!-- CONTENIDO DE SERVICIOS                      --><!-- ============================================ -->
+<div class="rc-servicios-full-container">
+    <div class="rc-servicios-container">
+        <!-- Hero Section -->
+        <div class="servicios-hero">
+            <h1>
+                🚀 Servicios para Artistas
+            </h1>
+            <p>
+                Impulsa tu carrera musical con las herramientas profesionales de Radio Centro. Lleva tu música a todo el mundo.
+            </p>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-number">+50K</span> <span class="kpi-label">Playlists Curadas</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-number">+10K</span> <span class="kpi-label">Canciones Distribuidas</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-number">+5M</span> <span class="kpi-label">Clientes Activos</span>
+                </div>
+            </div>
+        </div>
+        <!-- Grid de Servicios -->
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🎵
+                </div>
+                <h3>
+                    Playlist Curadas
+                </h3>
+                <p>
+                    Incluimos tu música en playlists estratégicas para maximizar tus reproducciones.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e97f50c1dcea2d2ad406f95b271bb320f">
+                        ✅ Playlists por género y estado de ánimo
+                    </li>
+                    <li data-list-item-id="e3430ec952754a5dd12b3b905ef20d00a">
+                        ✅ Rotación en emisora online
+                    </li>
+                    <li data-list-item-id="e35cf0b95abc1b40eeb55238dadeea338">
+                        ✅ Reportes mensuales de reproducciones
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    📈
+                </div>
+                <h3>
+                    Tendencias YouTube
+                </h3>
+                <p>
+                    Posiciona tu video en las tendencias con nuestra red de promoción.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e5eb9348b20d09df295d2892f3d3a3dce">
+                        ✅ Optimización SEO para videos
+                    </li>
+                    <li data-list-item-id="ec5279e6e8849d3628bc6000480969bab">
+                        ✅ Campañas de visibilidad en YouTube
+                    </li>
+                    <li data-list-item-id="e9d177ac982a93811e67be8a13fdf3805">
+                        ✅ Análisis de competencia
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🌍
+                </div>
+                <h3>
+                    Distribución Musical
+                </h3>
+                <p>
+                    Lleva tu música a Spotify, Apple Music, Amazon Music y más de 50 plataformas.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="ea70364cb00512a76f5705743cc12ad11">
+                        ✅ Distribución mundial sin límites
+                    </li>
+                    <li data-list-item-id="e9a8c49b3e41b826aca9f744efbc2dba6">
+                        ✅ Conservas el 100% de regalías
+                    </li>
+                    <li data-list-item-id="eb44cda059d266378f6dbd6ced31e2a25">
+                        ✅ Landing page personalizada
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🔗
+                </div>
+                <h3>
+                    Smart Links
+                </h3>
+                <p>
+                    Crea enlaces inteligentes que dirigen a todas las plataformas donde está tu música.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e5a7960abe0aa2e092b913a7824678bf3">
+                        ✅ Estadísticas de clics en tiempo real
+                    </li>
+                    <li data-list-item-id="e2cf9c72b5b9d74e129bed975effb185a">
+                        ✅ Personalización con tu marca
+                    </li>
+                    <li data-list-item-id="ee43a51973c976b3352651d7110eb1a32">
+                        ✅ Integración con redes sociales
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    📢
+                </div>
+                <h3>
+                    Publicidad Ads
+                </h3>
+                <p>
+                    Campañas publicitarias segmentadas en Meta y Google para maximizar tu alcance.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="ef9ab560f4a77b051b75d45e17dcfa492">
+                        ✅ Segmentación por género, edad y ubicación
+                    </li>
+                    <li data-list-item-id="ec35a15c4229fe86f0f58b09cb950fd27">
+                        ✅ Presupuesto flexible
+                    </li>
+                    <li data-list-item-id="ec1ce15b0e3c219195b2f49a9e7a0fe7d">
+                        ✅ Reportes detallados de ROI
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🔍
+                </div>
+                <h3>
+                    SEO para Artistas
+                </h3>
+                <p>
+                    Aparece en los primeros resultados de búsqueda con nuestro SEO especializado.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e6a456b738688943d777c2098493766e8">
+                        ✅ Posicionamiento en Google y YouTube
+                    </li>
+                    <li data-list-item-id="e581d814ff67de86b6cfd3883b8a3cc32">
+                        ✅ Optimización de biografías y metadatos
+                    </li>
+                    <li data-list-item-id="ef5cc6939bfb2268ed15700bf8184737e">
+                        ✅ Estrategia de palabras clave musicales
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Panel de Métricas en Vivo -->
+        <div class="metrics-dashboard">
+            <div class="dashboard-header">
+                <h2>
+                    📊 Panel de Métricas en Vivo
+                </h2>
+                <p>
+                    Estadísticas reales de tu impacto digital
+                </p>
+            </div>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        ❤️
+                    </div>
+                    <div class="stat-value" id="likes-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Likes Totales
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        👥
+                    </div>
+                    <div class="stat-value" id="followers-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Seguidores
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        👁️
+                    </div>
+                    <div class="stat-value" id="impressions-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Impresiones
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        📈
+                    </div>
+                    <div class="stat-value" id="reach-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Alcance Real
+                    </div>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                <p>
+                    📈 Crecimiento de audiencia (últimos 30 días)
+                </p>
+                <div class="chart-bars">
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="chart-labels">
+                    <span>Sem 1</span> <span>Sem 2</span> <span>Sem 3</span> <span>Sem 4</span> <span>Hoy</span>
+                </div>
+            </div>
+        </div>
+        <!-- Proceso de Trabajo -->
+        <div class="workflow-section">
+            <h2>
+                ⚡ ¿Cómo trabajamos?
+            </h2>
+            <p>
+                Un proceso simple y efectivo para impulsar tu carrera musical
+            </p>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">
+                        1
+                    </div>
+                    <h4>
+                        Análisis Inicial
+                    </h4>
+                    <p>
+                        Estudiamos tu música, objetivos y audiencia para crear una estrategia personalizada.
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        2
+                    </div>
+                    <h4>
+                        Estrategia 360°
+                    </h4>
+                    <p>
+                        Diseñamos un plan integral que abarca todas las plataformas y canales.
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        3
+                    </div>
+                    <h4>
+                        Ejecución
+                    </h4>
+                    <p>
+                        Implementamos las acciones necesarias para lograr tus metas musicales.
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        4
+                    </div>
+                    <h4>
+                        Monitoreo Continuo
+                    </h4>
+                    <p>
+                        Analizamos resultados y optimizamos constantemente para maximizar el éxito.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonios -->
+        <div class="testimonials-section">
+            <h2>
+                💬 Lo que dicen los artistas
+            </h2>
+            <p>
+                Historias reales de éxito con Radio Centro
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "Gracias a Radio Centro, mi carrera despegó. Pasé de 500 a 50,000 oyentes mensuales en solo 3 meses."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Carlos Mendoza</strong> <span>Artista Urbano</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "La distribución musical y las playlists curadas marcaron la diferencia. Mi música suena en toda Latinoamérica."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Laura Castillo</strong> <span>Cantautora</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "El servicio de publicidad ads es espectacular. Mis reproducciones aumentaron un 300% en menos de dos meses."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Javier Reyes</strong> <span>Productor Musical</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FAQ -->
+        <div class="faq-section">
+            <h2>
+                ❓ Preguntas Frecuentes
+            </h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>
+                        ¿Cuánto tiempo tardan los resultados?
+                    </h4>
+                    <p>
+                        Los primeros resultados se empiezan a ver entre 2 a 4 semanas después de iniciar la campaña.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Necesito tener música registrada?
+                    </h4>
+                    <p>
+                        Recomendamos tener tus derechos de autor registrados, pero podemos ayudarte con el proceso.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Qué plataformas incluye la distribución?
+                    </h4>
+                    <p>
+                        Más de 50 plataformas incluyendo Spotify, Apple Music, Amazon Music, YouTube Music y más.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Puedo contratar servicios por separado?
+                    </h4>
+                    <p>
+                        ¡Claro! Puedes elegir el servicio que mejor se adapte a tus necesidades y presupuesto.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Beneficios -->
+        <div class="benefits-section">
+            <h2>
+                ⭐ Ventajas de trabajar con nosotros
+            </h2>
+            <p>
+                Más de 10,000 artistas confían en Radio Centro
+            </p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        ⚡
+                    </div>
+                    <h4>
+                        Resultados Rápidos
+                    </h4>
+                    <p>
+                        Aumenta tu audiencia desde la primera semana.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        🎯
+                    </div>
+                    <h4>
+                        Estrategia 360°
+                    </h4>
+                    <p>
+                        Cobertura completa en todas las plataformas.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        📊
+                    </div>
+                    <h4>
+                        Reportes Detallados
+                    </h4>
+                    <p>
+                        Métricas claras y transparentes.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        🤝
+                    </div>
+                    <h4>
+                        Soporte Personalizado
+                    </h4>
+                    <p>
+                        Acompañamiento en cada paso.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>
+                🎤 ¿Listo para el siguiente nivel?
+            </h2>
+            <p>
+                Contáctanos hoy y comienza a transformar tu carrera musical.
+            </p>
+            <p>
+                <a class="cta-button" href="/contacto">Solicitar Información →</a>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+// ============================================
+// CONTADORES ANIMADOS
+// ============================================
+function animateCounter(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.innerText = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const targetId = entry.target.id;
+            if (targetId === 'likes-count') animateCounter(entry.target, 0, 28456, 2000);
+            else if (targetId === 'followers-count') animateCounter(entry.target, 0, 12580, 2000);
+            else if (targetId === 'impressions-count') animateCounter(entry.target, 0, 98765, 2000);
+            else if (targetId === 'reach-count') animateCounter(entry.target, 0, 45678, 2000);
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-value').forEach(counter => observer.observe(counter));
+</script>
