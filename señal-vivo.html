@@ -1,0 +1,555 @@
+<style>
+.rc-tv-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 620px;
+  background: #000;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.rc-tv-info {
+  width: 310px;
+  min-width: 280px;
+  padding: 20px;
+  background: #111;
+  overflow-y: auto;
+}
+.rc-tv-info h1 {
+  font-size: 27px;
+  margin: 0 0 16px;
+  color: #fff;
+}
+.rc-tv-live-badge {
+  display: inline-block;
+  background: #e30613;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+#rcNowText {
+  background: #202020;
+  border-left: 4px solid #00ff7f;
+  padding: 12px;
+  margin-bottom: 14px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.rc-tv-program {
+  padding: 11px 10px;
+  border-bottom: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+.rc-tv-program:hover {
+  background: #1a1a1a;
+}
+.rc-tv-program.is-active {
+  background: linear-gradient(90deg, #06351f, #00a85f);
+  font-weight: bold;
+}
+.rc-tv-time {
+  font-size: 12px;
+  color: #aaa;
+}
+.rc-tv-title {
+  font-size: 15px;
+  margin: 3px 0;
+  font-weight: 600;
+}
+.rc-tv-desc {
+  font-size: 12px;
+  color: #bbb;
+}
+.rc-tv-player-container {
+  flex: 1;
+  position: relative;
+  background: #000;
+  min-height: 620px;
+  overflow: hidden;
+}
+.rc-tv-player-container:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
+.rc-tv-player-container:fullscreen #tvPlayer {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  object-fit: contain;
+}
+#tvPlayer {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  display: block;
+  background: #000;
+  object-fit: contain;
+}
+/* Logo pequeño arriba derecha */
+.rc-channel-logo {
+  position: absolute;
+  top: 29px;
+  right: 29px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  z-index: 35;
+  border-radius: 12px;
+  background: rgba(0,0,0,.55);
+  padding: 5px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(0,0,0,.72);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 30;
+}
+.ticker {
+  display: none;
+}
+#rcBannerLayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 58px;
+  z-index: 20;
+  pointer-events: auto;
+  display: none;
+  will-change: transform;
+  cursor: pointer;
+}
+#rcBannerLayer img {
+  display: block;
+  max-width: 92%;
+  max-height: 210px;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+#rcBannerLayer img:hover {
+  transform: scale(1.02);
+}
+#rcBannerLayer.image_scroll {
+  bottom: 8px;
+  height: 52px;
+  overflow: hidden;
+  display: block;
+  background: transparent;
+  box-shadow: none;
+}
+#rcBannerLayer.image_scroll .rc-scroll-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  gap: 0;
+  animation: rcImageScrollTrack 35s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+}
+#rcBannerLayer.image_scroll img {
+  flex: 0 0 auto;
+  height: 48px;
+  max-width: none;
+  margin: 0 10px;
+  object-fit: contain;
+  backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+  border-radius: 8px;
+}
+@keyframes rcImageScrollTrack {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-25%,0,0); }
+}
+#rcBannerLayer.lower_banner {
+  bottom: 80px;
+}
+#rcBannerLayer.bug {
+  top: 20px;
+  right: 20px;
+  left: auto;
+  bottom: auto;
+  width: 140px;
+}
+#rcBannerLayer.bug img {
+  width: 140px;
+  max-height: 140px;
+}
+.rc-fullscreen-btn {
+  position: absolute;
+  right: 14px;
+  bottom: 70px;
+  z-index: 40;
+  background: rgba(0,0,0,.72);
+  color: white;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+.rc-fullscreen-btn:hover {
+  background: rgba(0,0,0,.9);
+  transform: scale(1.05);
+}
+.rc-tv-player-container:fullscreen .rc-fullscreen-btn {
+  bottom: 70px;
+  right: 18px;
+}
+.rc-tv-player-container:fullscreen .rc-channel-logo {
+  width: 52px;
+  height: 52px;
+  top: 18px;
+  right: 18px;
+}
+.rc-tv-player-container:fullscreen #rcBannerLayer.image_scroll {
+  bottom: 8px;
+  height: 52px;
+}
+.rc-tv-player-container:fullscreen #rcBannerLayer.image_scroll img {
+  height: 48px;
+}
+/* Scroll personalizado para la info */
+.rc-tv-info::-webkit-scrollbar {
+  width: 6px;
+}
+.rc-tv-info::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+.rc-tv-info::-webkit-scrollbar-thumb {
+  background: #00a85f;
+  border-radius: 3px;
+}
+@media (max-width: 900px) {
+  .rc-tv-wrapper {
+    flex-direction: column;
+  }
+  .rc-tv-info {
+    width: 100%;
+    max-width: 100%;
+    max-height: 300px;
+  }
+  .rc-tv-player-container,
+  #tvPlayer {
+    min-height: 360px;
+  }
+  .rc-channel-logo {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    right: 10px;
+  }
+  #rcBannerLayer.image_scroll {
+    bottom: 6px;
+    height: 42px;
+  }
+  #rcBannerLayer.image_scroll img {
+    height: 38px;
+  }
+  #rcBannerLayer.lower_banner {
+    bottom: 68px;
+  }
+  .rc-fullscreen-btn {
+    right: 10px;
+    bottom: 58px;
+    padding: 6px 10px;
+  }
+}
+@media (max-width: 900px) and (orientation: landscape) {
+  .rc-tv-info {
+    display: none;
+  }
+  .rc-tv-player-container,
+  #tvPlayer {
+    min-height: 100vh;
+  }
+  #rcBannerLayer.image_scroll {
+    bottom: 6px;
+    height: 46px;
+  }
+  #rcBannerLayer.image_scroll img {
+    height: 42px;
+  }
+  .rc-fullscreen-btn {
+    bottom: 60px;
+  }
+}
+</style>
+<div class="rc-tv-wrapper">
+    <div class="rc-tv-info rc-tv-schedule">
+        <h1>
+            RadioCentro Señal en Vivo
+        </h1>
+        <div class="rc-tv-live-badge">
+            EN VIVO
+        </div>
+        <div id="rcNowText">
+            Conectando con la señal...
+        </div>
+        <div id="rcTimeline">
+            &nbsp;
+        </div>
+    </div>
+    <div class="rc-tv-player-container">
+        <p>
+            <video id="tvPlayer" controls="" autoplay="" muted="" playsinline="" controlslist="nofullscreen"></video> <img class="rc-channel-logo" src="https://res-console.cloudinary.com/dwaftncgl/thumbnails/v1/image/upload/v1776562449/UmFkaW9fQ0VudHJvX2xhd3hsaA==/drilldown" alt="Radio Centro">
+        </p>
+        <div id="rcBannerLayer">
+            &nbsp;
+        </div>
+        <div class="overlay">
+            RADIO CENTRO TV
+        </div>
+        <div class="ticker">
+            <span>Todos los videos • Música, noticias, artistas y entretenimiento • radiocentro.net</span>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+  let rcPlaylist = [];
+  let rcCurrentIndex = 0;
+  let rcLastUpdatedAt = null;
+  let rcLastBannerUpdatedAt = null;
+  const rcPlayer = document.getElementById("tvPlayer");
+  const rcContainer = document.querySelector(".rc-tv-player-container");
+  const RC_API_ONAIR = "https://playlist.radiocentro.net/api/onair";
+  const RC_SCROLL_ONAIR = "https://playlist.radiocentro.net/api/scrolls/onair";
+  const RC_BANNER_ONAIR = "https://playlist.radiocentro.net/api/banners/onair";
+  const RC_VIDEO_BASE = "https://playlist.radiocentro.net/media/videos/";
+  function rcEnsureFullscreenButton() {
+    if (!rcContainer || document.getElementById("rcFullscreenBtn")) return;
+    const btn = document.createElement("button");
+    btn.id = "rcFullscreenBtn";
+    btn.className = "rc-fullscreen-btn";
+    btn.type = "button";
+    btn.textContent = "⛶";
+    btn.addEventListener("click", async () => {
+      try {
+        if (!document.fullscreenElement) {
+          await rcContainer.requestFullscreen();
+          if (screen.orientation && screen.orientation.lock) {
+            try {
+              await screen.orientation.lock("landscape");
+            } catch (e) {
+              console.log("El navegador no permitió forzar horizontal.");
+            }
+          }
+        } else {
+          await document.exitFullscreen();
+          if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+          }
+        }
+      } catch (error) {
+        console.log("Fullscreen no disponible:", error);
+      }
+    });
+    rcContainer.appendChild(btn);
+  }
+  async function rcLoadOnAirPlaylist(forceReload = false) {
+    try {
+      const res = await fetch(RC_API_ONAIR + "?t=" + Date.now(), {
+        method: "GET",
+        cache: "no-store"
+      });
+      const data = await res.json();
+      if (!data.ok || !Array.isArray(data.videos) || data.videos.length === 0) {
+        const nowText = document.getElementById("rcNowText");
+        if (nowText) nowText.textContent = "No hay playlist activa en este momento.";
+        return;
+      }
+      if (!forceReload && rcLastUpdatedAt === data.updatedAt) return;
+      rcLastUpdatedAt = data.updatedAt || Date.now();
+      rcPlaylist = data.videos.map(video => {
+        if (video.filename && video.filename.startsWith("http")) {
+          return video.filename;
+        }
+        return encodeURI(RC_VIDEO_BASE + video.filename);
+      });
+      rcCurrentIndex = 0;
+      rcPlayCurrentVideo();
+      const nowText = document.getElementById("rcNowText");
+      if (nowText) {
+        nowText.textContent = "Ahora en vivo: " + rcGetPlaylistName(data.activePlaylistId);
+      }
+    } catch (error) {
+      console.error("Error cargando señal:", error);
+      const nowText = document.getElementById("rcNowText");
+      if (nowText) nowText.textContent = "Error conectando con la señal.";
+    }
+  }
+  function rcGetPlaylistName(id) {
+    if (id === "playlist1") return "Programación Mañana";
+    if (id === "playlist2") return "Programación Tarde";
+    if (id === "playlist3") return "Programación Noche";
+    if (id && id.includes("_")) {
+      return id.replace("_", " ").replace("manana", "mañana");
+    }
+    return "RadioCentro TV";
+  }
+  function rcPlayCurrentVideo() {
+    if (!rcPlaylist.length || !rcPlayer) return;
+    rcPlayer.src = rcPlaylist[rcCurrentIndex];
+    rcPlayer.load();
+    rcPlayer.play().catch(() => {
+      console.log("Autoplay bloqueado hasta que el usuario toque play.");
+    });
+  }
+  if (rcPlayer) {
+    rcPlayer.addEventListener("ended", () => {
+      if (!rcPlaylist.length) return;
+      rcCurrentIndex = (rcCurrentIndex + 1) % rcPlaylist.length;
+      rcPlayCurrentVideo();
+    });
+  }
+  async function rcLoadScrollOnAir() {
+    try {
+      const res = await fetch(RC_SCROLL_ONAIR + "?t=" + Date.now(), {
+        method: "GET",
+        cache: "no-store"
+      });
+      const data = await res.json();
+      const ticker = document.querySelector(".ticker span");
+      if (!ticker) return;
+      if (!data.ok || !data.active) {
+        ticker.textContent = "Todos los videos • Música, noticias, artistas y entretenimiento • radiocentro.net";
+        return;
+      }
+      ticker.textContent = `${data.active.title} • ${data.active.message}`;
+    } catch (error) {
+      console.error("Error cargando scroll:", error);
+    }
+  }
+  async function rcLoadBannerOnAir(forceReload = false) {
+    try {
+      const res = await fetch(RC_BANNER_ONAIR + "?t=" + Date.now(), {
+        method: "GET",
+        cache: "no-store"
+      });
+      const data = await res.json();
+      const layer = document.getElementById("rcBannerLayer");
+      if (!layer) return;
+      if (!data.ok || !data.active) {
+        layer.innerHTML = "";
+        layer.style.display = "none";
+        layer.className = "";
+        rcLastBannerUpdatedAt = null;
+        return;
+      }
+      const banner = data.active;
+      if (!forceReload && rcLastBannerUpdatedAt === banner.updatedAt) return;
+      rcLastBannerUpdatedAt = banner.updatedAt || Date.now();
+      const imgUrl = banner.fullUrl || ("https://playlist.radiocentro.net" + banner.url);
+      layer.className = banner.type || "lower_banner";
+      layer.style.display = "block";
+      // Agregar evento de clic para redirigir si hay link
+      if (banner.link) {
+        layer.style.cursor = "pointer";
+        layer.onclick = () => {
+          window.open(banner.link, '_blank');
+        };
+      } else {
+        layer.style.cursor = "default";
+        layer.onclick = null;
+      }
+      if (banner.type === "image_scroll") {
+        layer.innerHTML = `
+          
+<div class="rc-scroll-track">
+                <img src="${imgUrl}" alt="${banner.title || 'Banner RadioCentro'}">
+                <img src="${imgUrl}" alt="${banner.title || 'Banner RadioCentro'}">
+                <img src="${imgUrl}" alt="${banner.title || 'Banner RadioCentro'}">
+                <img src="${imgUrl}" alt="${banner.title || 'Banner RadioCentro'}">
+              
+</div>
+        `;
+      } else {
+        layer.innerHTML = `<img src="${imgUrl}" alt="${banner.title || 'Banner RadioCentro'}">`;
+      }
+    } catch (error) {
+      console.error("Error cargando banner:", error);
+    }
+  }
+  const programs = [
+    {start:"06:00",end:"08:30",title:"RadioCentro Mañana",desc:"Información y entretenimiento"},
+    {start:"08:30",end:"10:00",title:"Buen Día RadioCentro",desc:"Actualidad y entrevistas"},
+    {start:"10:00",end:"11:00",title:"A Toda Hora - En Vivo",desc:"Noticias en directo"},
+    {start:"11:00",end:"12:00",title:"Qué hay pa' contar",desc:"Opinión y contenido cercano"},
+    {start:"12:00",end:"13:30",title:"Noticias RadioCentro",desc:"Resumen de noticias"},
+    {start:"13:30",end:"15:00",title:"Deportes RadioCentro",desc:"Actualidad deportiva"},
+    {start:"15:00",end:"17:00",title:"Tarde en Vivo",desc:"Música y entretenimiento"},
+    {start:"17:00",end:"19:00",title:"Resumen Central",desc:"Lo más relevante del día"},
+    {start:"19:00",end:"21:00",title:"Especiales RadioCentro",desc:"Programas destacados"},
+    {start:"21:00",end:"23:59",title:"Señal Nocturna",desc:"Programación nocturna"}
+  ];
+  function rcTimeToMinutes(time) {
+    const parts = time.split(":").map(Number);
+    return parts[0] * 60 + parts[1];
+  }
+  function rcGetCurrentMinutes() {
+    const now = new Date();
+    return now.getHours() * 60 + now.getMinutes();
+  }
+  function rcRenderSchedule() {
+    const current = rcGetCurrentMinutes();
+    const timeline = document.getElementById("rcTimeline");
+    if (!timeline) return;
+    timeline.innerHTML = "";
+    programs.forEach(p => {
+      const start = rcTimeToMinutes(p.start);
+      const end = rcTimeToMinutes(p.end);
+      const isActive = current >= start && current < end;
+      const item = document.createElement("div");
+      item.className = "rc-tv-program" + (isActive ? " is-active" : "");
+      item.innerHTML = `
+        
+<div class="rc-tv-time">
+    ${p.start} - ${p.end}
+</div>
+        
+<div class="rc-tv-title">
+    ${p.title}
+</div>
+        
+<div class="rc-tv-desc">
+    ${p.desc}
+</div>
+      `;
+      timeline.appendChild(item);
+    });
+  }
+  // Inicializar todo
+  rcEnsureFullscreenButton();
+  rcRenderSchedule();
+  rcLoadOnAirPlaylist(true);
+  rcLoadScrollOnAir();
+  rcLoadBannerOnAir(true);
+  // Intervalos de actualización
+  setInterval(rcRenderSchedule, 60000);
+  setInterval(() => rcLoadOnAirPlaylist(false), 30000);
+  setInterval(rcLoadScrollOnAir, 15000);
+  setInterval(() => rcLoadBannerOnAir(false), 60000);
+})();
+</script>
