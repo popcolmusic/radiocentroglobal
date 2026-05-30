@@ -1,0 +1,184 @@
+<div class="player-wrapper" style="font-family:inherit;margin:0 auto;max-width:1200px;">
+    <!-- Reproductor principal -->
+    <div style="background-color:#1a1a1a;border-radius:24px;border:1px solid #2a2a2a;margin-bottom:30px;overflow:hidden;">
+        <div style="display:grid;gap:0;grid-template-columns:1fr 300px;">
+            <!-- LADO IZQUIERDO: INFO Y CONTROLES -->
+            <div style="padding:30px;">
+                <div style="margin-bottom:20px;">
+                    <span style="background-color:#e91826;border-radius:20px;color:white;font-size:0.7rem;padding:4px 12px;"><strong>EN VIVO</strong></span>
+                </div>
+                <h2 style="color:#f9b001;font-size:1.6rem;margin-bottom:5px;">
+                    <strong>RADIO CENTRO</strong>
+                </h2>
+                <p style="color:#aaa;margin-bottom:25px;">
+                    La mega de la música · 24/7
+                </p>
+                <p>
+                    <button style="background-color:#f9b001;border-radius:50%;border-style:none;cursor:pointer;height:70px;margin-bottom:20px;transition:0.2s;width:70px;" id="playRadioBtn">
+                                        <span style="font-size: 2rem;">▶</span>
+                                    </button>
+                </p>
+                <div style="color:#f9b001;font-size:0.85rem;margin-bottom:20px;" id="radioStatus">
+                    ⚪ Detenido
+                </div>
+                <div style="margin-top:20px;">
+                    <div style="color:#888;font-size:0.8rem;">
+                        AHORA SUENA
+                    </div>
+                    <div style="margin-top:5px;" id="nowPlayingTitle">
+                        <strong>Radio Centro FM</strong>
+                    </div>
+                    <div style="color:#aaa;font-size:0.8rem;" id="nowPlayingArtist">
+                        La mejor música
+                    </div>
+                </div>
+            </div>
+            <!-- LADO DERECHO: CHAT -->
+            <div style="background-color:#0d0d0d;border-left:1px solid #2a2a2a;display:flex;flex-direction:column;">
+                <div style="border-bottom:1px solid #2a2a2a;padding:20px;">
+                    <h3 style="color:#f9b001;font-size:1.1rem;">
+                        💬 CHAT EN VIVO
+                    </h3>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;height:300px;overflow-y:auto;padding:15px;" id="chatMessages">
+                    <div style="background-color:#1a1a1a;border-left:3px solid #e91826;border-radius:12px;padding:10px;">
+                        <div style="color:#f9b001;font-size:0.75rem;">
+                            🎙️ Radio Centro
+                        </div>
+                        <div style="font-size:0.85rem;">
+                            ¡Bienvenido a la transmisión!
+                        </div>
+                    </div>
+                </div>
+                <div style="border-top:1px solid #2a2a2a;display:flex;gap:10px;padding:15px;">
+                    <input style="background-color:#1a1a1a;border-radius:40px;border-style:none;color:white;flex:1;padding:10px 15px;" type="text" id="chatInput" placeholder="Escribe un mensaje..."> <button style="background-color:#e91826;border-radius:40px;border-style:none;color:white;cursor:pointer;padding:8px 20px;" id="sendChat">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Lista de emisoras asociadas -->
+    <div style="margin-top:20px;">
+        <h3 style="color:#f9b001;font-size:1.2rem;margin-bottom:15px;">
+            📡 NUESTRAS EMISORAS
+        </h3>
+        <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));">
+            <div class="station-item" style="align-items:center;background-color:#111;border-radius:40px;border:1px solid #2a2a2a;cursor:pointer;display:flex;justify-content:space-between;padding:10px 15px;" data-url="URL_STREAM">
+                <span><strong>Radio Centro</strong></span><br>
+                <span style="color:#e91826;font-size:0.7rem;">Principal</span> <span style="color:#f9b001;">▶</span>
+            </div>
+            <div class="station-item" style="align-items:center;background-color:#111;border-radius:40px;border:1px solid #2a2a2a;cursor:pointer;display:flex;justify-content:space-between;padding:10px 15px;" data-url="URL_STREAM">
+                <span><strong>La Mega Cúcuta</strong></span><br>
+                <span style="color:#e91826;font-size:0.7rem;">99.2 FM</span> <span style="color:#f9b001;">▶</span>
+            </div>
+            <div class="station-item" style="align-items:center;background-color:#111;border-radius:40px;border:1px solid #2a2a2a;cursor:pointer;display:flex;justify-content:space-between;padding:10px 15px;" data-url="URL_STREAM">
+                <span><strong>La Mega Medellín</strong></span><br>
+                <span style="color:#e91826;font-size:0.7rem;">92.2 FM</span> <span style="color:#f9b001;">▶</span>
+            </div>
+            <div class="station-item" style="align-items:center;background-color:#111;border-radius:40px;border:1px solid #2a2a2a;cursor:pointer;display:flex;justify-content:space-between;padding:10px 15px;" data-url="URL_STREAM">
+                <span><strong>La Mega Ibagué</strong></span><br>
+                <span style="color:#e91826;font-size:0.7rem;">107.5 FM</span> <span style="color:#f9b001;">▶</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    // Configuración del stream (CAMBIA ESTA URL)
+    const STREAM_URL = "https://tu-stream-aqui.com/stream"; // ⚠️ REEMPLAZAR CON URL REAL
+    
+    let audio = new Audio();
+    audio.src = STREAM_URL;
+    let isPlaying = false;
+    
+    const playBtn = document.getElementById('playRadioBtn');
+    const statusDiv = document.getElementById('radioStatus');
+    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const nowPlayingArtist = document.getElementById('nowPlayingArtist');
+    
+    function playRadio() {
+        audio.play().then(() => {
+            isPlaying = true;
+            statusDiv.innerHTML = "🔴 EN VIVO";
+            statusDiv.style.color = "#f9b001";
+            playBtn.innerHTML = '<span style="font-size: 2rem;">⏸</span>';
+        }).catch(() => {
+            statusDiv.innerHTML = "❌ Error de conexión";
+        });
+    }
+    
+    function pauseRadio() {
+        audio.pause();
+        isPlaying = false;
+        statusDiv.innerHTML = "⚪ Detenido";
+        playBtn.innerHTML = '<span style="font-size: 2rem;">▶</span>';
+    }
+    
+    playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            pauseRadio();
+        } else {
+            playRadio();
+        }
+    });
+    
+    // Cambiar canción demo cada 10 segundos
+    let canciones = ["🔥 Éxito 2025", "🎤 Mix Reguetón", "💃 Tropical Latino", "🎸 Rock en Vivo"];
+    let idx = 0;
+    setInterval(() => {
+        if (isPlaying) {
+            nowPlayingTitle.innerText = canciones[idx % canciones.length];
+            nowPlayingArtist.innerText = "Radio Centro";
+            idx++;
+        }
+    }, 10000);
+    
+    // ========== CHAT ==========
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendChat = document.getElementById('sendChat');
+    
+    function addChatMessage(user, msg) {
+        const div = document.createElement('div');
+        div.style.background = '#1a1a1a';
+        div.style.borderRadius = '12px';
+        div.style.padding = '10px';
+        div.style.borderLeft = '3px solid #e91826';
+        div.innerHTML = `
+<div style="color: #f9b001; font-size: 0.75rem;">
+    ${user}
+</div>
+                         
+<div style="font-size: 0.85rem;">
+    ${msg}
+</div>
+`;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    sendChat.addEventListener('click', () => {
+        let msg = chatInput.value.trim();
+        if (msg) {
+            addChatMessage("Oyente", msg);
+            chatInput.value = "";
+        }
+    });
+    
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendChat.click();
+    });
+    
+    // ========== EMISORAS ==========
+    document.querySelectorAll('.station-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const stationName = item.querySelector('strong')?.innerText || 'Radio';
+            const wasPlaying = isPlaying;
+            if (wasPlaying) pauseRadio();
+            audio.src = STREAM_URL; // Cambiar por URL específica si cada emisora tiene su stream
+            if (wasPlaying) playRadio();
+            nowPlayingTitle.innerText = stationName;
+            addChatMessage("🎛️ Sistema", `Cambiado a: ${stationName}`);
+        });
+    });
+})();
+</script>
