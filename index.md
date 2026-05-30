@@ -1,8 +1,3 @@
----
-layout: default
-title: Radio Centro - Inicio
----
-
 <!-- ============================================ --><!-- VIDEOS ACTUALIZADOS MAYO 2026               --><!-- CON MINIATURAS REALES DE YOUTUBE            --><!-- RADIO CENTRO - CON CARRUSEL MÓVIL           --><!-- ============================================ --><style>
 /* ESTILOS COMPLETOS - VERSIÓN MEJORADA */
 * {
@@ -3146,17 +3141,3 @@ html, body {
     }
 })();
 </script>
-
-<style>
-/* Todos tus estilos */
-</style>
-
-<div class="radio-centro-container">
-   ... todo tu contenido ...
-</div>
-
-<script>
-// Todos tus scripts
-</script>
-
-
