@@ -1,0 +1,378 @@
+<!-- ============================================ --><!-- SECCIÓN DE EVENTOS - ESTILO WWE RADIOCENTRO  --><!-- Con buscador, calendario y lista de eventos   --><!-- ============================================ -->
+<div style="background-color:#0a0a0a;box-sizing:border-box;padding:30px 20px;width:100%;">
+    <!-- TÍTULO PRINCIPAL -->
+    <h2 style="border-left:5px solid #e91826;color:#f9b001;font-family:&apos;Bebas Neue&apos;, &apos;Impact&apos;, &apos;Arial Black&apos;, sans-serif;font-size:2.5rem;margin:0 0 20px;padding-left:20px;">
+        📅 CALENDARIO DE EVENTOS
+    </h2>
+    <!-- ============================================ --><!-- 1. BUSCADOR SUPERIOR                        --><!-- ============================================ -->
+    <div style="background-color:#111;border-radius:16px;border:1px solid #2a2a2a;margin-bottom:30px;padding:25px;">
+        <div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));">
+            <div>
+                <label style="color:#f9b001;display:block;font-size:0.8rem;margin-bottom:8px;">📍 UBICACIÓN</label> <input style="background-color:#1a1a1a;border-radius:8px;border:1px solid #2a2a2a;color:white;padding:12px;width:100%;" type="text" id="searchLocation" placeholder="Ciudad, país o recinto...">
+            </div>
+            <div>
+                <label style="color:#f9b001;display:block;font-size:0.8rem;margin-bottom:8px;">📅 DESDE</label> <input style="background-color:#1a1a1a;border-radius:8px;border:1px solid #2a2a2a;color:white;padding:12px;width:100%;" type="date" id="searchDateFrom">
+            </div>
+            <div>
+                <label style="color:#f9b001;display:block;font-size:0.8rem;margin-bottom:8px;">📅 HASTA</label> <input style="background-color:#1a1a1a;border-radius:8px;border:1px solid #2a2a2a;color:white;padding:12px;width:100%;" type="date" id="searchDateTo">
+            </div>
+            <div style="align-items:end;display:flex;">
+                <strong><button style="background-color:#e91826;border-radius:8px;border-style:none;color:white;cursor:pointer;padding:12px 25px;width:100%;" id="searchEventsBtn">🔍 BUSCAR EVENTOS</button></strong>
+            </div>
+        </div>
+        <div style="background-color:#1a1a1a;border-radius:8px;display:none;margin-top:20px;padding:20px;text-align:center;" id="noResultsMsg">
+            <p style="color:#f9b001;">
+                ⚠️ No se encontraron eventos para tu búsqueda
+            </p>
+            <p style="color:#aaa;font-size:0.8rem;">
+                • Intenta actualizar tu ubicación<br>
+                • Amplía el rango de fechas<br>
+                • Revisa la ortografía
+            </p>
+        </div>
+    </div>
+    <!-- ============================================ --><!-- 2. EVENTOS DESTACADOS (TARJETAS GRANDES)     --><!-- ============================================ -->
+    <h3 style="color:#e91826;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:1.8rem;margin:30px 0 20px;">
+        🔥 EVENTOS DESTACADOS
+    </h3>
+    <div style="display:grid;gap:25px;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));margin-bottom:40px;" id="featuredEventsGrid">
+        &nbsp;
+    </div>
+    <!-- ============================================ --><!-- 3. MINITARJETAS DE EVENTOS                   --><!-- ============================================ -->
+    <h3 style="color:#f9b001;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:1.5rem;margin:30px 0 20px;">
+        🎟️ PRÓXIMOS EVENTOS
+    </h3>
+    <div style="display:grid;gap:15px;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));margin-bottom:40px;" id="miniEventsGrid">
+        &nbsp;
+    </div>
+    <!-- ============================================ --><!-- 4. LISTA COMPLETA DE EVENTOS (imagen + texto)--><!-- ============================================ -->
+    <h3 style="color:#e91826;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:1.5rem;margin:30px 0 20px;">
+        📋 TODOS LOS EVENTOS
+    </h3>
+    <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px;" id="eventsListContainer">
+        &nbsp;
+    </div>
+    <!-- ============================================ --><!-- 5. BANNER NETFLIX / PLATFORMAS               --><!-- ============================================ -->
+    <div style="border-radius:16px;border:1px solid #e91826;margin-top:30px;padding:20px;text-align:center;">
+        <p style="color:#f9b001;font-size:0.8rem;letter-spacing:2px;">
+            TRANSMITIDO POR
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:30px;justify-content:center;">
+            <span style="color:white;"><strong>NETFLIX</strong></span> <span style="color:white;"><strong>PEACOCK</strong></span> <span style="color:white;"><strong>USA NETWORK</strong></span> <span style="color:white;"><strong>CW NETWORK</strong></span> <span style="color:white;"><strong>ESPN+</strong></span>
+        </div>
+    </div>
+</div>
+<style>
+/* ESTILOS DE LA SECCIÓN DE EVENTOS */
+.event-card-large {
+    background: #111;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.2s;
+}
+.event-card-large:hover {
+    transform: translateY(-5px);
+    border-color: #f9b001;
+}
+.event-card-large img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.event-card-large-content {
+    padding: 20px;
+}
+.event-card-large h4 {
+    font-size: 1.5rem;
+    color: #f9b001;
+    margin: 0 0 10px 0;
+}
+.event-card-large p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+.event-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+.btn-event-details, .btn-tickets {
+    padding: 8px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.btn-event-details {
+    background: transparent;
+    border: 1px solid #f9b001;
+    color: #f9b001;
+}
+.btn-event-details:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+}
+.btn-tickets {
+    background: #e91826;
+    border: none;
+    color: white;
+}
+.btn-tickets:hover {
+    background: #f9b001;
+    color: #0a0a0a;
+}
+.mini-event-card {
+    background: #111;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #2a2a2a;
+    transition: 0.2s;
+}
+.mini-event-card:hover {
+    border-color: #e91826;
+}
+.mini-event-card h5 {
+    font-size: 1rem;
+    color: #f9b001;
+    margin: 0 0 8px 0;
+}
+.mini-event-card p {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin: 3px 0;
+}
+.event-list-item {
+    display: flex;
+    gap: 20px;
+    background: #111;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    transition: 0.2s;
+}
+.event-list-item:hover {
+    border-color: #f9b001;
+    transform: translateX(8px);
+}
+.event-list-img {
+    width: 250px;
+    flex-shrink: 0;
+}
+.event-list-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.event-list-content {
+    flex: 1;
+    padding: 20px 20px 20px 0;
+}
+.event-list-content h4 {
+    font-size: 1.3rem;
+    color: #f9b001;
+    margin: 0 0 8px 0;
+}
+.event-list-content p {
+    color: #ccc;
+    font-size: 0.85rem;
+    margin: 5px 0;
+}
+.event-list-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+@media (max-width: 700px) {
+    .event-list-item {
+        flex-direction: column;
+    }
+    .event-list-img {
+        width: 100%;
+        height: 180px;
+    }
+    .event-list-content {
+        padding: 15px;
+    }
+}
+</style><script>
+// ============================================
+// DATOS DE EVENTOS (basados en tus imágenes)
+// ============================================
+const eventosData = [
+    // Eventos destacados grandes
+    { id: 1, titulo: "SUMMERSLAM MINNESOTA", fecha: "Saturday, August 1st - 2nd", ubicacion: "Minneapolis, MN", descripcion: "El evento más grande del verano", imagen: "https://placehold.co/600x400/1a1a1a/e91826?text=SUMMERSLAM", destacado: true, horario: "7:00 PM", recinto: "U.S. Bank Stadium", precio: "$50 - $500" },
+    { id: 2, titulo: "CLASH IN ITALY", fecha: "Sunday, May 31st", ubicacion: "Turin, Piedmont Region, Italy", imagen: "https://placehold.co/600x400/1a1a1a/f9b001?text=CLASH+ITALY", destacado: true, horario: "7:30 PM", recinto: "Inalpi Arena" },
+    { id: 3, titulo: "SATURDAY NIGHT'S MAIN EVENT", fecha: "Saturday, July 18th", ubicacion: "New York, NY", imagen: "https://placehold.co/600x400/1a1a1a/e91826?text=MSG+EVENT", destacado: true, horario: "8:00 PM", recinto: "Madison Square Garden" },
+    
+    // Minieventos
+    { id: 4, titulo: "NXT Live", fecha: "Friday May 15", ubicacion: "Buffalo, NY", miniatura: true, horario: "7:30 PM", recinto: "KeyBank Center" },
+    { id: 5, titulo: "Friday Night SmackDown", fecha: "Friday May 15", ubicacion: "Columbia, SC", miniatura: true, horario: "7:30 PM", recinto: "Colonial Life Arena" },
+    { id: 6, titulo: "NXT Live", fecha: "Saturday May 16", ubicacion: "Canton, OH", miniatura: true, horario: "7:30 PM", recinto: "Canton Memorial Civic Center" },
+    { id: 7, titulo: "Monday Night RAW", fecha: "Monday May 18", ubicacion: "Greensboro, NC", miniatura: true, horario: "7:30 PM", recinto: "Greensboro Coliseum" },
+    { id: 8, titulo: "Friday Night SmackDown", fecha: "Friday May 22", ubicacion: "Lexington, KY", miniatura: true, horario: "7:30 PM", recinto: "Rupp Arena" },
+    
+    // Lista completa de eventos
+    { id: 9, titulo: "Saturday Night's Main Event", fecha: "Saturday, May 23rd", ubicacion: "Fort Wayne, IN", horario: "7:30 PM", recinto: "Allen County War Memorial Coliseum", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=MAIN+EVENT" },
+    { id: 10, titulo: "Monday Night RAW", fecha: "Monday, May 25th", ubicacion: "Columbus, OH", horario: "7:30 PM", recinto: "Schottenstein Center", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=RAW" },
+    { id: 11, titulo: "European Summer Tour", fecha: "Wednesday, May 27th", ubicacion: "Liverpool, UK", horario: "7:30 PM", recinto: "M&S Bank Arena", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=EURO+TOUR" },
+    { id: 12, titulo: "Friday Night SmackDown", fecha: "Friday, May 29th", ubicacion: "Barcelona, Spain", horario: "7:30 PM", recinto: "Olimpica Arena", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=SMACKDOWN" },
+    { id: 13, titulo: "AAA Noche De Los Grandes", fecha: "Saturday, May 30th", ubicacion: "Monterrey, Mexico", horario: "7:00 PM", recinto: "Arena Monterrey", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=AAA" },
+    { id: 14, titulo: "European Summer Tour", fecha: "Sunday, May 31st", ubicacion: "Turin, Italy", horario: "7:30 PM", recinto: "Inalpi Arena", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=ITALY" },
+    { id: 15, titulo: "European Summer Tour", fecha: "Tuesday, June 2nd", ubicacion: "Strasbourg, France", horario: "7:30 PM", recinto: "Zénith de Strasbourg", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=FRANCE" },
+    { id: 16, titulo: "European Summer Tour", fecha: "Thursday, June 4th", ubicacion: "Lisbon, Portugal", horario: "7:30 PM", recinto: "MEO Arena", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=LISBON" },
+    { id: 17, titulo: "Friday Night SmackDown", fecha: "Friday, June 5th", ubicacion: "Bologna, Italy", horario: "7:30 PM", recinto: "Unipol Arena", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=BOLOGNA" },
+    { id: 18, titulo: "Monday Night RAW", fecha: "Monday, Sep 7th", ubicacion: "Birmingham, AL", horario: "6:30 PM", recinto: "Legacy Arena", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=BIRMINGHAM" },
+    { id: 19, titulo: "South America Live Tour", fecha: "Thursday, Sep 10th", ubicacion: "Bogotá, Colombia", horario: "8:00 PM", recinto: "Movistar Arena", imagen: "https://placehold.co/400x300/1a1a1a/f9b001?text=BOGOTA" },
+    { id: 20, titulo: "South America Live Tour", fecha: "Friday, Sep 11th", ubicacion: "Buenos Aires, Argentina", horario: "8:00 PM", recinto: "Movistar Arena", imagen: "https://placehold.co/400x300/1a1a1a/e91826?text=BUENOS+AIRES" }
+];
+// Renderizar eventos destacados
+function renderizarDestacados() {
+    const destacados = eventosData.filter(e => e.destacado === true);
+    const container = document.getElementById('featuredEventsGrid');
+    container.innerHTML = destacados.map(evento => `
+        
+<div class="event-card-large">
+                <img src="${evento.imagen}" alt="${evento.titulo}">
+                
+    <div class="event-card-large-content">
+                        
+        <h4>
+            ${evento.titulo}
+        </h4>
+                        
+        <p>
+            📅 ${evento.fecha}
+        </p>
+                        
+        <p>
+            📍 ${evento.ubicacion}
+        </p>
+                        
+        <p>
+            🏟️ ${evento.recinto}
+        </p>
+                        
+        <p>
+            ⏰ ${evento.horario}
+        </p>
+                        
+        <div class="event-buttons">
+                                <button class="btn-event-details" onclick="alert('📋 Detalles: ${evento.titulo}')">Event Details</button>
+                                <button class="btn-tickets" onclick="alert('🎫 Tickets para ${evento.titulo}')">Tickets →</button>
+                            
+        </div>
+                    
+    </div>
+            
+</div>
+    `).join('');
+}
+// Renderizar mini eventos
+function renderizarMiniEventos() {
+    const mini = eventosData.filter(e => e.miniatura === true);
+    const container = document.getElementById('miniEventsGrid');
+    container.innerHTML = mini.map(evento => `
+        
+<div class="mini-event-card" onclick="alert('📋 ${evento.titulo} - ${evento.ubicacion}')">
+                
+    <h5>
+        ${evento.titulo}
+    </h5>
+                
+    <p>
+        📅 ${evento.fecha}
+    </p>
+                
+    <p>
+        📍 ${evento.ubicacion}
+    </p>
+                
+    <p>
+        ⏰ ${evento.horario}
+    </p>
+            
+</div>
+    `).join('');
+}
+// Renderizar lista completa de eventos
+function renderizarListaEventos(filtrados = null) {
+    const eventos = filtrados || eventosData.filter(e => !e.destacado && !e.miniatura);
+    const container = document.getElementById('eventsListContainer');
+    container.innerHTML = eventos.map(evento => `
+        
+<div class="event-list-item">
+                
+    <div class="event-list-img">
+                        <img src="${evento.imagen || 'https://placehold.co/400x300/1a1a1a/f9b001?text=EVENTO'}" alt="${evento.titulo}">
+                    
+    </div>
+                
+    <div class="event-list-content">
+                        
+        <h4>
+            ${evento.titulo}
+        </h4>
+                        
+        <p>
+            📅 ${evento.fecha}
+        </p>
+                        
+        <p>
+            📍 ${evento.ubicacion}
+        </p>
+                        
+        <p>
+            🏟️ ${evento.recinto}
+        </p>
+                        
+        <p>
+            ⏰ ${evento.horario}
+        </p>
+                        
+        <div class="event-list-buttons">
+                                <button class="btn-event-details" onclick="alert('📋 Detalles: ${evento.titulo}')">Event Details</button>
+                                <button class="btn-tickets" onclick="alert('🎫 Tickets para ${evento.titulo}')">Tickets →</button>
+                            
+        </div>
+                    
+    </div>
+            
+</div>
+    `).join('');
+}
+// Función de búsqueda
+function buscarEventos() {
+    const location = document.getElementById('searchLocation').value.toLowerCase();
+    const dateFrom = document.getElementById('searchDateFrom').value;
+    const dateTo = document.getElementById('searchDateTo').value;
+    
+    const filtrados = eventosData.filter(evento => {
+        let coincide = true;
+        
+        if (location && !evento.ubicacion.toLowerCase().includes(location)) {
+            coincide = false;
+        }
+        
+        // Nota: Para simplificar, la búsqueda por fecha exacta se puede ampliar
+        return coincide && !evento.destacado && !evento.miniatura;
+    });
+    
+    const noResults = document.getElementById('noResultsMsg');
+    if (filtrados.length === 0) {
+        noResults.style.display = 'block';
+        renderizarListaEventos([]);
+    } else {
+        noResults.style.display = 'none';
+        renderizarListaEventos(filtrados);
+    }
+}
+// Event listeners
+document.getElementById('searchEventsBtn').addEventListener('click', buscarEventos);
+// Inicializar
+renderizarDestacados();
+renderizarMiniEventos();
+renderizarListaEventos();
+</script>
