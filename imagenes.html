@@ -1,0 +1,325 @@
+<!-- ============================================ --><!-- Con lightbox al hacer clic                   --><!-- SECCIÓN DE GALERÍAS / PHOTOS - ESTILO WWE    --><!-- ============================================ -->
+<div style="background-color:#0a0a0a;box-sizing:border-box;padding:30px 20px;width:100%;">
+    <!-- TÍTULO PRINCIPAL -->
+    <h2 style="border-left:5px solid #e91826;color:#f9b001;font-family:&apos;Bebas Neue&apos;, &apos;Impact&apos;, &apos;Arial Black&apos;, sans-serif;font-size:2.5rem;margin:0 0 30px;padding-left:20px;">
+        📸 rc galeria fotos e imagenes | RADIO CENTRO
+    </h2>
+    <!-- LISTA DE GALERÍAS -->
+    <div style="display:flex;flex-direction:column;gap:25px;margin-bottom:40px;" id="galeriasList">
+        &nbsp;
+    </div>
+    <!-- PAGINACIÓN -->
+    <div style="border-top:1px solid #2a2a2a;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;padding-top:25px;" id="galeriasPaginacion">
+        &nbsp;
+    </div>
+</div>
+<!-- LIGHTBOX MODAL (oculto al inicio) -->
+<div style="background-color:rgba(0,0,0,0.95);display:none;height:100%;left:0;overflow-y:auto;position:fixed;top:0;width:100%;z-index:9999;" id="lightboxModal">
+    <div style="margin:40px auto;max-width:1200px;padding:20px;">
+        <p>
+            <button style="background-color:#e91826;border-radius:50%;border-style:none;color:white;cursor:pointer;font-size:1.5rem;height:50px;position:fixed;right:30px;top:20px;width:50px;z-index:10000;" id="closeLightbox">✕</button>
+        </p>
+        <h3 style="color:#f9b001;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:2rem;margin-bottom:30px;text-align:center;" id="lightboxTitle">
+            &nbsp;
+        </h3>
+        <div style="display:grid;gap:20px;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));" id="lightboxGrid">
+            &nbsp;
+        </div>
+    </div>
+</div>
+<style>
+/* ESTILOS DE LA SECCIÓN DE GALERÍAS */
+.galeria-item {
+    display: flex !important;
+    gap: 25px !important;
+    background: #111 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #2a2a2a !important;
+    cursor: pointer !important;
+    transition: transform 0.2s, border-color 0.2s !important;
+}
+.galeria-item:hover {
+    transform: translateX(8px) !important;
+    border-color: #f9b001 !important;
+}
+.galeria-thumbnail {
+    position: relative !important;
+    width: 300px !important;
+    flex-shrink: 0 !important;
+    background: #1a1a1a !important;
+}
+.galeria-thumbnail img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+.galeria-info {
+    flex: 1 !important;
+    padding: 18px 20px 18px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+.galeria-info h3 {
+    font-size: 1.4rem !important;
+    color: #fff !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.3 !important;
+    font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+    font-weight: normal !important;
+}
+.galeria-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+}
+.galeria-badge {
+    background: #e91826 !important;
+    color: white !important;
+    padding: 5px 14px !important;
+    border-radius: 25px !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+}
+.galeria-date {
+    color: #aaa !important;
+    font-size: 0.8rem !important;
+    font-family: Arial, sans-serif !important;
+}
+.galeria-category {
+    color: #f9b001 !important;
+    font-size: 0.75rem !important;
+    font-weight: bold !important;
+}
+/* Botones de paginación */
+.pagina-galeria-btn {
+    background: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    color: #ccc !important;
+    padding: 12px 22px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    transition: 0.2s !important;
+}
+.pagina-galeria-btn:hover {
+    background: #2a2a2a !important;
+    color: #f9b001 !important;
+    border-color: #f9b001 !important;
+}
+.pagina-galeria-btn.active {
+    background: #e91826 !important;
+    border-color: #e91826 !important;
+    color: white !important;
+}
+/* Lightbox */
+.lightbox-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+}
+.lightbox-img:hover {
+    transform: scale(1.02);
+    border-color: #f9b001;
+}
+/* Responsive */
+@media (max-width: 700px) {
+    .galeria-item {
+        flex-direction: column !important;
+    }
+    .galeria-thumbnail {
+        width: 100% !important;
+    }
+    .galeria-thumbnail img {
+        height: 200px !important;
+    }
+    .galeria-info {
+        padding: 15px !important;
+    }
+    .galeria-info h3 {
+        font-size: 1.2rem !important;
+    }
+    .pagina-galeria-btn {
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+    #lightboxGrid {
+        grid-template-columns: 1fr !important;
+    }
+}
+</style><script>
+(function() {
+    // ============================================
+    // DATOS DE GALERÍAS (50 GALERÍAS)
+    // ============================================
+    const galeriasData = [
+        { id: 1, titulo: "Photos: The must-see images of WWE NXT, May 12, 2026", categoria: "WWE NXT", fecha: "1 day ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=NXT+PHOTOS", fotos: 6 },
+        { id: 2, titulo: "Photos: Don't miss these incredible images from Raw", categoria: "Raw", fecha: "1 day ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=RAW+PHOTOS", fotos: 6 },
+        { id: 3, titulo: "25 best Instagram photos of the week", categoria: "Social Media", fecha: "3 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=BEST+INSTAGRAM", fotos: 6 },
+        { id: 4, titulo: "Photos: Don't miss these amazing images from NXT Stand & Deliver 2026", categoria: "WWE NXT", fecha: "April 4, 2026", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=STAND+DELIVER", fotos: 6 },
+        { id: 5, titulo: "Photos: Don't miss these amazing images from SmackDown", categoria: "SmackDown", fecha: "April 3, 2026", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=SMACKDOWN+PHOTOS", fotos: 6 },
+        { id: 6, titulo: "Photos: The incredible images of WWE NXT, March 31, 2026", categoria: "WWE NXT", fecha: "March 31, 2026", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=NXT+MARCH", fotos: 6 },
+        { id: 7, titulo: "Best moments from Backlash 2026 in pictures", categoria: "Pay-Per-View", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=BACKLASH", fotos: 6 },
+        { id: 8, titulo: "Roman Reigns vs Cody Rhodes: Photo gallery", categoria: "SmackDown", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=ROMAN+VS+CODY", fotos: 6 },
+        { id: 9, titulo: "Women's Division: Best photos of the month", categoria: "Raw", fecha: "2 weeks ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=WOMENS+DIVISION", fotos: 6 },
+        { id: 10, titulo: "The Judgment Day: Exclusive backstage photos", categoria: "Raw", fecha: "2 weeks ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=JUDGMENT+DAY", fotos: 6 }
+    ];
+    // Generar hasta 50 galerías
+    while(galeriasData.length < 50) {
+        const num = galeriasData.length + 1;
+        const categorias = ["Raw", "SmackDown", "WWE NXT", "Pay-Per-View", "Social Media"];
+        galeriasData.push({
+            id: num,
+            titulo: `Photos: Amazing gallery from WWE event ${num}`,
+            categoria: categorias[Math.floor(Math.random() * categorias.length)],
+            fecha: `Hace ${Math.floor(Math.random() * 20) + 1} días`,
+            miniatura: `https://placehold.co/300x180/1a1a1a/${Math.random() > 0.5 ? 'e91826' : 'f9b001'}?text=GALLERY+${num}`,
+            fotos: 6
+        });
+    }
+    const GALERIAS_POR_PAGINA = 8;
+    let paginaActual = 1;
+    const totalPaginas = Math.ceil(galeriasData.length / GALERIAS_POR_PAGINA);
+    // Función para generar fotos de una galería (demo)
+    function generarFotosGaleria(galeriaId, galeriaTitulo) {
+        const fotos = [];
+        for (let i = 1; i <= 6; i++) {
+            fotos.push({
+                url: `https://placehold.co/600x400/1a1a1a/${i % 2 === 0 ? 'e91826' : 'f9b001'}?text=FOTO+${i}+${galeriaId}`,
+                titulo: `${galeriaTitulo} - Foto ${i}`
+            });
+        }
+        return fotos;
+    }
+    // Mostrar lightbox con las fotos
+    function abrirLightbox(galeria) {
+        const fotos = generarFotosGaleria(galeria.id, galeria.titulo);
+        const modal = document.getElementById('lightboxModal');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxGrid = document.getElementById('lightboxGrid');
+        
+        lightboxTitle.innerText = galeria.titulo;
+        lightboxGrid.innerHTML = fotos.map(foto => `
+            
+<div>
+                    <img src="${foto.url}" alt="${foto.titulo}" class="lightbox-img" onclick="window.open('${foto.url}', '_blank')">
+                    
+    <p style="color: #aaa; font-size: 0.7rem; text-align: center; margin-top: 8px;">
+        ${foto.titulo}
+    </p>
+                
+</div>
+        `).join('');
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    function cerrarLightbox() {
+        document.getElementById('lightboxModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    // Renderizar galerías
+    function renderizarGalerias() {
+        const inicio = (paginaActual - 1) * GALERIAS_POR_PAGINA;
+        const fin = inicio + GALERIAS_POR_PAGINA;
+        const galeriasPagina = galeriasData.slice(inicio, fin);
+        
+        const contenedor = document.getElementById('galeriasList');
+        contenedor.innerHTML = galeriasPagina.map(galeria => `
+            
+<div class="galeria-item" data-galeria-id="${galeria.id}">
+                    
+    <div class="galeria-thumbnail">
+                            <img src="${galeria.miniatura}" alt="${galeria.titulo}">
+                        
+    </div>
+                    
+    <div class="galeria-info">
+                            
+        <h3>
+            ${galeria.titulo}
+        </h3>
+                            
+        <div class="galeria-meta">
+                                    <span class="galeria-badge">WWE PHOTOS & PICTURES</span>
+                                    <span class="galeria-category">📺 ${galeria.categoria}</span>
+                                    <span class="galeria-date">📅 ${galeria.fecha}</span>
+                                
+        </div>
+                        
+    </div>
+                
+</div>
+        `).join('');
+        
+        // Evento click en cada galería
+        document.querySelectorAll('.galeria-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const id = parseInt(this.dataset.galeriaId);
+                const galeria = galeriasData.find(g => g.id === id);
+                abrirLightbox(galeria);
+            });
+        });
+    }
+    // Renderizar paginación
+    function renderizarPaginacion() {
+        const contenedor = document.getElementById('galeriasPaginacion');
+        let botones = '';
+        
+        botones += `<button class="pagina-galeria-btn" data-pagina="prev" ${paginaActual === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>◀ Anterior</button>`;
+        
+        let inicioPaginas = Math.max(1, paginaActual - 3);
+        let finPaginas = Math.min(totalPaginas, paginaActual + 3);
+        
+        if (inicioPaginas > 1) {
+            botones += `<button class="pagina-galeria-btn" data-pagina="1">1</button>`;
+            if (inicioPaginas > 2) botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+        }
+        
+        for (let i = inicioPaginas; i <= finPaginas; i++) {
+            botones += `<button class="pagina-galeria-btn ${i === paginaActual ? 'active' : ''}" data-pagina="${i}">${i}</button>`;
+        }
+        
+        if (finPaginas < totalPaginas) {
+            if (finPaginas < totalPaginas - 1) botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+            botones += `<button class="pagina-galeria-btn" data-pagina="${totalPaginas}">${totalPaginas}</button>`;
+        }
+        
+        botones += `<button class="pagina-galeria-btn" data-pagina="next" ${paginaActual === totalPaginas ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>Siguiente ▶</button>`;
+        
+        contenedor.innerHTML = botones;
+        
+        document.querySelectorAll('.pagina-galeria-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pagina = btn.dataset.pagina;
+                if (pagina === 'prev' && paginaActual > 1) {
+                    paginaActual--;
+                } else if (pagina === 'next' && paginaActual < totalPaginas) {
+                    paginaActual++;
+                } else if (!isNaN(parseInt(pagina))) {
+                    paginaActual = parseInt(pagina);
+                }
+                renderizarGalerias();
+                renderizarPaginacion();
+                document.getElementById('galeriasList').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    }
+    // Eventos del lightbox
+    document.getElementById('closeLightbox').addEventListener('click', cerrarLightbox);
+    document.getElementById('lightboxModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('lightboxModal')) cerrarLightbox();
+    });
+    // Inicializar
+    renderizarGalerias();
+    renderizarPaginacion();
+})();
+</script>
