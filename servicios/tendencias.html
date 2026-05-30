@@ -1,0 +1,1434 @@
+<!-- ============================================ --><!-- PÁGINA COMPLETA - YOUTUBE TRENDS            --><!-- CON CARRUSEL DE VIDEOS Y 3 PLANES           --><!-- VERSIÓN COMPLETA Y FUNCIONAL                --><!-- ============================================ --><style>
+/* ============================================ */
+/* ESTILOS EXCLUSIVOS PARA SERVICIOS YOUTUBE    */
+/* ============================================ */
+.yt-servicios-full-container {
+    background-color: #0a0a0a;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0;
+}
+.yt-servicios-full-container .yt-servicios-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+/* Hero Section */
+.yt-servicios-full-container .servicios-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 24px;
+    margin-bottom: 50px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .servicios-hero h1 {
+    font-size: 3rem;
+    color: #FF0000;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 20px;
+}
+.yt-servicios-full-container .servicios-hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+/* KPIs */
+.yt-servicios-full-container .kpi-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+.yt-servicios-full-container .kpi-item {
+    text-align: center;
+}
+.yt-servicios-full-container .kpi-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FF0000;
+    display: block;
+}
+.yt-servicios-full-container .kpi-label {
+    font-size: 0.8rem;
+    color: #FFD700;
+    text-transform: uppercase;
+}
+/* Grid de Servicios YouTube */
+.yt-servicios-full-container .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.yt-servicios-full-container .servicio-card {
+    background: #111;
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.yt-servicios-full-container .servicio-card:hover {
+    transform: translateY(-5px);
+    border-color: #FF0000;
+}
+.yt-servicios-full-container .servicio-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.yt-servicios-full-container .servicio-card h3 {
+    color: #FFD700;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+}
+.yt-servicios-full-container .servicio-card p {
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.yt-servicios-full-container .servicio-features {
+    list-style: none;
+    padding: 0;
+}
+.yt-servicios-full-container .servicio-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+.yt-servicios-full-container .servicio-features li:last-child {
+    border-bottom: none;
+}
+.yt-servicios-full-container .badge-success {
+    display: inline-block;
+    background: #FF0000;
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+/* Panel de Métricas YouTube */
+.yt-servicios-full-container .metrics-dashboard {
+    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.yt-servicios-full-container .dashboard-header h2 {
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .dashboard-header p {
+    color: #aaa;
+}
+.yt-servicios-full-container .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .stat-card {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .stat-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FF0000;
+}
+.yt-servicios-full-container .stat-label {
+    color: #FFD700;
+    font-size: 0.8rem;
+}
+/* Gráfico de Tendencias */
+.yt-servicios-full-container .chart-placeholder {
+    background: #111;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+.yt-servicios-full-container .chart-placeholder p {
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+.yt-servicios-full-container .chart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 150px;
+    margin: 20px 0;
+}
+.yt-servicios-full-container .chart-bar {
+    width: 60px;
+    background: #FF0000;
+    border-radius: 8px 8px 0 0;
+}
+.yt-servicios-full-container .chart-bar:nth-child(1) { height: 120px; background: #FFD700; }
+.yt-servicios-full-container .chart-bar:nth-child(2) { height: 80px; }
+.yt-servicios-full-container .chart-bar:nth-child(3) { height: 140px; background: #FFD700; }
+.yt-servicios-full-container .chart-bar:nth-child(4) { height: 60px; }
+.yt-servicios-full-container .chart-bar:nth-child(5) { height: 100px; background: #FFD700; }
+.yt-servicios-full-container .chart-labels {
+    display: flex;
+    justify-content: space-around;
+    color: #aaa;
+    font-size: 0.8rem;
+}
+/* ============================================ */
+/* PLANES YT TRENDING                          */
+/* ============================================ */
+.yt-servicios-full-container .plans-section {
+    background: #111;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .plans-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .plans-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.yt-servicios-full-container .plan-card {
+    background: #0a0a0a;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+}
+.yt-servicios-full-container .plan-card:hover {
+    transform: translateY(-10px);
+    border-color: #FFD700;
+}
+.yt-servicios-full-container .plan-card.popular {
+    border: 2px solid #FFD700;
+    transform: scale(1.02);
+}
+.yt-servicios-full-container .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFD700;
+    color: #0a0a0a;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.yt-servicios-full-container .plan-name {
+    font-size: 1.8rem;
+    color: #FFD700;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .plan-price {
+    font-size: 2.5rem;
+    color: #FF0000;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .plan-price span {
+    font-size: 1rem;
+    color: #aaa;
+}
+.yt-servicios-full-container .plan-description {
+    color: #ccc;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+.yt-servicios-full-container .plan-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.yt-servicios-full-container .plan-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+.yt-servicios-full-container .plan-features li:before {
+    content: "✓ ";
+    color: #FFD700;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.yt-servicios-full-container .plan-button {
+    background: #FF0000;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s, background 0.2s;
+}
+.yt-servicios-full-container .plan-button:hover {
+    transform: scale(1.05);
+    background: #cc0000;
+}
+.yt-servicios-full-container .plan-card.popular .plan-button {
+    background: #FFD700;
+    color: #0a0a0a;
+}
+/* ============================================ */
+/* CARRUSEL DE VIDEOS                          */
+/* ============================================ */
+.yt-servicios-full-container .video-carousel-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .video-carousel-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .video-carousel-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .video-carousel {
+    position: relative;
+    max-width: 100%;
+}
+.yt-servicios-full-container .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+.yt-servicios-full-container .carousel-container::-webkit-scrollbar {
+    height: 8px;
+}
+.yt-servicios-full-container .carousel-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+.yt-servicios-full-container .carousel-container::-webkit-scrollbar-thumb {
+    background: #FF0000;
+    border-radius: 10px;
+}
+.yt-servicios-full-container .carousel-item {
+    flex: 0 0 400px;
+    scroll-snap-align: start;
+    background: #0a0a0a;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    transition: transform 0.3s;
+}
+.yt-servicios-full-container .carousel-item:hover {
+    transform: scale(1.02);
+    border-color: #FFD700;
+}
+.yt-servicios-full-container .carousel-item iframe {
+    width: 100%;
+    height: 225px;
+    border: none;
+}
+.yt-servicios-full-container .carousel-caption {
+    padding: 15px;
+}
+.yt-servicios-full-container .carousel-caption h4 {
+    color: #FFD700;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+.yt-servicios-full-container .carousel-caption p {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+.yt-servicios-full-container .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.3s;
+    z-index: 10;
+}
+.yt-servicios-full-container .carousel-btn:hover {
+    background: #FF0000;
+}
+.yt-servicios-full-container .carousel-btn.prev {
+    left: 10px;
+}
+.yt-servicios-full-container .carousel-btn.next {
+    right: 10px;
+}
+/* Proceso de Trabajo */
+.yt-servicios-full-container .workflow-section {
+    background: #111;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .workflow-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .workflow-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.yt-servicios-full-container .workflow-step {
+    text-align: center;
+}
+.yt-servicios-full-container .step-number {
+    width: 50px;
+    height: 50px;
+    background: #FF0000;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+.yt-servicios-full-container .workflow-step h4 {
+    color: #FFD700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .workflow-step p {
+    color: #ccc;
+    font-size: 0.85rem;
+}
+/* Tasa de Éxito */
+.yt-servicios-full-container .success-rate {
+    background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    text-align: center;
+    border: 2px solid #FFD700;
+}
+.yt-servicios-full-container .success-rate h2 {
+    color: #FFD700;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.yt-servicios-full-container .rate-number {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #FF0000;
+    display: block;
+    line-height: 1;
+}
+.yt-servicios-full-container .rate-subtitle {
+    color: #ccc;
+    font-size: 1rem;
+}
+/* Testimonios Textuales */
+.yt-servicios-full-container .testimonials-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .testimonials-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .testimonials-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.yt-servicios-full-container .testimonial-card {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .testimonial-stars {
+    color: #FFD700;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+.yt-servicios-full-container .testimonial-card p {
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+.yt-servicios-full-container .testimonial-author strong {
+    color: #FFD700;
+    display: block;
+    font-size: 0.9rem;
+}
+.yt-servicios-full-container .testimonial-author span {
+    color: #aaa;
+    font-size: 0.7rem;
+}
+/* FAQ */
+.yt-servicios-full-container .faq-section {
+    background: #111;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .faq-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+.yt-servicios-full-container .faq-item {
+    background: #0a0a0a;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .faq-item h4 {
+    color: #FFD700;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .faq-item p {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+/* Beneficios */
+.yt-servicios-full-container .benefits-section {
+    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .benefits-section h2 {
+    text-align: center;
+    color: #FF0000;
+    font-size: 2rem;
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .benefits-section > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+.yt-servicios-full-container .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+.yt-servicios-full-container .benefit-item {
+    text-align: center;
+    padding: 25px;
+    background: #0a0a0a;
+    border-radius: 16px;
+    border: 1px solid #2a2a2a;
+}
+.yt-servicios-full-container .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+.yt-servicios-full-container .benefit-item h4 {
+    color: #FFD700;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.yt-servicios-full-container .benefit-item p {
+    color: #ccc;
+    font-size: 0.85rem;
+}
+/* CTA */
+.yt-servicios-full-container .cta-section {
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    border-radius: 24px;
+    padding: 50px;
+    text-align: center;
+}
+.yt-servicios-full-container .cta-section h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+.yt-servicios-full-container .cta-section p {
+    color: #ffe0e0;
+    margin-bottom: 30px;
+}
+.yt-servicios-full-container .cta-button {
+    background: #FFD700;
+    color: #0a0a0a;
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+.yt-servicios-full-container .cta-button:hover {
+    transform: scale(1.05);
+    background: #FFEA70;
+}
+/* Responsive */
+@media (max-width: 1000px) {
+    .yt-servicios-full-container .workflow-steps,
+    .yt-servicios-full-container .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .yt-servicios-full-container .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .yt-servicios-full-container .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    .yt-servicios-full-container .faq-grid {
+        grid-template-columns: 1fr;
+    }
+    .yt-servicios-full-container .carousel-item {
+        flex: 0 0 320px;
+    }
+}
+@media (max-width: 900px) {
+    .yt-servicios-full-container .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .yt-servicios-full-container .servicios-hero h1 {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 700px) {
+    .yt-servicios-full-container .workflow-steps,
+    .yt-servicios-full-container .plans-grid,
+    .yt-servicios-full-container .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .yt-servicios-full-container .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    .yt-servicios-full-container .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+    .yt-servicios-full-container .carousel-item {
+        flex: 0 0 280px;
+    }
+    .yt-servicios-full-container .carousel-btn {
+        display: none;
+    }
+}
+</style><!-- ============================================ --><!-- CONTENIDO COMPLETO DE SERVICIOS YOUTUBE     --><!-- ============================================ -->
+<div class="yt-servicios-full-container">
+    <div class="yt-servicios-container">
+        <!-- Hero Section -->
+        <div class="servicios-hero">
+            <h1>
+                🎬 YouTube Trends
+            </h1>
+            <p>
+                Lleva tu video a Tendencias en YouTube con nuestra metodología probada. <strong style="color:#FFD700;">¡85% de éxito garantizado!</strong>
+            </p>
+            <div class="kpi-grid">
+                <div class="kpi-item">
+                    <span class="kpi-number">+2.5M</span> <span class="kpi-label">Videos en Tendencia</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-number">+50K</span> <span class="kpi-label">Artistas Impulsados</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-number">85%</span> <span class="kpi-label">Tasa de Éxito</span>
+                </div>
+            </div>
+        </div>
+        <!-- Grid de Servicios YouTube -->
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    📤
+                </div>
+                <h3>
+                    Compartidas en Redes <span class="badge-success">Viral</span>
+                </h3>
+                <p>
+                    Multiplicamos las compartidas de tu video en todas las plataformas para aumentar su alcance viral.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="ea7eee533532d7c0d91a9b4226f6e34a6">
+                        ✅ Compartidas en WhatsApp, Twitter, Facebook
+                    </li>
+                    <li data-list-item-id="e7f3240ab578a298310a36bd298b4c38f">
+                        ✅ Red de 10,000+ canales de difusión
+                    </li>
+                    <li data-list-item-id="eabcec4e2edfabd214aa19a6ecb008917">
+                        ✅ Segmentación por país y nicho
+                    </li>
+                    <li data-list-item-id="ecfd9dbea599b2543aea44e9b751cec5d">
+                        ✅ Reporte diario de compartidas
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    👍
+                </div>
+                <h3>
+                    Favoritos (Likes) <span class="badge-success">Popular</span>
+                </h3>
+                <p>
+                    Aumenta la interacción y credibilidad de tu video con miles de likes reales.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e6a79b9f753a968fdfc5e749f5ef2a1be">
+                        ✅ Likes de cuentas reales y activas
+                    </li>
+                    <li data-list-item-id="ed2c885d8f8ae7c5963836187e0b560eb">
+                        ✅ Distribución progresiva (anti-spam)
+                    </li>
+                    <li data-list-item-id="e60a8113e90e349d0daa6a27b64fac293">
+                        ✅ Mejora el ratio like/dislike
+                    </li>
+                    <li data-list-item-id="e4eada571ee72bf887f9d4b01fb720fe3">
+                        ✅ Aumenta la retención de audiencia
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    ⏱️
+                </div>
+                <h3>
+                    Retención de Audiencia <span class="badge-success">Clave</span>
+                </h3>
+                <p>
+                    El algoritmo de YouTube premia los videos con alta retención. Optimizamos esta métrica clave.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e25c79451413fed146651fcc8c15250ad">
+                        ✅ Visualización completa del video
+                    </li>
+                    <li data-list-item-id="edf9cfdafe41490fdd095038b3dabcf59">
+                        ✅ Patrones de visualización natural
+                    </li>
+                    <li data-list-item-id="edcf5ba62bf7368b62f3bd569e477028b">
+                        ✅ Aumenta el tiempo de reproducción
+                    </li>
+                    <li data-list-item-id="ed56513f297df8ac65b667de0527ecc7b">
+                        ✅ Ideal para monetización
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🔔
+                </div>
+                <h3>
+                    Suscriptores Reales <span class="badge-success">Growth</span>
+                </h3>
+                <p>
+                    Convierte visitantes en suscriptores leales que seguirán tu contenido.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="e2036b5263d8f97ea8db5efb6c2a1f87c">
+                        ✅ Suscriptores con intereses afines
+                    </li>
+                    <li data-list-item-id="e1b9ec6ecd874aeca898d27ece2187630">
+                        ✅ Activan la campanita de notificaciones
+                    </li>
+                    <li data-list-item-id="ecfb2a3d51d8c69118e4de250109e6f4b">
+                        ✅ Crecimiento orgánico acelerado
+                    </li>
+                    <li data-list-item-id="ea16d5b4ed016ff189b32fd118ef157ba">
+                        ✅ Sin bots ni cuentas falsas
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    💬
+                </div>
+                <h3>
+                    Comentarios Estratégicos <span class="badge-success">Engagement</span>
+                </h3>
+                <p>
+                    Genera conversación y engagement en tu video para impulsar el algoritmo.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="ea36287ec1e674b63921a8fc0af201ba3">
+                        ✅ Comentarios personalizados y relevantes
+                    </li>
+                    <li data-list-item-id="ec82e0132203c5fe92c46a392262b0a89">
+                        ✅ Respuestas automáticas a fans
+                    </li>
+                    <li data-list-item-id="ee8b7c74a86916fcdae4af307e87b8462">
+                        ✅ Fija comentarios clave
+                    </li>
+                    <li data-list-item-id="e3ce6b63d42d7c1e43e98db77a26c9167">
+                        ✅ Aumenta el ratio de interacción
+                    </li>
+                </ul>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">
+                    🎯
+                </div>
+                <h3>
+                    SEO YouTube <span class="badge-success">Visibilidad</span>
+                </h3>
+                <p>
+                    Aparece en los primeros resultados de búsqueda con nuestra optimización avanzada.
+                </p>
+                <ul class="servicio-features">
+                    <li data-list-item-id="eab501fe1828f25705ed7ba261c71265e">
+                        ✅ Tags, título y descripción optimizados
+                    </li>
+                    <li data-list-item-id="e1b9f250339996673a0fe4fd9c58dcd4d">
+                        ✅ Miniaturas personalizadas (thumbnails)
+                    </li>
+                    <li data-list-item-id="e9bb6511270adb580221fab03b6fa2411">
+                        ✅ Tarjetas y pantallas finales
+                    </li>
+                    <li data-list-item-id="ea0e3eb7bda364a3e23f369b8e83d100d">
+                        ✅ Transcript y subtítulos SEO
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Panel de Métricas YouTube -->
+        <div class="metrics-dashboard">
+            <div class="dashboard-header">
+                <h2>
+                    📊 Rendimiento en Tendencias
+                </h2>
+                <p>
+                    Métricas en tiempo real de campañas exitosas
+                </p>
+            </div>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        👁️
+                    </div>
+                    <div class="stat-value" id="views-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Visualizaciones
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        👍
+                    </div>
+                    <div class="stat-value" id="likes-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Likes
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        📤
+                    </div>
+                    <div class="stat-value" id="shares-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Compartidas
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        🔔
+                    </div>
+                    <div class="stat-value" id="subs-count">
+                        0
+                    </div>
+                    <div class="stat-label">
+                        Suscriptores
+                    </div>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                <p>
+                    📈 Crecimiento de visualizaciones (últimos 7 días)
+                </p>
+                <div class="chart-bars">
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                    <div class="chart-bar">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="chart-labels">
+                    <span>Día 1</span> <span>Día 2</span> <span>Día 3</span> <span>Día 4</span> <span>Hoy</span>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================ --><!-- SECCIÓN DE PLANES YT TRENDING               --><!-- ============================================ -->
+        <div class="plans-section">
+            <h2>
+                🚀 Planes YT Trending
+            </h2>
+            <p>
+                Elige el plan perfecto para llegar a Tendencias
+            </p>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-name">
+                        Trending Start
+                    </div>
+                    <div class="plan-price">
+                        $97 <span>/ video</span>
+                    </div>
+                    <p class="plan-description">
+                        Ideal para canales que empiezan
+                    </p>
+                    <ul class="plan-features">
+                        <li data-list-item-id="e2d6c4da5eb660de4ea37359a91328fe2">
+                            10,000 Visualizaciones aceleradas
+                        </li>
+                        <li data-list-item-id="e700ffd924de13988ef09dde42ff4a7d6">
+                            500 Likes reales
+                        </li>
+                        <li data-list-item-id="e40b133d8ceba5ffaa6aee1488c7eb0e0">
+                            200 Compartidas en redes
+                        </li>
+                        <li data-list-item-id="e4faaaffc32a26a571205d2f78b19e61e">
+                            Optimización SEO básica
+                        </li>
+                        <li data-list-item-id="e6b24df91fabaa153c3cbcde5685d147e">
+                            Reporte de rendimiento
+                        </li>
+                        <li data-list-item-id="e7e570c10ed5318ff56526db25fb317cd">
+                            Garantía 70%
+                        </li>
+                    </ul>
+                    <p>
+                        <a class="plan-button" href="#">Elegir plan</a>
+                    </p>
+                </div>
+                <div class="plan-card popular">
+                    <div class="popular-badge">
+                        ⭐ Más popular
+                    </div>
+                    <div class="plan-name">
+                        Trending Pro
+                    </div>
+                    <div class="plan-price">
+                        $197 <span>/ video</span>
+                    </div>
+                    <p class="plan-description">
+                        El favorito de los artistas
+                    </p>
+                    <ul class="plan-features">
+                        <li data-list-item-id="e35a0501e8cf07e9c97078c5a086dd3fe">
+                            50,000 Visualizaciones aceleradas
+                        </li>
+                        <li data-list-item-id="ea30cd048edd5c89f432d1f68a5b4b3f6">
+                            2,500 Likes reales
+                        </li>
+                        <li data-list-item-id="e023b9eabe783f679bcc6da36eb7ae629">
+                            1,000 Compartidas en redes
+                        </li>
+                        <li data-list-item-id="ea0be65ef9ee0984053bdc7f7741c1abd">
+                            Optimización SEO avanzada
+                        </li>
+                        <li data-list-item-id="e3a06f89350d45361384fe1539041a0e8">
+                            Comentarios estratégicos (50)
+                        </li>
+                        <li data-list-item-id="ef8e1dacb62cca8153c8919944d372677">
+                            Segmentación por país (1 país)
+                        </li>
+                        <li data-list-item-id="e7830fce63608e1e8932e274d4b3ca48d">
+                            Reporte diario en vivo
+                        </li>
+                        <li data-list-item-id="e674f11d6a776b41fc41f38fa1caf41e6">
+                            Garantía 85%
+                        </li>
+                    </ul>
+                    <p>
+                        <a class="plan-button" href="#">Elegir plan</a>
+                    </p>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-name">
+                        Trending Elite
+                    </div>
+                    <div class="plan-price">
+                        $397 <span>/ video</span>
+                    </div>
+                    <p class="plan-description">
+                        Para llegar a #1 en tendencias
+                    </p>
+                    <ul class="plan-features">
+                        <li data-list-item-id="e59602423e1d8363f025042a9a253fd8a">
+                            200,000 Visualizaciones aceleradas
+                        </li>
+                        <li data-list-item-id="e3a57ea21f4f3852b2a3a63d65e04e038">
+                            10,000 Likes reales
+                        </li>
+                        <li data-list-item-id="ee5427e841f8982375ded04da2041197a">
+                            5,000 Compartidas en redes
+                        </li>
+                        <li data-list-item-id="ebccb0f04d9cec47d180a80b3ef652d5d">
+                            SEO YouTube completo
+                        </li>
+                        <li data-list-item-id="e32bbf9a71779fc621b92392e200834b2">
+                            Comentarios estratégicos (200+)
+                        </li>
+                        <li data-list-item-id="e1891e1d6127de3de014e8bab3c0e1eaf">
+                            Segmentación multi-país (hasta 5)
+                        </li>
+                        <li data-list-item-id="edff499346840b97d723931943d1b4255">
+                            Miniatura personalizada (thumbnail)
+                        </li>
+                        <li data-list-item-id="ee5c88004d7bc3c968c83bc1ce35986f4">
+                            Promoción en stories de influencers
+                        </li>
+                        <li data-list-item-id="e4511c007f5f2983b34ff95d6a3b412da">
+                            Garantía 90%
+                        </li>
+                    </ul>
+                    <p>
+                        <a class="plan-button" href="#">Elegir plan</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================ --><!-- CARRUSEL DE VIDEOS - TESTIMONIOS EN VIDEO   --><!-- ============================================ -->
+        <div class="video-carousel-section">
+            <h2>
+                🎥 Lo que dicen nuestros clientes
+            </h2>
+            <p>
+                Casos de éxito reales de artistas que llegaron a Tendencias con nosotros
+            </p>
+            <div class="video-carousel">
+                <p>
+                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)">❮</button>
+                </p>
+                <div class="carousel-container" id="videoCarousel">
+                    <!-- Video 1: Nino Caicedo -->
+                    <div class="carousel-item">
+                        <p>
+                            <iframe src="https://www.youtube.com/embed/aZukeIIgWCo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                        </p>
+                        <div class="carousel-caption">
+                            <h4>
+                                🎤 Nino Caicedo - Orquesta Guayacan
+                            </h4>
+                            <p>
+                                "Recomienda los servicios de SEO y Marketing de Radio Centro"
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Video 2: Distribución y Promoción -->
+                    <div class="carousel-item">
+                        <p>
+                            <iframe src="https://www.youtube.com/embed/v-rPdYmQ6Zs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                        </p>
+                        <div class="carousel-caption">
+                            <h4>
+                                📢 Distribuimos y Promocionamos tu Música
+                            </h4>
+                            <p>
+                                "GRATIS - Radio Centro"
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Video 3: Cliente satisfecho Popcol Music -->
+                    <div class="carousel-item">
+                        <p>
+                            <iframe src="https://www.youtube.com/embed/ohi_0av3GLU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                        </p>
+                        <div class="carousel-caption">
+                            <h4>
+                                🎵 Popcol Music - Elcias Quintana
+                            </h4>
+                            <p>
+                                "El jardinero de la canción - Cliente satisfecho"
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Video 4: Shorts YouTube -->
+                    <div class="carousel-item">
+                        <p>
+                            <iframe src="https://www.youtube.com/embed/3Fk4hMoOobQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                        </p>
+                        <div class="carousel-caption">
+                            <h4>
+                                📱 YouTube Shorts
+                            </h4>
+                            <p>
+                                "Contenido viral en formato corto"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <button class="carousel-btn next" onclick="scrollCarousel(1)">❯</button>
+                </p>
+            </div>
+        </div>
+        <!-- Proceso de Trabajo -->
+        <div class="workflow-section">
+            <h2>
+                ⚡ Metodología para Tendencias
+            </h2>
+            <p>
+                Nuestro sistema probado para llegar a #TendenciasYouTube
+            </p>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">
+                        1
+                    </div>
+                    <h4>
+                        Auditoría del Video
+                    </h4>
+                    <p>
+                        Analizamos tu video, thumbnail, título y métricas actuales.
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        2
+                    </div>
+                    <h4>
+                        Optimización SEO
+                    </h4>
+                    <p>
+                        Aplicamos mejoras en tags, descripción y metadatos.
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        3
+                    </div>
+                    <h4>
+                        Lanzamiento Acelerado
+                    </h4>
+                    <p>
+                        Activamos nuestra red en el momento óptimo (hour zero).
+                    </p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">
+                        4
+                    </div>
+                    <h4>
+                        Monitoreo y Ajuste
+                    </h4>
+                    <p>
+                        Seguimiento 24/7 hasta asegurar posición en tendencias.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Tasa de Éxito Destacada -->
+        <div class="success-rate">
+            <h2>
+                🏆 Nuestra Garantía
+            </h2>
+            <p>
+                <span class="rate-number">85%</span>
+            </p>
+            <p class="rate-subtitle">
+                de nuestros clientes alcanzan la sección de Tendencias en menos de 72 horas
+            </p>
+            <p style="color:#aaa;margin-top:20px;">
+                *Basado en más de 5,000 campañas realizadas en 2024
+            </p>
+        </div>
+        <!-- Testimonios Textuales -->
+        <div class="testimonials-section">
+            <h2>
+                💬 Éxitos Reales en YouTube
+            </h2>
+            <p>
+                Artistas e influencers que llegaron a Tendencias con nosotros
+            </p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "Mi video llegó al #3 de Tendencias en México en solo 48 horas. ¡El algoritmo cambió mi carrera para siempre!"
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Sofía Ramírez</strong> <span>Artista Pop - 2.3M vistas</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "Nunca creí que podría competir con los grandes. Con el Trending Boost llegamos a #1 en Colombia."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Malcolm Street</strong> <span>Influencer - 5.1M vistas</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        ★★★★★
+                    </div>
+                    <p>
+                        "La retención de audiencia es la clave y ellos lo saben. Mi video lleva 3 semanas en tendencias."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Laury Music</strong> <span>Cantautora - 8.7M vistas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FAQ YouTube -->
+        <div class="faq-section">
+            <h2>
+                ❓ Preguntas Frecuentes - YouTube Trends
+            </h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>
+                        ¿Cómo funciona el 85% de éxito?
+                    </h4>
+                    <p>
+                        Nuestra metodología combina SEO, retención de audiencia y activación algorítmica en el momento justo. Si no alcanzas tendencias, te regresamos el 50% de tu inversión o repetimos la campaña.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Puedo elegir el país donde quiero salir en tendencias?
+                    </h4>
+                    <p>
+                        ¡Sí! Trabajamos con segmentación geográfica específica: México, Colombia, Argentina, España, USA y más de 20 países.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Afecta el algoritmo de YouTube?
+                    </h4>
+                    <p>
+                        No. Nuestros métodos son 100% orgánicos y respetan las políticas de YouTube. Solo aceleramos lo que el algoritmo ya quiere recomendar.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Cuánto tiempo tarda el Trending Boost?
+                    </h4>
+                    <p>
+                        Entre 24 y 72 horas para ver resultados significativos. El posicionamiento en tendencias suele lograrse en menos de 5 días.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Qué tipo de videos funcionan mejor?
+                    </h4>
+                    <p>
+                        Música, challenges, reacciones, vlogs y contenido viral. Cualquier video con buen contenido tiene potencial para llegar a tendencias.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h4>
+                        ¿Necesito un canal grande para empezar?
+                    </h4>
+                    <p>
+                        No. Hemos ayudado a canales desde 0 suscriptores a llegar a tendencias. El contenido y la estrategia son lo importante.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Beneficios -->
+        <div class="benefits-section">
+            <h2>
+                ⭐ Ventajas de nuestro servicio YouTube
+            </h2>
+            <p>
+                La fórmula comprobada para el éxito en YouTube
+            </p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        ⚡
+                    </div>
+                    <h4>
+                        Resultados en 72h
+                    </h4>
+                    <p>
+                        Aceleración algorítmica inmediata.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        🎯
+                    </div>
+                    <h4>
+                        Segmentación Precisa
+                    </h4>
+                    <p>
+                        Llega exactamente a tu audiencia objetivo.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        📊
+                    </div>
+                    <h4>
+                        Reportes en Vivo
+                    </h4>
+                    <p>
+                        Dashboard con métricas actualizadas.
+                    </p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        🤝
+                    </div>
+                    <h4>
+                        Garantía 85%
+                    </h4>
+                    <p>
+                        Respaldo en cada campaña.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA Final -->
+        <div class="cta-section">
+            <h2>
+                🎬 ¿Listo para llegar a Tendencias?
+            </h2>
+            <p>
+                El próximo éxito viral podría ser el tuyo. Contáctanos hoy y comienza tu campaña.
+            </p>
+            <p>
+                <a class="cta-button" href="/contacto">Impulsar mi video →</a>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+// ============================================
+// CONTADORES ANIMADOS PARA MÉTRICAS
+// ============================================
+function animateCounter(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.innerText = Math.floor(progress * (end - start) + start).toLocaleString();
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const targetId = entry.target.id;
+            if (targetId === 'views-count') animateCounter(entry.target, 0, 284560, 2000);
+            else if (targetId === 'likes-count') animateCounter(entry.target, 0, 12580, 2000);
+            else if (targetId === 'shares-count') animateCounter(entry.target, 0, 98765, 2000);
+            else if (targetId === 'subs-count') animateCounter(entry.target, 0, 45678, 2000);
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-value').forEach(counter => observer.observe(counter));
+// ============================================
+// FUNCIÓN PARA EL CARRUSEL DE VIDEOS
+// ============================================
+function scrollCarousel(direction) {
+    const container = document.getElementById('videoCarousel');
+    const scrollAmount = 420;
+    container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+</script>
