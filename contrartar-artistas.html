@@ -1,0 +1,631 @@
+<style>
+/* AISLAMIENTO TOTAL - SOLO AFECTA A .contratacion-container y sus hijos */
+.contratacion-container,
+.contratacion-container * {
+    all: revert; /* Resetea estilos heredados */
+}
+.contratacion-container {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: transparent;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.contratacion-container .contratacion-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.contratacion-container .contratacion-titulo {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #ff0000, #cc0000, #ff3333, #e91826);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradienteRojo 3s ease infinite;
+    font-family: 'Impact', 'Bebas Neue', system-ui, sans-serif;
+    margin-bottom: 15px;
+}
+@keyframes gradienteRojo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.contratacion-container .contratacion-subtitulo {
+    color: #555;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.contratacion-container .search-container {
+    background: #f5f5f5;
+    border-radius: 60px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    border: 1px solid #e91826;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.contratacion-container .search-input-wrapper {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 14px 25px;
+    border: 1px solid #ddd;
+}
+.contratacion-container .search-icon {
+    color: #e91826;
+    font-size: 1.3rem;
+    margin-right: 12px;
+}
+.contratacion-container .search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 1rem;
+    outline: none;
+}
+.contratacion-container .search-input::placeholder {
+    color: #999;
+}
+.contratacion-container .search-select {
+    background: white;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 14px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-width: 160px;
+}
+.contratacion-container .search-btn {
+    background: #e91826;
+    border: none;
+    color: white;
+    padding: 14px 45px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.contratacion-container .search-btn:hover {
+    background: #b8121e;
+}
+.contratacion-container .filtros-rapidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 45px;
+    justify-content: center;
+}
+.contratacion-container .filtro-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 12px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+.contratacion-container .filtro-btn:hover,
+.contratacion-container .filtro-btn.active {
+    background: #e91826;
+    border-color: #e91826;
+    color: white;
+}
+.contratacion-container .artistas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 35px;
+    margin-bottom: 60px;
+}
+.contratacion-container .artista-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.contratacion-container .artista-card:hover {
+    transform: translateY(-8px);
+    border-color: #e91826;
+    box-shadow: 0 20px 40px rgba(233, 24, 38, 0.15);
+}
+.contratacion-container .artista-imagen {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+.contratacion-container .artista-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.contratacion-container .artista-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #e91826;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.contratacion-container .artista-info {
+    padding: 25px;
+}
+.contratacion-container .artista-nombre {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 8px;
+}
+.contratacion-container .artista-genero {
+    color: #e91826;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+.contratacion-container .artista-descripcion {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+.contratacion-container .artista-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.contratacion-container .stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #888;
+    font-size: 0.85rem;
+}
+.contratacion-container .artista-precio {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #e91826;
+    margin-bottom: 18px;
+}
+.contratacion-container .artista-precio small {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: normal;
+}
+.contratacion-container .btn-contratar {
+    width: 100%;
+    background: #e91826;
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 1.05rem;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+.contratacion-container .btn-contratar:hover {
+    background: #b8121e;
+}
+.contratacion-container .como-funciona {
+    background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
+    border-radius: 30px;
+    padding: 60px 50px;
+    margin-top: 60px;
+    border: 1px solid #e0e0e0;
+}
+.contratacion-container .como-funciona h3 {
+    text-align: center;
+    color: #e91826;
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+.contratacion-container .pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+.contratacion-container .paso {
+    padding: 20px;
+}
+.contratacion-container .paso-numero {
+    width: 70px;
+    height: 70px;
+    background: #e91826;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    color: white;
+}
+.contratacion-container .paso h4 {
+    color: #222;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+.contratacion-container .paso p {
+    color: #666;
+    font-size: 0.95rem;
+}
+</style>
+<div class="contratacion-container">
+    <div class="contratacion-header">
+        <h1 class="contratacion-titulo">
+            🎤 CONTRATACIÓN DE ARTISTAS
+        </h1>
+        <p class="contratacion-subtitulo">
+            Encuentra y contrata a los mejores talentos musicales para tu evento, concierto o producción
+        </p>
+    </div>
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span> <input class="search-input" type="text" id="buscadorArtista" placeholder="Buscar por nombre, género o ciudad...">
+        </div>
+        <p>
+            <select class="search-select" id="filtroGenero">
+                        <option value="todos">Todos los géneros</option>
+                        <option value="urbano">Urbano / Reggaetón</option>
+                        <option value="pop">Pop / Balada</option>
+                        <option value="regional">Regional Mexicano</option>
+                        <option value="rock">Rock</option>
+                        <option value="electronica">Electrónica</option>
+                        <option value="tropical">Tropical / Salsa</option>
+                    </select> <select class="search-select" id="filtroUbicacion">
+                        <option value="todas">Todas las ubicaciones</option>
+                        <option value="colombia">Colombia</option>
+                        <option value="mexico">México</option>
+                        <option value="usa">USA</option>
+                        <option value="argentina">Argentina</option>
+                        <option value="espana">España</option>
+                    </select> <button class="search-btn" id="btnBuscar">Buscar Artistas</button>
+        </p>
+    </div>
+    <div class="filtros-rapidos">
+        <button class="filtro-btn active" data-filtro="todos">🎵 Todos</button> <button class="filtro-btn" data-filtro="destacados">⭐ Destacados</button> <button class="filtro-btn" data-filtro="tendencias">🔥 En Tendencia</button> <button class="filtro-btn" data-filtro="precio-bajo">💰 Menor Precio</button> <button class="filtro-btn" data-filtro="nuevos">🆕 Nuevos Talentos</button>
+    </div>
+    <div class="artistas-grid" id="artistasGrid">
+        <!-- ARTISTA 1 - SHAKIRA -->
+        <div class="artista-card" data-nombre="Shakira" data-genero="pop" data-ubicacion="colombia" data-precio="150000" data-destacado="true" data-tendencia="true">
+            <div class="artista-imagen">
+                <img src="https://cdn.radiocentro.net/Radio%20Centro/Sitio%20web%20Principal/Nueva%20web%20drupal/SHAKIRA%20EN%204%20MUNDIALES%20CANTANDO.svg" alt="Shakira" width="320" height="200"> <span class="artista-badge">🔥 SUPERSTAR</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Shakira
+                </h3>
+                <p class="artista-genero">
+                    🎤 Pop / Latina
+                </p>
+                <p class="artista-descripcion">
+                    Ícono mundial con más de 30 años de carrera. Artista multi-platino con hits como "Hips Don't Lie", "Waka Waka" y "Acróstico".
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 100M+ streams
+                    </div>
+                    <div class="stat">
+                        🌍 Global
+                    </div>
+                    <div class="stat">
+                        🏆 3 Grammys
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $150,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/573000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Shakira" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+        <!-- ARTISTA 2 - JAVY KARTUCHO -->
+        <div class="artista-card" data-nombre="Javy Kartucho" data-genero="urbano" data-ubicacion="colombia" data-precio="5000" data-destacado="true" data-tendencia="true">
+            <div class="artista-imagen">
+                <img src="https://cdn.radiocentro.net/Radio%20Centro/Sitio%20web%20Principal/Nueva%20web%20drupal/javy%20kartucho%20artista%20recomendado.svg" alt="Javy Kartucho" width="400" height="250"> <span class="artista-badge">🔥 ARTISTA SEMANA</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Javy Kartucho
+                </h3>
+                <p class="artista-genero">
+                    🎤 Urbano / Reggaetón
+                </p>
+                <p class="artista-descripcion">
+                    El artista revelación con +1M reproducciones esta semana.
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 1M+ streams
+                    </div>
+                    <div class="stat">
+                        📍 Colombia
+                    </div>
+                    <div class="stat">
+                        🆕 Viral
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $5,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/573000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Javy%20Kartucho" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+        <!-- ARTISTA 3 - MELISSA MORA -->
+        <div class="artista-card" data-nombre="Melissa Mora" data-genero="regional" data-ubicacion="mexico" data-precio="8000" data-nuevo="true">
+            <div class="artista-imagen">
+                <img src="https://img.youtube.com/vi/z5b9VyWDhgU/maxresdefault.jpg" alt="Melissa Mora" width="1280" height="720"> <span class="artista-badge">🆕 NUEVA</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Melissa Mora
+                </h3>
+                <p class="artista-genero">
+                    🎤 Regional Mexicano
+                </p>
+                <p class="artista-descripcion">
+                    La nueva sensación del regional mexicano. Su éxito "Copas" está sonando en todas las radios.
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 500K+ streams
+                    </div>
+                    <div class="stat">
+                        📍 México
+                    </div>
+                    <div class="stat">
+                        🆕 Ascenso
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $8,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/523000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Melissa%20Mora" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+        <!-- ARTISTA 4 - CARLOS VIVES -->
+        <div class="artista-card" data-nombre="Carlos Vives" data-genero="tropical" data-ubicacion="colombia" data-precio="90000" data-destacado="true">
+            <div class="artista-imagen">
+                <img src="https://placehold.co/400x320/eeeeee/e91826?text=Carlos+Vives" alt="Carlos Vives" width="400" height="320"> <span class="artista-badge">🏆 LEYENDA</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Carlos Vives
+                </h3>
+                <p class="artista-genero">
+                    🎤 Vallenato / Tropical
+                </p>
+                <p class="artista-descripcion">
+                    El embajador de la música colombiana. 20+ años de trayectoria.
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 50M+ streams
+                    </div>
+                    <div class="stat">
+                        🌍 Global
+                    </div>
+                    <div class="stat">
+                        🏆 10 Grammys
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $90,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/573000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Carlos%20Vives" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+        <!-- ARTISTA 5 - KAROL G -->
+        <div class="artista-card" data-nombre="Karol G" data-genero="urbano" data-ubicacion="colombia" data-precio="200000" data-destacado="true" data-tendencia="true">
+            <div class="artista-imagen">
+                <img src="https://placehold.co/400x320/eeeeee/e91826?text=Karol+G" alt="Karol G" width="400" height="320"> <span class="artista-badge">👑 REINA</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Karol G
+                </h3>
+                <p class="artista-genero">
+                    🎤 Urbano / Reggaetón
+                </p>
+                <p class="artista-descripcion">
+                    La artista latina más escuchada del mundo.
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 200M+ streams
+                    </div>
+                    <div class="stat">
+                        🌍 Global
+                    </div>
+                    <div class="stat">
+                        🏆 4 Grammys
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $200,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/573000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Karol%20G" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+        <!-- ARTISTA 6 - NICKY JAM -->
+        <div class="artista-card" data-nombre="Nicky Jam" data-genero="urbano" data-ubicacion="usa" data-precio="75000" data-destacado="true">
+            <div class="artista-imagen">
+                <img src="https://img.youtube.com/vi/8jsFGdeWNPo/maxresdefault.jpg" alt="Nicky Jam" width="1280" height="720"> <span class="artista-badge">⭐ SUPERSTAR</span>
+            </div>
+            <div class="artista-info">
+                <h3 class="artista-nombre">
+                    Nicky Jam
+                </h3>
+                <p class="artista-genero">
+                    🎤 Urbano / Reggaetón
+                </p>
+                <p class="artista-descripcion">
+                    El legendario cantante con hits como "El Perdón", "X" y más.
+                </p>
+                <div class="artista-stats">
+                    <div class="stat">
+                        🎵 80M+ streams
+                    </div>
+                    <div class="stat">
+                        🌍 Global
+                    </div>
+                    <div class="stat">
+                        🏆 2 Grammys
+                    </div>
+                </div>
+                <div class="artista-precio">
+                    $75,000 <small>USD</small>
+                </div>
+                <p>
+                    <a class="btn-contratar" href="https://wa.me/573000000000?text=Hola%20estoy%20interesado%20en%20contratar%20a%20Nicky%20Jam" target="_blank">💬 Contratar por WhatsApp</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="como-funciona">
+        <h3>
+            📋 ¿Cómo contratar artistas en Radio Centro?
+        </h3>
+        <div class="pasos">
+            <div class="paso">
+                <div class="paso-numero">
+                    1
+                </div>
+                <h4>
+                    Busca el Artista
+                </h4>
+                <p>
+                    Explora nuestro catálogo de talentos
+                </p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">
+                    2
+                </div>
+                <h4>
+                    Contacta por WhatsApp
+                </h4>
+                <p>
+                    Haz clic en "Contratar por WhatsApp"
+                </p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">
+                    3
+                </div>
+                <h4>
+                    Recibe Asesoría
+                </h4>
+                <p>
+                    Nuestro equipo te asesorará
+                </p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">
+                    4
+                </div>
+                <h4>
+                    Firma y Confirma
+                </h4>
+                <p>
+                    Firma el contrato y confirma
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    function iniciarFiltros() {
+        var buscador = document.getElementById('buscadorArtista');
+        var filtroGenero = document.getElementById('filtroGenero');
+        var filtroUbicacion = document.getElementById('filtroUbicacion');
+        var btnBuscar = document.getElementById('btnBuscar');
+        var filtrosRapidos = document.querySelectorAll('.filtro-btn');
+        var filtroActivo = 'todos';
+        
+        function filtrarArtistas() {
+            var termino = buscador ? buscador.value.toLowerCase() : '';
+            var genero = filtroGenero ? filtroGenero.value : 'todos';
+            var ubicacion = filtroUbicacion ? filtroUbicacion.value : 'todas';
+            var cards = document.querySelectorAll('.artista-card');
+            
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var nombre = card.getAttribute('data-nombre') ? card.getAttribute('data-nombre').toLowerCase() : '';
+                var generoArtista = card.getAttribute('data-genero') || '';
+                var ubicacionArtista = card.getAttribute('data-ubicacion') || '';
+                var esDestacado = card.getAttribute('data-destacado') === 'true';
+                var esTendencia = card.getAttribute('data-tendencia') === 'true';
+                var esNuevo = card.getAttribute('data-nuevo') === 'true';
+                var precio = parseInt(card.getAttribute('data-precio')) || 0;
+                
+                var coincideFiltroRapido = true;
+                if (filtroActivo === 'destacados') coincideFiltroRapido = esDestacado;
+                else if (filtroActivo === 'tendencias') coincideFiltroRapido = esTendencia;
+                else if (filtroActivo === 'precio-bajo') coincideFiltroRapido = precio < 10000;
+                else if (filtroActivo === 'nuevos') coincideFiltroRapido = esNuevo;
+                
+                var coincideBusqueda = termino === '' || nombre.indexOf(termino) !== -1;
+                var coincideGenero = genero === 'todos' || generoArtista === genero;
+                var coincideUbicacion = ubicacion === 'todas' || ubicacionArtista === ubicacion;
+                
+                if (coincideBusqueda && coincideGenero && coincideUbicacion && coincideFiltroRapido) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        }
+        
+        if (buscador) buscador.addEventListener('input', filtrarArtistas);
+        if (btnBuscar) btnBuscar.addEventListener('click', filtrarArtistas);
+        if (filtroGenero) filtroGenero.addEventListener('change', filtrarArtistas);
+        if (filtroUbicacion) filtroUbicacion.addEventListener('change', filtrarArtistas);
+        
+        for (var i = 0; i < filtrosRapidos.length; i++) {
+            filtrosRapidos[i].addEventListener('click', function(ev) {
+                var clickedBtn = ev.currentTarget;
+                for (var j = 0; j < filtrosRapidos.length; j++) {
+                    filtrosRapidos[j].classList.remove('active');
+                }
+                clickedBtn.classList.add('active');
+                filtroActivo = clickedBtn.getAttribute('data-filtro');
+                filtrarArtistas();
+            });
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciarFiltros);
+    } else {
+        iniciarFiltros();
+    }
+})();
+</script>
