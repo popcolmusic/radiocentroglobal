@@ -1,0 +1,271 @@
+<!-- ============================================ --><!-- 50 artículos con paginación                  --><!-- SECCIÓN DE NOTICIAS - ESTILO WWE RADIOCENTRO --><!-- ============================================ -->
+<div style="background-color:#0a0a0a;box-sizing:border-box;padding:30px 20px;width:100%;">
+    <!-- TÍTULO PRINCIPAL -->
+    <h2 style="border-left:5px solid #e91826;color:#f9b001;font-family:&apos;Bebas Neue&apos;, &apos;Impact&apos;, &apos;Arial Black&apos;, sans-serif;font-size:2.5rem;margin:0 0 30px;padding-left:20px;">
+        📰 RC NEWS | RADIO CENTRO
+    </h2>
+    <!-- LISTA DE NOTICIAS -->
+    <div style="display:flex;flex-direction:column;gap:25px;margin-bottom:40px;" id="newsList">
+        &nbsp;
+    </div>
+    <!-- PAGINACIÓN -->
+    <div style="border-top:1px solid #2a2a2a;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;padding-top:25px;" id="newsPaginacion">
+        &nbsp;
+    </div>
+</div>
+<style>
+/* ESTILOS DE LA SECCIÓN DE NOTICIAS */
+.news-item {
+    display: flex !important;
+    gap: 25px !important;
+    background: #111 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #2a2a2a !important;
+    cursor: pointer !important;
+    transition: transform 0.2s, border-color 0.2s !important;
+}
+.news-item:hover {
+    transform: translateX(8px) !important;
+    border-color: #f9b001 !important;
+}
+.news-thumbnail {
+    position: relative !important;
+    width: 300px !important;
+    flex-shrink: 0 !important;
+    background: #1a1a1a !important;
+}
+.news-thumbnail img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+.news-info {
+    flex: 1 !important;
+    padding: 18px 20px 18px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+.news-info h3 {
+    font-size: 1.4rem !important;
+    color: #fff !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.3 !important;
+    font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+    font-weight: normal !important;
+}
+.news-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+}
+.news-badge {
+    background: #e91826 !important;
+    color: white !important;
+    padding: 5px 14px !important;
+    border-radius: 25px !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+}
+.news-date {
+    color: #aaa !important;
+    font-size: 0.8rem !important;
+    font-family: Arial, sans-serif !important;
+}
+.news-category {
+    color: #f9b001 !important;
+    font-size: 0.75rem !important;
+    font-weight: bold !important;
+}
+/* Botones de paginación */
+.pagina-news-btn {
+    background: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    color: #ccc !important;
+    padding: 12px 22px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    transition: 0.2s !important;
+}
+.pagina-news-btn:hover {
+    background: #2a2a2a !important;
+    color: #f9b001 !important;
+    border-color: #f9b001 !important;
+}
+.pagina-news-btn.active {
+    background: #e91826 !important;
+    border-color: #e91826 !important;
+    color: white !important;
+}
+/* Responsive */
+@media (max-width: 700px) {
+    .news-item {
+        flex-direction: column !important;
+    }
+    .news-thumbnail {
+        width: 100% !important;
+    }
+    .news-thumbnail img {
+        height: 200px !important;
+    }
+    .news-info {
+        padding: 15px !important;
+    }
+    .news-info h3 {
+        font-size: 1.2rem !important;
+    }
+    .pagina-news-btn {
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+}
+</style><script>
+(function() {
+    // ============================================
+    // DATOS DE NOTICIAS (50 ARTÍCULOS)
+    // Basados en tus imágenes + generados
+    // ============================================
+    const noticiasData = [
+        { titulo: "WWE NXT results: May 12, 2026", categoria: "WWE NXT", fecha: "22 hours ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=NXT+RESULTS" },
+        { titulo: "Sean Legacy, EK Prosper & Tate Wilder clash with BirthRight in a Six-Man Tag Team Match", categoria: "WWE NXT", fecha: "1 day ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=LEGACY+VS+BIRTHRIGHT" },
+        { titulo: "Tatum Paxley teams with Lizzy Rain to take on Zaria and Nikkita Lyons", categoria: "WWE NXT", fecha: "1 day ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=PAXLEY+RAIN" },
+        { titulo: "Roman Reigns addresses The Bloodline's future after Backlash", categoria: "WWE SmackDown", fecha: "2 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=ROMAN+BLOODLINE" },
+        { titulo: "Cody Rhodes vs. Seth Rollins announced for upcoming RAW", categoria: "WWE RAW", fecha: "2 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=CODY+VS+SETH" },
+        { titulo: "Rhea Ripley injury update: Women's World Champion status", categoria: "WWE RAW", fecha: "3 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=RHEA+RIPLEY" },
+        { titulo: "CM Punk reacts to backstage confrontation with Drew McIntyre", categoria: "WWE RAW", fecha: "3 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=CM+PUNK" },
+        { titulo: "Jade Cargill vs. Bianca Belair set for next week's SmackDown", categoria: "WWE SmackDown", fecha: "4 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=JADE+VS+BIANCA" },
+        { titulo: "The Judgment Day adds new member? Latest backstage news", categoria: "WWE RAW", fecha: "4 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=JUDGMENT+DAY" },
+        { titulo: "LA Knight signs new contract with WWE", categoria: "WWE SmackDown", fecha: "5 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=LA+KNIGHT" },
+        { titulo: "NXT Women's Championship match announced for next week", categoria: "WWE NXT", fecha: "5 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=NXT+WOMEN" },
+        { titulo: "Gunther issues open challenge for Intercontinental Title", categoria: "WWE RAW", fecha: "6 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=GUNTHER" },
+        { titulo: "Sami Zayn and Kevin Owens reunion backstage update", categoria: "WWE RAW", fecha: "6 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=SAMI+KO" },
+        { titulo: "Bron Breakker vs. Ilja Dragunov for NXT Title", categoria: "WWE NXT", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=BRON+VS+ILJA" },
+        { titulo: "Becky Lynch returns to WWE programming next week", categoria: "WWE RAW", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=BECKY+RETURNS" },
+        { titulo: "Asuka vs. Iyo Sky announced for Backlash rematch", categoria: "WWE RAW", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=ASUKA+VS+IYO" },
+        { titulo: "Charlotte Flair reveals return date after injury", categoria: "WWE SmackDown", fecha: "1 week ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=CHARLOTTE" },
+        { titulo: "The Rock makes surprise appearance at live event", categoria: "WWE SmackDown", fecha: "8 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=THE+ROCK" },
+        { titulo: "New Day celebrates 10 years as tag team", categoria: "WWE RAW", fecha: "8 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=NEW+DAY" },
+        { titulo: "Randy Orton RKO compilation goes viral", categoria: "WWE RAW", fecha: "9 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=RANDY+ORTON" },
+        { titulo: "Bayley challenges Tiffany Stratton for Women's Title", categoria: "WWE SmackDown", fecha: "9 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=BAYLEY" },
+        { titulo: "Solo Sikoa destroys AJ Styles on SmackDown", categoria: "WWE SmackDown", fecha: "10 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=SOLO+SIKOA" },
+        { titulo: "Logan Paul teases WWE return at SummerSlam", categoria: "WWE RAW", fecha: "10 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=LOGAN+PAUL" },
+        { titulo: "Andrade vs. Carmelo Hayes best of 7 series announced", categoria: "WWE SmackDown", fecha: "11 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=ANDRADE+VS+CARMELO" },
+        { titulo: "Street Profits challenge Pretty Deadly for Tag Titles", categoria: "WWE SmackDown", fecha: "11 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=STREET+PROFITS" },
+        { titulo: "WWE announces European tour dates for 2026", categoria: "WWE News", fecha: "12 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=EURO+TOUR" },
+        { titulo: "NXT Level Up results: May 9, 2026", categoria: "WWE NXT", fecha: "12 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=NXT+LEVEL+UP" },
+        { titulo: "Bianca Belair named ESPN's Wrestler of the Month", categoria: "WWE SmackDown", fecha: "13 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=BIANCA" },
+        { titulo: "Triple H comments on WWE's creative direction", categoria: "WWE News", fecha: "13 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/e91826?text=TRIPLE+H" },
+        { titulo: "WWE 2K26 roster reveal coming next week", categoria: "WWE News", fecha: "14 days ago", miniatura: "https://placehold.co/300x180/1a1a1a/f9b001?text=WWE+2K26" }
+    ];
+    // Generar hasta 50 noticias (si faltan, las completamos)
+    while(noticiasData.length < 50) {
+        const numero = noticiasData.length + 1;
+        noticiasData.push({
+            titulo: `Noticia WWE ${numero}: Novedades del mundo de la lucha libre`,
+            categoria: ["WWE RAW", "WWE SmackDown", "WWE NXT", "WWE News"][Math.floor(Math.random() * 4)],
+            fecha: `Hace ${Math.floor(Math.random() * 20) + 1} días`,
+            miniatura: `https://placehold.co/300x180/1a1a1a/${Math.random() > 0.5 ? 'e91826' : 'f9b001'}?text=NEWS+${numero}`
+        });
+    }
+    const NOTICIAS_POR_PAGINA = 10;
+    let paginaActual = 1;
+    const totalPaginas = Math.ceil(noticiasData.length / NOTICIAS_POR_PAGINA);
+    // Renderizar noticias de la página actual
+    function renderizarNoticias() {
+        const inicio = (paginaActual - 1) * NOTICIAS_POR_PAGINA;
+        const fin = inicio + NOTICIAS_POR_PAGINA;
+        const noticiasPagina = noticiasData.slice(inicio, fin);
+        
+        const contenedor = document.getElementById('newsList');
+        contenedor.innerHTML = noticiasPagina.map((noticia, idx) => `
+            
+<div class="news-item" data-news-index="${inicio + idx}">
+                    
+    <div class="news-thumbnail">
+                            <img src="${noticia.miniatura}" alt="${noticia.titulo}">
+                        
+    </div>
+                    
+    <div class="news-info">
+                            
+        <h3>
+            ${noticia.titulo}
+        </h3>
+                            
+        <div class="news-meta">
+                                    <span class="news-badge">WWE NEWS</span>
+                                    <span class="news-category">📺 ${noticia.categoria}</span>
+                                    <span class="news-date">📅 ${noticia.fecha}</span>
+                                
+        </div>
+                        
+    </div>
+                
+</div>
+        `).join('');
+        
+        // Evento click en cada noticia
+        document.querySelectorAll('.news-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.dataset.newsIndex);
+                alert(`📰 Leyendo: ${noticiasData[index].titulo}`);
+            });
+        });
+    }
+    // Renderizar paginación
+    function renderizarPaginacion() {
+        const contenedor = document.getElementById('newsPaginacion');
+        let botones = '';
+        
+        botones += `<button class="pagina-news-btn" data-pagina="prev" ${paginaActual === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>◀ Anterior</button>`;
+        
+        // Mostrar máximo 7 botones de página
+        let inicioPaginas = Math.max(1, paginaActual - 3);
+        let finPaginas = Math.min(totalPaginas, paginaActual + 3);
+        
+        if (inicioPaginas > 1) {
+            botones += `<button class="pagina-news-btn" data-pagina="1">1</button>`;
+            if (inicioPaginas > 2) botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+        }
+        
+        for (let i = inicioPaginas; i <= finPaginas; i++) {
+            botones += `<button class="pagina-news-btn ${i === paginaActual ? 'active' : ''}" data-pagina="${i}">${i}</button>`;
+        }
+        
+        if (finPaginas < totalPaginas) {
+            if (finPaginas < totalPaginas - 1) botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+            botones += `<button class="pagina-news-btn" data-pagina="${totalPaginas}">${totalPaginas}</button>`;
+        }
+        
+        botones += `<button class="pagina-news-btn" data-pagina="next" ${paginaActual === totalPaginas ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>Siguiente ▶</button>`;
+        
+        contenedor.innerHTML = botones;
+        
+        // Eventos de los botones de paginación
+        document.querySelectorAll('.pagina-news-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pagina = btn.dataset.pagina;
+                if (pagina === 'prev' && paginaActual > 1) {
+                    paginaActual--;
+                } else if (pagina === 'next' && paginaActual < totalPaginas) {
+                    paginaActual++;
+                } else if (!isNaN(parseInt(pagina))) {
+                    paginaActual = parseInt(pagina);
+                }
+                renderizarNoticias();
+                renderizarPaginacion();
+                // Scroll suave al inicio de la lista
+                document.getElementById('newsList').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    }
+    // Inicializar
+    renderizarNoticias();
+    renderizarPaginacion();
+})();
+</script>
