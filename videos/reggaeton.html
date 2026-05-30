@@ -1,0 +1,391 @@
+<!-- Al hacer clic en un video → abre reproductor --><!-- VIDEOTECA REGGAETÓN RADIO CENTRO             --><!-- ============================================ -->
+<p>
+    &nbsp;
+</p>
+<div style="background-color:#0a0a0a;box-sizing:border-box;padding:30px 20px;width:100%;">
+    <h2 style="border-left:5px solid #e91826;color:#f9b001;font-family:&apos;Bebas Neue&apos;, &apos;Impact&apos;, &apos;Arial Black&apos;, sans-serif;font-size:2.5rem;margin:0 0 30px;padding-left:20px;">
+        🎵 VIDEOTECA REGGAETÓN - RADIO CENTRO
+    </h2>
+    <!-- REPRODUCTOR GRANDE (oculto al inicio) -->
+    <div style="background-color:#000;border-radius:16px;border:2px solid #e91826;display:none;margin-bottom:30px;overflow:hidden;" id="reggaetonPlayer">
+        <div style="position:relative;">
+            <iframe style="display:block;" id="reggaetonPlayerIframe" width="100%" height="500" src="" frameborder="0" allowfullscreen=""></iframe> <button style="background-color:#e91826;border-radius:50%;border-style:none;color:white;cursor:pointer;font-size:1.5rem;height:40px;position:absolute;right:15px;top:15px;width:40px;z-index:10;" id="closeReggaetonPlayer">✕</button>
+        </div>
+        <div style="background-color:#111;padding:15px 20px;">
+            <h3 style="color:#f9b001;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:1.3rem;margin:0 0 10px;" id="reggaetonPlayerTitle">
+                Título del video
+            </h3>
+            <div style="align-items:center;display:flex;flex-wrap:wrap;gap:20px;">
+                <span style="background-color:#e91826;border-radius:20px;font-size:0.7rem;padding:4px 12px;"><strong>RADIO CENTRO REGGAETÓN</strong></span> <span style="color:#aaa;font-size:0.75rem;">🎵 Reproduciendo ahora</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;">
+                <span style="color:#f9b001;font-size:0.7rem;">🔥 Éxitos | Reggaetón | Latino | Urbano</span>
+            </div>
+        </div>
+    </div>
+    <!-- LISTA DE VIDEOS -->
+    <div style="display:flex;flex-direction:column;gap:25px;margin-bottom:40px;" id="reggaetonVideosList">
+        &nbsp;
+    </div>
+    <!-- PAGINACIÓN -->
+    <div style="border-top:1px solid #2a2a2a;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;padding-top:25px;" id="reggaetonPaginacion">
+        &nbsp;
+    </div>
+</div>
+<p>
+    <style>
+    /* ESTILOS DE LA VIDEOTECA REGGAETÓN */
+    #reggaetonVideosList .video-item {
+        display: flex !important;
+        gap: 25px !important;
+        background: #111 !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        border: 1px solid #2a2a2a !important;
+        cursor: pointer !important;
+        transition: transform 0.2s, border-color 0.2s !important;
+    }
+    #reggaetonVideosList .video-item:hover {
+        transform: translateX(8px) !important;
+        border-color: #f9b001 !important;
+    }
+    #reggaetonVideosList .video-thumbnail {
+        position: relative !important;
+        width: 300px !important;
+        flex-shrink: 0 !important;
+        background: #1a1a1a !important;
+    }
+    #reggaetonVideosList .video-thumbnail img {
+        width: 100% !important;
+        height: 180px !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+    #reggaetonVideosList .play-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0,0,0,0.5) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 0 !important;
+        transition: opacity 0.2s !important;
+    }
+    #reggaetonVideosList .video-item:hover .play-overlay {
+        opacity: 1 !important;
+    }
+    #reggaetonVideosList .play-icon {
+        background: #e91826 !important;
+        width: 65px !important;
+        height: 65px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 2rem !important;
+        color: white !important;
+        box-shadow: 0 0 20px rgba(233,24,38,0.8) !important;
+    }
+    #reggaetonVideosList .video-info {
+        flex: 1 !important;
+        padding: 18px 20px 18px 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+    #reggaetonVideosList .video-info h3 {
+        font-size: 1.4rem !important;
+        color: #fff !important;
+        margin: 0 0 12px 0 !important;
+        line-height: 1.3 !important;
+        font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+        font-weight: normal !important;
+    }
+    #reggaetonVideosList .video-meta {
+        display: flex !important;
+        align-items: center !important;
+        gap: 20px !important;
+        flex-wrap: wrap !important;
+    }
+    #reggaetonVideosList .video-badge {
+        background: #e91826 !important;
+        color: white !important;
+        padding: 5px 14px !important;
+        border-radius: 25px !important;
+        font-size: 0.8rem !important;
+        font-weight: bold !important;
+    }
+    #reggaetonVideosList .video-date {
+        color: #aaa !important;
+        font-size: 0.8rem !important;
+        font-family: Arial, sans-serif !important;
+    }
+    #reggaetonPaginacion .pagina-btn {
+        background: #1a1a1a !important;
+        border: 1px solid #2a2a2a !important;
+        color: #ccc !important;
+        padding: 12px 22px !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        font-weight: bold !important;
+        font-size: 1rem !important;
+        transition: 0.2s !important;
+    }
+    #reggaetonPaginacion .pagina-btn:hover {
+        background: #2a2a2a !important;
+        color: #f9b001 !important;
+        border-color: #f9b001 !important;
+    }
+    #reggaetonPaginacion .pagina-btn.active {
+        background: #e91826 !important;
+        border-color: #e91826 !important;
+        color: white !important;
+    }
+    @media (max-width: 700px) {
+        #reggaetonVideosList .video-item {
+            flex-direction: column !important;
+        }
+        #reggaetonVideosList .video-thumbnail {
+            width: 100% !important;
+        }
+        #reggaetonVideosList .video-thumbnail img {
+            height: 200px !important;
+        }
+        #reggaetonVideosList .video-info {
+            padding: 15px !important;
+        }
+        #reggaetonVideosList .video-info h3 {
+            font-size: 1.2rem !important;
+        }
+        #reggaetonPaginacion .pagina-btn {
+            padding: 8px 16px !important;
+            font-size: 0.8rem !important;
+        }
+        #reggaetonPlayerIframe {
+            height: 250px !important;
+        }
+    }
+    </style>&nbsp;<script>
+    (function() {
+        // ============================================
+        // VIDEOS REGGAETÓN - LISTA ACTUALIZADA
+        // ============================================
+        const videosData = [
+            { 
+                titulo: "Maluma - Cosas Pendientes (Official Video)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "21 Nov 2024", 
+                miniatura: "https://img.youtube.com/vi/6vPhcRew8hA/hqdefault.jpg", 
+                youtubeId: "6vPhcRew8hA" 
+            },
+            { 
+                titulo: "Maluma - Hawái (Official Video)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "29 Jul 2020", 
+                miniatura: "https://img.youtube.com/vi/pK060iUFWXg/hqdefault.jpg", 
+                youtubeId: "pK060iUFWXg" 
+            },
+            { 
+                titulo: "Blessd, Ovy on the drums - AMISTA (Lyric Video)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "8 May 2025", 
+                miniatura: "https://img.youtube.com/vi/ZID6bx84wxA/hqdefault.jpg", 
+                youtubeId: "ZID6bx84wxA" 
+            },
+            { 
+                titulo: "BLESSD ❌ MALUMA - OE BEBÉ (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "6 Jun 2024", 
+                miniatura: "https://img.youtube.com/vi/vHTQByPb9wY/hqdefault.jpg", 
+                youtubeId: "vHTQByPb9wY" 
+            },
+            { 
+                titulo: "Ozuna - Una Aventura (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "12 Mar 2026", 
+                miniatura: "https://img.youtube.com/vi/AhSEA30GSOw/hqdefault.jpg", 
+                youtubeId: "AhSEA30GSOw" 
+            },
+            { 
+                titulo: "Nicky Jam - Dile a ÉL (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "27 Feb 2025", 
+                miniatura: "https://img.youtube.com/vi/ZGYxLv_P_nM/hqdefault.jpg", 
+                youtubeId: "ZGYxLv_P_nM" 
+            },
+            { 
+                titulo: "Nicky Jam x Beéle - Ta' bien (Official Video)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "11 Feb 2026", 
+                miniatura: "https://img.youtube.com/vi/MBuFOC32sek/hqdefault.jpg", 
+                youtubeId: "MBuFOC32sek" 
+            },
+            { 
+                titulo: "Anuel AA - Ella Quiere Beber (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "15 Ago 2018", 
+                miniatura: "https://img.youtube.com/vi/BTtBmo5EbEk/hqdefault.jpg", 
+                youtubeId: "BTtBmo5EbEk" 
+            },
+            { 
+                titulo: "Yailin La Más Viral - Silla (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "19 Dic 2024", 
+                miniatura: "https://img.youtube.com/vi/XG6lqkfi6so/hqdefault.jpg", 
+                youtubeId: "XG6lqkfi6so" 
+            },
+            { 
+                titulo: "6ix9ine - Pa Ti (feat. Yailin La Más Viral)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "16 Jun 2023", 
+                miniatura: "https://img.youtube.com/vi/sCyCQ8KLIM0/hqdefault.jpg", 
+                youtubeId: "sCyCQ8KLIM0" 
+            },
+            { 
+                titulo: "Pitbull x Daddy Yankee x Natti Natasha - No Lo Trates", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "6 May 2019", 
+                miniatura: "https://img.youtube.com/vi/maShEST7IkI/hqdefault.jpg", 
+                youtubeId: "maShEST7IkI" 
+            },
+            { 
+                titulo: "Daddy Yankee - Toy Hermoso (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "3 Feb 2026", 
+                miniatura: "https://img.youtube.com/vi/mBt_tAqBuBE/hqdefault.jpg", 
+                youtubeId: "mBt_tAqBuBE" 
+            },
+            { 
+                titulo: "Cosculluela - Prrrum (Video Oficial)", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "7 Abr 2014", 
+                miniatura: "https://img.youtube.com/vi/s0ZGUjHl8Yo/hqdefault.jpg", 
+                youtubeId: "s0ZGUjHl8Yo" 
+            },
+            { 
+                titulo: "Arcangel - Como Tiene Que Ser", 
+                badge: "RADIO CENTRO REGGAETÓN", 
+                fecha: "17 May 2014", 
+                miniatura: "https://img.youtube.com/vi/fXkF48-Fehs/hqdefault.jpg", 
+                youtubeId: "fXkF48-Fehs" 
+            }
+        ];
+        const VIDEOS_POR_PAGINA = 8;
+        let paginaActual = 1;
+        const totalPaginas = Math.ceil(videosData.length / VIDEOS_POR_PAGINA);
+        // Elementos del reproductor
+        const playerDiv = document.getElementById('reggaetonPlayer');
+        const playerIframe = document.getElementById('reggaetonPlayerIframe');
+        const playerTitle = document.getElementById('reggaetonPlayerTitle');
+        const closePlayerBtn = document.getElementById('closeReggaetonPlayer');
+        // Función para abrir el reproductor
+        function abrirReproductor(video) {
+            const youtubeUrl = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`;
+            playerIframe.src = youtubeUrl;
+            playerTitle.innerText = video.titulo;
+            playerDiv.style.display = 'block';
+            playerDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        // Cerrar reproductor
+        function cerrarReproductor() {
+            playerIframe.src = '';
+            playerDiv.style.display = 'none';
+        }
+        if (closePlayerBtn) {
+            closePlayerBtn.addEventListener('click', cerrarReproductor);
+        }
+        // Renderizar lista de videos
+        function renderizarVideos() {
+            const inicio = (paginaActual - 1) * VIDEOS_POR_PAGINA;
+            const fin = inicio + VIDEOS_POR_PAGINA;
+            const videosPagina = videosData.slice(inicio, fin);
+            
+            const contenedor = document.getElementById('reggaetonVideosList');
+            contenedor.innerHTML = videosPagina.map((video, idx) => `
+                
+    <div class="video-item" data-video-index="${inicio + idx}">
+                        
+        <div class="video-thumbnail">
+                                <img src="${video.miniatura}" alt="${video.titulo}">
+                                
+            <div class="play-overlay">
+                                        
+                <div class="play-icon">
+                    ▶
+                </div>
+                                    
+            </div>
+                            
+        </div>
+                        
+        <div class="video-info">
+                                
+            <h3>
+                ${video.titulo}
+            </h3>
+                                
+            <div class="video-meta">
+                                        <span class="video-badge">${video.badge}</span>
+                                        <span class="video-date">📅 ${video.fecha}</span>
+                                    
+            </div>
+                            
+        </div>
+                    
+    </div>
+            `).join('');
+            
+            // Evento click para cada video
+            document.querySelectorAll('#reggaetonVideosList .video-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.videoIndex);
+                    const video = videosData[index];
+                    abrirReproductor(video);
+                });
+            });
+        }
+        // Renderizar paginación
+        function renderizarPaginacion() {
+            const contenedor = document.getElementById('reggaetonPaginacion');
+            let botones = '';
+            
+            botones += `<button class="pagina-btn" data-pagina="prev" ${paginaActual === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>◀ Anterior</button>`;
+            
+            for (let i = 1; i <= totalPaginas; i++) {
+                if (i === 1 || i === totalPaginas || (i >= paginaActual - 2 && i <= paginaActual + 2)) {
+                    botones += `<button class="pagina-btn ${i === paginaActual ? 'active' : ''}" data-pagina="${i}">${i}</button>`;
+                } else if (i === paginaActual - 3 || i === paginaActual + 3) {
+                    botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+                }
+            }
+            
+            botones += `<button class="pagina-btn" data-pagina="next" ${paginaActual === totalPaginas ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>Siguiente ▶</button>`;
+            
+            contenedor.innerHTML = botones;
+            
+            document.querySelectorAll('#reggaetonPaginacion .pagina-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const pagina = btn.dataset.pagina;
+                    if (pagina === 'prev' && paginaActual > 1) {
+                        paginaActual--;
+                    } else if (pagina === 'next' && paginaActual < totalPaginas) {
+                        paginaActual++;
+                    } else if (!isNaN(parseInt(pagina))) {
+                        paginaActual = parseInt(pagina);
+                    }
+                    renderizarVideos();
+                    renderizarPaginacion();
+                    document.getElementById('reggaetonVideosList').scrollIntoView({ behavior: 'smooth' });
+                    cerrarReproductor();
+                });
+            });
+        }
+        // Inicializar
+        renderizarVideos();
+        renderizarPaginacion();
+    })();
+    </script>
+</p>
