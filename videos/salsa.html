@@ -1,0 +1,358 @@
+<!-- ============================================ --><!-- VIDEOTECA SALSA RADIO CENTRO                 --><!-- Al hacer clic en un video → abre reproductor --><!-- ============================================ -->
+<div style="background-color:#0a0a0a;box-sizing:border-box;padding:30px 20px;width:100%;">
+    <h2 style="border-left:5px solid #e91826;color:#f9b001;font-family:&apos;Bebas Neue&apos;, &apos;Impact&apos;, &apos;Arial Black&apos;, sans-serif;font-size:2.5rem;margin:0 0 30px;padding-left:20px;">
+        🎶 VIDEOTECA SALSA - RADIO CENTRO
+    </h2>
+    <!-- REPRODUCTOR GRANDE (oculto al inicio) -->
+    <div style="background-color:#000;border-radius:16px;border:2px solid #e91826;display:none;margin-bottom:30px;overflow:hidden;" id="salsaPlayer">
+        <div style="position:relative;">
+            <iframe style="display:block;" id="salsaPlayerIframe" width="100%" height="500" src="" frameborder="0" allowfullscreen=""></iframe> <button style="background-color:#e91826;border-radius:50%;border-style:none;color:white;cursor:pointer;font-size:1.5rem;height:40px;position:absolute;right:15px;top:15px;width:40px;z-index:10;" id="closeSalsaPlayer">✕</button>
+        </div>
+        <div style="background-color:#111;padding:15px 20px;">
+            <h3 style="color:#f9b001;font-family:&apos;Bebas Neue&apos;, sans-serif;font-size:1.3rem;margin:0 0 10px;" id="salsaPlayerTitle">
+                Título del video
+            </h3>
+            <div style="align-items:center;display:flex;flex-wrap:wrap;gap:20px;">
+                <span style="background-color:#e91826;border-radius:20px;font-size:0.7rem;padding:4px 12px;"><strong>RADIO CENTRO SALSA</strong></span> <span style="color:#aaa;font-size:0.75rem;">🎶 Reproduciendo ahora</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;">
+                <span style="color:#f9b001;font-size:0.7rem;">💃 Salsa | Romántica | Clásica | Éxitos</span>
+            </div>
+        </div>
+    </div>
+    <!-- LISTA DE VIDEOS -->
+    <div style="display:flex;flex-direction:column;gap:25px;margin-bottom:40px;" id="salsaVideosList">
+        &nbsp;
+    </div>
+    <!-- PAGINACIÓN -->
+    <div style="border-top:1px solid #2a2a2a;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;padding-top:25px;" id="salsaPaginacion">
+        &nbsp;
+    </div>
+</div>
+<style>
+/* ESTILOS DE LA VIDEOTECA SALSA */
+#salsaVideosList .video-item {
+    display: flex !important;
+    gap: 25px !important;
+    background: #111 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #2a2a2a !important;
+    cursor: pointer !important;
+    transition: transform 0.2s, border-color 0.2s !important;
+}
+#salsaVideosList .video-item:hover {
+    transform: translateX(8px) !important;
+    border-color: #f9b001 !important;
+}
+#salsaVideosList .video-thumbnail {
+    position: relative !important;
+    width: 300px !important;
+    flex-shrink: 0 !important;
+    background: #1a1a1a !important;
+}
+#salsaVideosList .video-thumbnail img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+#salsaVideosList .play-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0,0,0,0.5) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0 !important;
+    transition: opacity 0.2s !important;
+}
+#salsaVideosList .video-item:hover .play-overlay {
+    opacity: 1 !important;
+}
+#salsaVideosList .play-icon {
+    background: #e91826 !important;
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2rem !important;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(233,24,38,0.8) !important;
+}
+#salsaVideosList .video-info {
+    flex: 1 !important;
+    padding: 18px 20px 18px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+#salsaVideosList .video-info h3 {
+    font-size: 1.4rem !important;
+    color: #fff !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.3 !important;
+    font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif !important;
+    font-weight: normal !important;
+}
+#salsaVideosList .video-meta {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+}
+#salsaVideosList .video-badge {
+    background: #e91826 !important;
+    color: white !important;
+    padding: 5px 14px !important;
+    border-radius: 25px !important;
+    font-size: 0.8rem !important;
+    font-weight: bold !important;
+}
+#salsaVideosList .video-date {
+    color: #aaa !important;
+    font-size: 0.8rem !important;
+    font-family: Arial, sans-serif !important;
+}
+#salsaPaginacion .pagina-btn {
+    background: #1a1a1a !important;
+    border: 1px solid #2a2a2a !important;
+    color: #ccc !important;
+    padding: 12px 22px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    transition: 0.2s !important;
+}
+#salsaPaginacion .pagina-btn:hover {
+    background: #2a2a2a !important;
+    color: #f9b001 !important;
+    border-color: #f9b001 !important;
+}
+#salsaPaginacion .pagina-btn.active {
+    background: #e91826 !important;
+    border-color: #e91826 !important;
+    color: white !important;
+}
+@media (max-width: 700px) {
+    #salsaVideosList .video-item {
+        flex-direction: column !important;
+    }
+    #salsaVideosList .video-thumbnail {
+        width: 100% !important;
+    }
+    #salsaVideosList .video-thumbnail img {
+        height: 200px !important;
+    }
+    #salsaVideosList .video-info {
+        padding: 15px !important;
+    }
+    #salsaVideosList .video-info h3 {
+        font-size: 1.2rem !important;
+    }
+    #salsaPaginacion .pagina-btn {
+        padding: 8px 16px !important;
+        font-size: 0.8rem !important;
+    }
+    #salsaPlayerIframe {
+        height: 250px !important;
+    }
+}
+</style><script>
+(function() {
+    // ============================================
+    // VIDEOS SALSA - CON TUS LINKS
+    // ============================================
+    const videosData = [
+        { 
+            titulo: "Guayacán Orquesta - Cuando Hablan Las Miradas (Video Oficial)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "4 Oct 2016", 
+            miniatura: "https://img.youtube.com/vi/5Z_vieWhWqw/hqdefault.jpg", 
+            youtubeId: "5Z_vieWhWqw" 
+        },
+        { 
+            titulo: "Marc Anthony, NATHY PELUSO - Como en el Idilio (Official Video)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "5 Feb 2026", 
+            miniatura: "https://img.youtube.com/vi/OYtHvS7n7ic/hqdefault.jpg", 
+            youtubeId: "OYtHvS7n7ic" 
+        },
+        { 
+            titulo: "Willy Garcia - Amanecí Con Ganas De Ti (Video Live Performance)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "3 May 2023", 
+            miniatura: "https://img.youtube.com/vi/9TOo3rnvvj8/hqdefault.jpg", 
+            youtubeId: "9TOo3rnvvj8" 
+        },
+        { 
+            titulo: "Fresto Music - Me Hace Daño Verte (Video Oficial)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "4 Nov 2022", 
+            miniatura: "https://img.youtube.com/vi/Lg13W7_H3d8/hqdefault.jpg", 
+            youtubeId: "Lg13W7_H3d8" 
+        },
+        { 
+            titulo: "Diego y Su Grupo Galé - Amor Cuanto Te Amo (Live Anniversary)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "20 Jul 2023", 
+            miniatura: "https://img.youtube.com/vi/moD7Pg_HUxg/hqdefault.jpg", 
+            youtubeId: "moD7Pg_HUxg" 
+        },
+        { 
+            titulo: "Yiyo Sarante - Qué Agonía / 2 Veces (Video Oficial)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "29 Mar 2023", 
+            miniatura: "https://img.youtube.com/vi/eHsR140M2no/hqdefault.jpg", 
+            youtubeId: "eHsR140M2no" 
+        },
+        { 
+            titulo: "Anddy Caicedo - Mi Amor Para Siempre (Video Oficial)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "4 Jul 2022", 
+            miniatura: "https://img.youtube.com/vi/t2zV8xR-Oms/hqdefault.jpg", 
+            youtubeId: "t2zV8xR-Oms" 
+        },
+        { 
+            titulo: "Anddy Caicedo - Margie (Video Oficial)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "15 Sep 2023", 
+            miniatura: "https://img.youtube.com/vi/LznTyPlmRek/hqdefault.jpg", 
+            youtubeId: "LznTyPlmRek" 
+        },
+        { 
+            titulo: "Eddie Santiago - Lluvia, Tu Me Haces Falta, Mia (Salsa Románticas Mix)", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "23 Mar 2021", 
+            miniatura: "https://img.youtube.com/vi/L-AushSSq2I/hqdefault.jpg", 
+            youtubeId: "L-AushSSq2I" 
+        },
+        { 
+            titulo: "Maelo Ruiz - Amiga (Video Letra) - Salsa Power", 
+            badge: "RADIO CENTRO SALSA", 
+            fecha: "3 Mar 2023", 
+            miniatura: "https://img.youtube.com/vi/8RhFosXuSxA/hqdefault.jpg", 
+            youtubeId: "8RhFosXuSxA" 
+        }
+    ];
+    const VIDEOS_POR_PAGINA = 8;
+    let paginaActual = 1;
+    const totalPaginas = Math.ceil(videosData.length / VIDEOS_POR_PAGINA);
+    // Elementos del reproductor
+    const playerDiv = document.getElementById('salsaPlayer');
+    const playerIframe = document.getElementById('salsaPlayerIframe');
+    const playerTitle = document.getElementById('salsaPlayerTitle');
+    const closePlayerBtn = document.getElementById('closeSalsaPlayer');
+    // Función para abrir el reproductor
+    function abrirReproductor(video) {
+        const youtubeUrl = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`;
+        playerIframe.src = youtubeUrl;
+        playerTitle.innerText = video.titulo;
+        playerDiv.style.display = 'block';
+        playerDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Cerrar reproductor
+    function cerrarReproductor() {
+        playerIframe.src = '';
+        playerDiv.style.display = 'none';
+    }
+    if (closePlayerBtn) {
+        closePlayerBtn.addEventListener('click', cerrarReproductor);
+    }
+    // Renderizar lista de videos
+    function renderizarVideos() {
+        const inicio = (paginaActual - 1) * VIDEOS_POR_PAGINA;
+        const fin = inicio + VIDEOS_POR_PAGINA;
+        const videosPagina = videosData.slice(inicio, fin);
+        
+        const contenedor = document.getElementById('salsaVideosList');
+        contenedor.innerHTML = videosPagina.map((video, idx) => `
+            
+<div class="video-item" data-video-index="${inicio + idx}">
+                    
+    <div class="video-thumbnail">
+                            <img src="${video.miniatura}" alt="${video.titulo}">
+                            
+        <div class="play-overlay">
+                                    
+            <div class="play-icon">
+                ▶
+            </div>
+                                
+        </div>
+                        
+    </div>
+                    
+    <div class="video-info">
+                            
+        <h3>
+            ${video.titulo}
+        </h3>
+                            
+        <div class="video-meta">
+                                    <span class="video-badge">${video.badge}</span>
+                                    <span class="video-date">📅 ${video.fecha}</span>
+                                
+        </div>
+                        
+    </div>
+                
+</div>
+        `).join('');
+        
+        // Evento click para cada video
+        document.querySelectorAll('#salsaVideosList .video-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const index = parseInt(this.dataset.videoIndex);
+                const video = videosData[index];
+                abrirReproductor(video);
+            });
+        });
+    }
+    // Renderizar paginación
+    function renderizarPaginacion() {
+        const contenedor = document.getElementById('salsaPaginacion');
+        let botones = '';
+        
+        botones += `<button class="pagina-btn" data-pagina="prev" ${paginaActual === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>◀ Anterior</button>`;
+        
+        for (let i = 1; i <= totalPaginas; i++) {
+            if (i === 1 || i === totalPaginas || (i >= paginaActual - 2 && i <= paginaActual + 2)) {
+                botones += `<button class="pagina-btn ${i === paginaActual ? 'active' : ''}" data-pagina="${i}">${i}</button>`;
+            } else if (i === paginaActual - 3 || i === paginaActual + 3) {
+                botones += `<span style="color:#666; padding:0 5px;">...</span>`;
+            }
+        }
+        
+        botones += `<button class="pagina-btn" data-pagina="next" ${paginaActual === totalPaginas ? 'disabled style="opacity:0.5; cursor:not-allowed"' : ''}>Siguiente ▶</button>`;
+        
+        contenedor.innerHTML = botones;
+        
+        document.querySelectorAll('#salsaPaginacion .pagina-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pagina = btn.dataset.pagina;
+                if (pagina === 'prev' && paginaActual > 1) {
+                    paginaActual--;
+                } else if (pagina === 'next' && paginaActual < totalPaginas) {
+                    paginaActual++;
+                } else if (!isNaN(parseInt(pagina))) {
+                    paginaActual = parseInt(pagina);
+                }
+                renderizarVideos();
+                renderizarPaginacion();
+                document.getElementById('salsaVideosList').scrollIntoView({ behavior: 'smooth' });
+                cerrarReproductor();
+            });
+        });
+    }
+    // Inicializar
+    renderizarVideos();
+    renderizarPaginacion();
+})();
+</script>
